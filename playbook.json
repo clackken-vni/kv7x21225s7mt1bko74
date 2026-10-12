@@ -3195,5 +3195,1945 @@
     "virtualstaging": "dàn dựng nội thất ảo cho phòng trống"
    }
   }
+ },
+ "imageMeanings": {
+  "actorheadshot": {
+   "meaning": "Professional actor headshot for casting",
+   "meaning_vi": "ảnh chân dung diễn viên để casting"
+  },
+  "authorphoto": {
+   "meaning": "Author portrait for book jacket",
+   "meaning_vi": "ảnh chân dung tác giả in bìa sách"
+  },
+  "bwportrait": {
+   "meaning": "Black and white portrait",
+   "meaning_vi": "chân dung đen trắng"
+  },
+  "casualheadshot": {
+   "meaning": "Relaxed casual professional headshot",
+   "meaning_vi": "ảnh chân dung chuyên nghiệp phong cách thoải mái"
+  },
+  "corporateheadshot": {
+   "meaning": "Corporate business headshot on office backdrop",
+   "meaning_vi": "ảnh chân dung doanh nghiệp nền văn phòng"
+  },
+  "datingprofile": {
+   "meaning": "Approachable dating profile photo",
+   "meaning_vi": "ảnh hồ sơ hẹn hò thân thiện, dễ gần"
+  },
+  "doctorportrait": {
+   "meaning": "Medical professional portrait in clinical setting",
+   "meaning_vi": "chân dung bác sĩ trong bối cảnh y tế"
+  },
+  "fitnessportrait": {
+   "meaning": "Athletic fitness portrait with gym setting",
+   "meaning_vi": "chân dung thể hình trong phòng gym"
+  },
+  "founderportrait": {
+   "meaning": "Startup founder portrait for company page",
+   "meaning_vi": "chân dung nhà sáng lập cho trang công ty"
+  },
+  "goldenhourportrait": {
+   "meaning": "Portrait in warm golden hour light",
+   "meaning_vi": "chân dung dưới nắng vàng giờ hoàng hôn"
+  },
+  "graduationportrait": {
+   "meaning": "Graduation portrait in cap and gown",
+   "meaning_vi": "ảnh tốt nghiệp đội mũ áo cử nhân"
+  },
+  "headshot": {
+   "meaning": "Standard professional headshot",
+   "meaning_vi": "ảnh chân dung chuyên nghiệp tiêu chuẩn"
+  },
+  "outfitswap": {
+   "meaning": "Portrait with outfit changed to new clothing",
+   "meaning_vi": "đổi trang phục trong ảnh chân dung"
+  },
+  "passportphoto": {
+   "meaning": "Official passport photo on plain background",
+   "meaning_vi": "ảnh thẻ hộ chiếu nền trơn"
+  },
+  "podcastportrait": {
+   "meaning": "Podcast host portrait with microphone",
+   "meaning_vi": "chân dung người dẫn podcast cùng micro"
+  },
+  "realtorheadshot": {
+   "meaning": "Real estate agent headshot",
+   "meaning_vi": "ảnh chân dung môi giới bất động sản"
+  },
+  "speakerphoto": {
+   "meaning": "Conference speaker portrait on stage",
+   "meaning_vi": "ảnh diễn giả trên sân khấu hội thảo"
+  },
+  "teamphoto": {
+   "meaning": "Group team photo for company",
+   "meaning_vi": "ảnh tập thể nhóm công ty"
+  },
+  "vintageportrait": {
+   "meaning": "Retro vintage-style portrait",
+   "meaning_vi": "chân dung phong cách cổ điển retro"
+  },
+  "appicon": {
+   "meaning": "Mobile app icon design",
+   "meaning_vi": "thiết kế icon ứng dụng di động"
+  },
+  "brandboard": {
+   "meaning": "Brand identity board with assets",
+   "meaning_vi": "bảng nhận diện thương hiệu đầy đủ"
+  },
+  "brandmerch": {
+   "meaning": "Branded merchandise mockup collection",
+   "meaning_vi": "bộ mockup sản phẩm in thương hiệu"
+  },
+  "businesscard": {
+   "meaning": "Business card design mockup",
+   "meaning_vi": "thiết kế mockup danh thiếp"
+  },
+  "colorpalette": {
+   "meaning": "Brand color palette swatches",
+   "meaning_vi": "bảng phối màu thương hiệu"
+  },
+  "favicon": {
+   "meaning": "Website favicon icon design",
+   "meaning_vi": "thiết kế favicon cho website"
+  },
+  "iconlogo": {
+   "meaning": "Icon-based logo mark",
+   "meaning_vi": "logo dạng icon biểu tượng"
+  },
+  "letterhead": {
+   "meaning": "Company letterhead stationery design",
+   "meaning_vi": "thiết kế giấy tiêu đề văn phòng"
+  },
+  "logoconcepts": {
+   "meaning": "Multiple logo concept options",
+   "meaning_vi": "nhiều phương án ý tưởng logo"
+  },
+  "logomotion": {
+   "meaning": "Animated logo motion graphic",
+   "meaning_vi": "logo chuyển động dạng motion graphic"
+  },
+  "mascotdesign": {
+   "meaning": "Brand mascot character design",
+   "meaning_vi": "thiết kế linh vật thương hiệu"
+  },
+  "monogram": {
+   "meaning": "Monogram initials logo",
+   "meaning_vi": "logo chữ lồng từ tên viết tắt"
+  },
+  "patterndesign": {
+   "meaning": "Seamless repeating pattern design",
+   "meaning_vi": "thiết kế họa tiết lặp liền mạch"
+  },
+  "rebrand": {
+   "meaning": "Refreshed rebrand identity design",
+   "meaning_vi": "thiết kế nhận diện thương hiệu làm mới"
+  },
+  "storefront": {
+   "meaning": "Retail storefront signage design",
+   "meaning_vi": "thiết kế biển hiệu mặt tiền cửa hàng"
+  },
+  "wordmark": {
+   "meaning": "Typography-based wordmark logo",
+   "meaning_vi": "logo dạng chữ viết cách điệu"
+  },
+  "3dcharacter": {
+   "meaning": "Three-dimensional character model",
+   "meaning_vi": "mô hình nhân vật ba chiều"
+  },
+  "3drender": {
+   "meaning": "Photorealistic 3D render",
+   "meaning_vi": "ảnh dựng 3D chân thực"
+  },
+  "anime": {
+   "meaning": "Japanese anime illustration style",
+   "meaning_vi": "phong cách minh họa anime Nhật Bản"
+  },
+  "blender": {
+   "meaning": "Blender 3D software render style",
+   "meaning_vi": "phong cách dựng 3D bằng Blender"
+  },
+  "cartoonme": {
+   "meaning": "Cartoon caricature of the subject",
+   "meaning_vi": "ảnh biếm họa hoạt hình của nhân vật"
+  },
+  "charcoal": {
+   "meaning": "Charcoal drawing style",
+   "meaning_vi": "phong cách vẽ than chì"
+  },
+  "childrensbook": {
+   "meaning": "Children's book illustration style",
+   "meaning_vi": "phong cách minh họa truyện thiếu nhi"
+  },
+  "claymation": {
+   "meaning": "Claymation stop-motion clay style",
+   "meaning_vi": "phong cách đất sét tạo hình stop-motion"
+  },
+  "comicbook": {
+   "meaning": "Comic book panel art style",
+   "meaning_vi": "phong cách tranh truyện comic"
+  },
+  "conceptart": {
+   "meaning": "Concept art illustration",
+   "meaning_vi": "tranh ý tưởng concept art"
+  },
+  "crosshatching": {
+   "meaning": "Cross-hatched pen shading style",
+   "meaning_vi": "phong cách đánh bóng bằng gạch chéo"
+  },
+  "embroidery": {
+   "meaning": "Embroidered stitched fabric artwork",
+   "meaning_vi": "hình thêu chỉ trên vải"
+  },
+  "environmentart": {
+   "meaning": "Environment and scenery concept art",
+   "meaning_vi": "tranh concept bối cảnh phong cảnh"
+  },
+  "ghibli": {
+   "meaning": "Studio Ghibli anime film style",
+   "meaning_vi": "phong cách phim hoạt hình Ghibli"
+  },
+  "graffiti": {
+   "meaning": "Graffiti street art spray style",
+   "meaning_vi": "phong cách graffiti xịt sơn đường phố"
+  },
+  "inkdrawing": {
+   "meaning": "Ink pen drawing style",
+   "meaning_vi": "phong cách vẽ bằng mực bút"
+  },
+  "lineart": {
+   "meaning": "Clean line art outline drawing",
+   "meaning_vi": "tranh nét vẽ viền sạch sẽ"
+  },
+  "lowpoly": {
+   "meaning": "Low-polygon geometric 3D style",
+   "meaning_vi": "phong cách 3D đa giác thấp"
+  },
+  "manga": {
+   "meaning": "Japanese manga black and white style",
+   "meaning_vi": "phong cách manga trắng đen Nhật Bản"
+  },
+  "mattepainting": {
+   "meaning": "Cinematic matte painting backdrop",
+   "meaning_vi": "tranh nền phông điện ảnh matte painting"
+  },
+  "octanerender": {
+   "meaning": "Octane 3D render with glossy lighting",
+   "meaning_vi": "ảnh dựng 3D Octane ánh bóng loáng"
+  },
+  "oilpainting": {
+   "meaning": "Classical oil painting style",
+   "meaning_vi": "phong cách tranh sơn dầu cổ điển"
+  },
+  "papercut": {
+   "meaning": "Layered paper cut-out art style",
+   "meaning_vi": "phong cách tranh cắt giấy nhiều lớp"
+  },
+  "pencilsketch": {
+   "meaning": "Graphite pencil sketch style",
+   "meaning_vi": "phong cách ký họa bút chì"
+  },
+  "pixar": {
+   "meaning": "Pixar 3D animated film style",
+   "meaning_vi": "phong cách phim hoạt hình 3D Pixar"
+  },
+  "pixelart": {
+   "meaning": "Retro pixel art sprite style",
+   "meaning_vi": "phong cách pixel art cổ điển"
+  },
+  "popart": {
+   "meaning": "Pop art bold color style",
+   "meaning_vi": "phong cách pop art màu sắc mạnh"
+  },
+  "sketchbook": {
+   "meaning": "Hand-drawn sketchbook page style",
+   "meaning_vi": "phong cách trang sổ ký họa tay"
+  },
+  "stainedglass": {
+   "meaning": "Stained glass window panel art",
+   "meaning_vi": "tranh kính màu ghép ô"
+  },
+  "tattoodesign": {
+   "meaning": "Tattoo flash design artwork",
+   "meaning_vi": "thiết kế hình xăm"
+  },
+  "unrealengine": {
+   "meaning": "Unreal Engine real-time 3D render",
+   "meaning_vi": "ảnh dựng 3D thời gian thực Unreal Engine"
+  },
+  "vectorflat": {
+   "meaning": "Flat vector illustration style",
+   "meaning_vi": "phong cách minh họa vector phẳng"
+  },
+  "voxel": {
+   "meaning": "Voxel blocky 3D cube style",
+   "meaning_vi": "phong cách 3D khối vuông voxel"
+  },
+  "watercolor": {
+   "meaning": "Watercolor painting style",
+   "meaning_vi": "phong cách tranh màu nước"
+  },
+  "amazonready": {
+   "meaning": "Clean marketplace-compliant white background product image",
+   "meaning_vi": "ảnh sản phẩm nền trắng chuẩn sàn thương mại điện tử"
+  },
+  "backgroundswap": {
+   "meaning": "Product with its background replaced",
+   "meaning_vi": "ảnh sản phẩm đã thay nền mới"
+  },
+  "beforeafterproduct": {
+   "meaning": "Side-by-side before and after product comparison",
+   "meaning_vi": "ảnh so sánh sản phẩm trước và sau"
+  },
+  "catalogset": {
+   "meaning": "Consistent multi-angle catalog image set",
+   "meaning_vi": "bộ ảnh catalog nhiều góc nhất quán"
+  },
+  "colorways": {
+   "meaning": "Product shown in multiple colour variants",
+   "meaning_vi": "ảnh sản phẩm với nhiều phối màu khác nhau"
+  },
+  "flatlay": {
+   "meaning": "Overhead top-down product layout",
+   "meaning_vi": "chụp từ trên xuống, xếp phẳng"
+  },
+  "floatingproduct": {
+   "meaning": "Product levitating against a plain backdrop",
+   "meaning_vi": "sản phẩm lơ lửng trên nền trơn"
+  },
+  "ghostmannequin": {
+   "meaning": "Invisible mannequin apparel shot",
+   "meaning_vi": "ảnh quần áo kiểu ma-nơ-canh vô hình"
+  },
+  "glassreflection": {
+   "meaning": "Product on a glossy reflective surface",
+   "meaning_vi": "sản phẩm đặt trên mặt bóng phản chiếu"
+  },
+  "handheld": {
+   "meaning": "Product held in a hand",
+   "meaning_vi": "sản phẩm cầm trên tay"
+  },
+  "heroimage": {
+   "meaning": "Main hero product image",
+   "meaning_vi": "ảnh sản phẩm chính"
+  },
+  "lifestyleshot": {
+   "meaning": "Product in a real-life usage setting",
+   "meaning_vi": "ảnh sản phẩm trong bối cảnh đời thường"
+  },
+  "luxuryshot": {
+   "meaning": "Premium styled luxury product image",
+   "meaning_vi": "ảnh sản phẩm cao cấp sang trọng"
+  },
+  "macroshot": {
+   "meaning": "Extreme close-up detail shot",
+   "meaning_vi": "ảnh cận cảnh chi tiết cực gần"
+  },
+  "naturebackdrop": {
+   "meaning": "Product against a natural outdoor backdrop",
+   "meaning_vi": "sản phẩm trên nền thiên nhiên ngoài trời"
+  },
+  "onmodel": {
+   "meaning": "Product worn or held by a model",
+   "meaning_vi": "sản phẩm được người mẫu mặc hoặc cầm"
+  },
+  "podiumshot": {
+   "meaning": "Product displayed on a raised podium",
+   "meaning_vi": "sản phẩm trưng bày trên bục nổi"
+  },
+  "productshot": {
+   "meaning": "Standard studio product image",
+   "meaning_vi": "ảnh sản phẩm studio tiêu chuẩn"
+  },
+  "seasonalshot": {
+   "meaning": "Product styled for a seasonal theme",
+   "meaning_vi": "ảnh sản phẩm theo chủ đề mùa"
+  },
+  "splashshot": {
+   "meaning": "Product with liquid splash around it",
+   "meaning_vi": "sản phẩm có nước bắn tung quanh"
+  },
+  "announcementpost": {
+   "meaning": "Bold announcement social post",
+   "meaning_vi": "bài đăng thông báo nổi bật"
+  },
+  "carouselcover": {
+   "meaning": "Cover slide for a social carousel",
+   "meaning_vi": "ảnh bìa cho bộ ảnh carousel"
+  },
+  "countdownpost": {
+   "meaning": "Countdown or launch-timer social post",
+   "meaning_vi": "bài đăng đếm ngược khai trương"
+  },
+  "eventflyer": {
+   "meaning": "Promotional event flyer graphic",
+   "meaning_vi": "poster quảng bá sự kiện"
+  },
+  "instagrid": {
+   "meaning": "Coordinated Instagram grid layout",
+   "meaning_vi": "bố cục lưới ảnh Instagram đồng bộ"
+  },
+  "linkedinbanner": {
+   "meaning": "Professional LinkedIn profile banner",
+   "meaning_vi": "ảnh bìa hồ sơ LinkedIn chuyên nghiệp"
+  },
+  "memeformat": {
+   "meaning": "Meme-style image with caption text",
+   "meaning_vi": "ảnh kiểu meme có chữ chú thích"
+  },
+  "pinterestpin": {
+   "meaning": "Tall vertical Pinterest pin graphic",
+   "meaning_vi": "ảnh ghim Pinterest dọc khổ lớn"
+  },
+  "podcastcover": {
+   "meaning": "Podcast episode or show cover art",
+   "meaning_vi": "ảnh bìa podcast"
+  },
+  "profilepic": {
+   "meaning": "Round social profile avatar",
+   "meaning_vi": "ảnh đại diện tròn cho hồ sơ"
+  },
+  "quotecard": {
+   "meaning": "Quote overlaid on a styled background",
+   "meaning_vi": "ảnh chèn câu trích dẫn lên nền trang trí"
+  },
+  "reelcover": {
+   "meaning": "Vertical cover frame for a short video reel",
+   "meaning_vi": "ảnh bìa dọc cho video ngắn reel"
+  },
+  "statgraphic": {
+   "meaning": "Single statistic highlighted graphic",
+   "meaning_vi": "đồ họa làm nổi bật một số liệu"
+  },
+  "storycover": {
+   "meaning": "Vertical story cover graphic",
+   "meaning_vi": "ảnh bìa dọc cho story"
+  },
+  "thumbnailimage": {
+   "meaning": "Clickable video thumbnail image",
+   "meaning_vi": "ảnh thumbnail cho video"
+  },
+  "tiktokcover": {
+   "meaning": "Vertical TikTok video cover",
+   "meaning_vi": "ảnh bìa video TikTok dạng dọc"
+  },
+  "twitterheader": {
+   "meaning": "Wide Twitter profile header image",
+   "meaning_vi": "ảnh bìa ngang hồ sơ Twitter"
+  },
+  "youtubebanner": {
+   "meaning": "Wide YouTube channel banner",
+   "meaning_vi": "ảnh bìa ngang kênh YouTube"
+  },
+  "anatomyof": {
+   "meaning": "Labelled breakdown of a subject's parts",
+   "meaning_vi": "hình mổ xẻ chú thích từng bộ phận"
+  },
+  "checklistgraphic": {
+   "meaning": "Graphic checklist with tickable items",
+   "meaning_vi": "đồ họa danh sách cần làm có ô tick"
+  },
+  "comparisonchart": {
+   "meaning": "Side-by-side comparison chart",
+   "meaning_vi": "bảng biểu đồ so sánh song song"
+  },
+  "howtoillustration": {
+   "meaning": "Step-by-step how-to illustration",
+   "meaning_vi": "hình minh họa hướng dẫn từng bước"
+  },
+  "iconset": {
+   "meaning": "Matching set of simple icons",
+   "meaning_vi": "bộ icon đồng nhất cùng phong cách"
+  },
+  "infographic": {
+   "meaning": "Data-driven informational graphic",
+   "meaning_vi": "đồ họa thông tin dựa trên dữ liệu"
+  },
+  "mapgraphic": {
+   "meaning": "Illustrated map or location graphic",
+   "meaning_vi": "đồ họa bản đồ hoặc vị trí"
+  },
+  "orgchart": {
+   "meaning": "Organisational hierarchy chart",
+   "meaning_vi": "sơ đồ tổ chức phân cấp"
+  },
+  "pricingtable": {
+   "meaning": "Tiered pricing comparison table",
+   "meaning_vi": "bảng so sánh các gói giá"
+  },
+  "processdiagram": {
+   "meaning": "Flow diagram of a process",
+   "meaning_vi": "sơ đồ luồng các bước quy trình"
+  },
+  "roadmapgraphic": {
+   "meaning": "Timeline roadmap graphic",
+   "meaning_vi": "đồ họa lộ trình theo thời gian"
+  },
+  "slidevisual": {
+   "meaning": "Visual for a presentation slide",
+   "meaning_vi": "hình ảnh cho slide thuyết trình"
+  },
+  "statposter": {
+   "meaning": "Poster built around key statistics",
+   "meaning_vi": "poster xoay quanh các số liệu chính"
+  },
+  "timelineposter": {
+   "meaning": "Poster showing events along a timeline",
+   "meaning_vi": "poster thể hiện sự kiện theo dòng thời gian"
+  },
+  "assemblysteps": {
+   "meaning": "Step-by-step assembly instruction diagram",
+   "meaning_vi": "sơ đồ các bước lắp ráp"
+  },
+  "blueprintview": {
+   "meaning": "Technical blueprint drawing view",
+   "meaning_vi": "bản vẽ kỹ thuật kiểu blueprint"
+  },
+  "clayrender": {
+   "meaning": "Untextured clay material 3D render",
+   "meaning_vi": "render 3D chất liệu đất sét chưa tô màu"
+  },
+  "cutaway": {
+   "meaning": "Cutaway view revealing interior structure",
+   "meaning_vi": "mặt cắt lộ cấu trúc bên trong"
+  },
+  "exploded3d": {
+   "meaning": "Exploded 3D view of separated parts",
+   "meaning_vi": "tách rời các bộ phận dạng 3D"
+  },
+  "giantscale": {
+   "meaning": "Giant scale product comparison shot",
+   "meaning_vi": "ảnh so sánh sản phẩm phóng to khổng lồ"
+  },
+  "insidethebox": {
+   "meaning": "What's inside the box layout",
+   "meaning_vi": "bố cục ảnh toàn bộ phụ kiện trong hộp"
+  },
+  "isometricproduct": {
+   "meaning": "Isometric angle product view",
+   "meaning_vi": "góc nhìn sản phẩm kiểu isometric"
+  },
+  "materialswap": {
+   "meaning": "Material swap variant render",
+   "meaning_vi": "biến thể đổi chất liệu bề mặt"
+  },
+  "miniature": {
+   "meaning": "Miniature scale model look",
+   "meaning_vi": "hiệu ứng mô hình thu nhỏ"
+  },
+  "partslist": {
+   "meaning": "Numbered parts list diagram",
+   "meaning_vi": "sơ đồ danh sách phụ kiện đánh số"
+  },
+  "turntable": {
+   "meaning": "Rotating turntable product view",
+   "meaning_vi": "ảnh sản phẩm xoay vòng nhiều góc"
+  },
+  "wireframerender": {
+   "meaning": "Wireframe 3D render view",
+   "meaning_vi": "render 3D dạng khung dây"
+  },
+  "xrayview": {
+   "meaning": "X-ray see-through view",
+   "meaning_vi": "góc nhìn xuyên thấu kiểu X-quang"
+  },
+  "bagmockup": {
+   "meaning": "Shopping bag mockup",
+   "meaning_vi": "mockup túi giấy mua hàng"
+  },
+  "bookcover": {
+   "meaning": "Book cover mockup",
+   "meaning_vi": "mockup bìa sách"
+  },
+  "bottlelabel": {
+   "meaning": "Bottle label mockup",
+   "meaning_vi": "mockup nhãn chai"
+  },
+  "boxmockup": {
+   "meaning": "Product box mockup",
+   "meaning_vi": "mockup hộp sản phẩm"
+  },
+  "canmockup": {
+   "meaning": "Beverage can mockup",
+   "meaning_vi": "mockup lon nước giải khát"
+  },
+  "giftbox": {
+   "meaning": "Gift box packaging shot",
+   "meaning_vi": "ảnh hộp quà bao bì"
+  },
+  "laptopmockup": {
+   "meaning": "Laptop screen mockup",
+   "meaning_vi": "mockup màn hình laptop"
+  },
+  "menudesign": {
+   "meaning": "Restaurant menu design",
+   "meaning_vi": "thiết kế menu nhà hàng"
+  },
+  "packagingdesign": {
+   "meaning": "Product packaging design",
+   "meaning_vi": "thiết kế bao bì sản phẩm"
+  },
+  "phonemockup": {
+   "meaning": "Phone screen mockup",
+   "meaning_vi": "mockup màn hình điện thoại"
+  },
+  "postermockup": {
+   "meaning": "Poster mockup in scene",
+   "meaning_vi": "mockup poster trong bối cảnh"
+  },
+  "shelfshot": {
+   "meaning": "Retail shelf product shot",
+   "meaning_vi": "ảnh sản phẩm trên kệ bán lẻ"
+  },
+  "stickersheet": {
+   "meaning": "Die-cut sticker sheet layout",
+   "meaning_vi": "bố cục sheet sticker cắt hình"
+  },
+  "tshirtmockup": {
+   "meaning": "T-shirt apparel mockup",
+   "meaning_vi": "mockup áo thun"
+  },
+  "actionfigure": {
+   "meaning": "Collectible action figure toy",
+   "meaning_vi": "mô hình đồ chơi nhân vật sưu tầm"
+  },
+  "ageprogression": {
+   "meaning": "Age progression portrait series",
+   "meaning_vi": "chuỗi chân dung theo tuổi tác"
+  },
+  "babyphoto": {
+   "meaning": "Baby photo portrait",
+   "meaning_vi": "ảnh chân dung em bé"
+  },
+  "caricature": {
+   "meaning": "Exaggerated caricature portrait",
+   "meaning_vi": "chân dung biếm họa phóng đại"
+  },
+  "dreamcar": {
+   "meaning": "Custom dream car render",
+   "meaning_vi": "render xe mơ ước tùy chỉnh"
+  },
+  "fantasyme": {
+   "meaning": "Fantasy character portrait",
+   "meaning_vi": "chân dung nhân vật giả tưởng"
+  },
+  "holidaycard": {
+   "meaning": "Holiday greeting card design",
+   "meaning_vi": "thiết kế thiệp chúc mừng lễ"
+  },
+  "magazinecover": {
+   "meaning": "Magazine cover portrait",
+   "meaning_vi": "chân dung bìa tạp chí"
+  },
+  "movieposter": {
+   "meaning": "Movie poster style image",
+   "meaning_vi": "ảnh kiểu poster phim"
+  },
+  "petportrait": {
+   "meaning": "Pet portrait",
+   "meaning_vi": "chân dung thú cưng"
+  },
+  "superhero": {
+   "meaning": "Superhero character portrait",
+   "meaning_vi": "chân dung nhân vật siêu anh hùng"
+  },
+  "timetravel": {
+   "meaning": "Time travel era portrait",
+   "meaning_vi": "chân dung theo bối cảnh thời đại"
+  },
+  "tradingcard": {
+   "meaning": "Trading card portrait",
+   "meaning_vi": "chân dung thẻ bài sưu tầm"
+  },
+  "weddinginvite": {
+   "meaning": "Wedding invitation design",
+   "meaning_vi": "thiết kế thiệp cưới"
+  },
+  "adset": {
+   "meaning": "Multi-variant ad set pack",
+   "meaning_vi": "bộ nhiều biến thể quảng cáo"
+  },
+  "adstoryboard": {
+   "meaning": "Storyboard sequence for an ad",
+   "meaning_vi": "storyboard diễn tiến cho quảng cáo"
+  },
+  "appstoreshots": {
+   "meaning": "App store screenshot set",
+   "meaning_vi": "bộ ảnh chụp màn hình app store"
+  },
+  "bannerad": {
+   "meaning": "Wide banner advertisement",
+   "meaning_vi": "banner quảng cáo khổ ngang"
+  },
+  "billboard": {
+   "meaning": "Large outdoor billboard mockup",
+   "meaning_vi": "mockup biển quảng cáo ngoài trời lớn"
+  },
+  "busstopad": {
+   "meaning": "Bus stop shelter ad mockup",
+   "meaning_vi": "mockup quảng cáo nhà chờ xe buýt"
+  },
+  "carouselad": {
+   "meaning": "Swipeable multi-panel carousel ad",
+   "meaning_vi": "quảng cáo carousel nhiều khung vuốt"
+  },
+  "comparisonad": {
+   "meaning": "Before-and-after comparison ad",
+   "meaning_vi": "quảng cáo so sánh trước và sau"
+  },
+  "emailheader": {
+   "meaning": "Email newsletter header banner",
+   "meaning_vi": "banner đầu email newsletter"
+  },
+  "landingmock": {
+   "meaning": "Landing page mockup shot",
+   "meaning_vi": "ảnh mockup trang landing page"
+  },
+  "magazinead": {
+   "meaning": "Full-page magazine advertisement",
+   "meaning_vi": "quảng cáo full trang tạp chí"
+  },
+  "offerad": {
+   "meaning": "Promotional discount offer ad",
+   "meaning_vi": "quảng cáo khuyến mãi ưu đãi"
+  },
+  "retargetad": {
+   "meaning": "Retargeting reminder advertisement",
+   "meaning_vi": "quảng cáo nhắc lại retargeting"
+  },
+  "staticad": {
+   "meaning": "Single static social ad",
+   "meaning_vi": "quảng cáo tĩnh một ảnh mạng xã hội"
+  },
+  "storyad": {
+   "meaning": "Vertical story-format ad",
+   "meaning_vi": "quảng cáo dạng story khổ dọc"
+  },
+  "subwayad": {
+   "meaning": "Subway station ad poster",
+   "meaning_vi": "poster quảng cáo trong ga tàu điện"
+  },
+  "testimonialad": {
+   "meaning": "Customer testimonial quote ad",
+   "meaning_vi": "quảng cáo kèm lời chứng thực khách hàng"
+  },
+  "uglyad": {
+   "meaning": "Deliberately ugly native-style ad",
+   "meaning_vi": "quảng cáo cố tình xấu kiểu native"
+  },
+  "drinkshot": {
+   "meaning": "Styled beverage product shot",
+   "meaning_vi": "ảnh sản phẩm đồ uống được dàn dựng"
+  },
+  "exteriorrender": {
+   "meaning": "3D exterior architectural render",
+   "meaning_vi": "render 3D ngoại thất kiến trúc"
+  },
+  "floorplan3d": {
+   "meaning": "3D floor plan visualization",
+   "meaning_vi": "sơ đồ mặt bằng 3D"
+  },
+  "foodshot": {
+   "meaning": "Appetizing food photography",
+   "meaning_vi": "ảnh chụp món ăn bắt mắt"
+  },
+  "gardenplan": {
+   "meaning": "Landscape garden design plan",
+   "meaning_vi": "bản vẽ thiết kế sân vườn cảnh quan"
+  },
+  "kitchenreno": {
+   "meaning": "Renovated kitchen interior",
+   "meaning_vi": "nội thất bếp sau cải tạo"
+  },
+  "listingphoto": {
+   "meaning": "Real estate listing photo",
+   "meaning_vi": "ảnh đăng tin bất động sản"
+  },
+  "menuphoto": {
+   "meaning": "Restaurant menu food photo",
+   "meaning_vi": "ảnh món ăn cho thực đơn nhà hàng"
+  },
+  "moodboard": {
+   "meaning": "Interior design mood board",
+   "meaning_vi": "bảng mood board thiết kế nội thất"
+  },
+  "nightshot": {
+   "meaning": "Evening nighttime exterior shot",
+   "meaning_vi": "ảnh ngoại cảnh ban đêm"
+  },
+  "officespace": {
+   "meaning": "Modern office workspace interior",
+   "meaning_vi": "nội thất văn phòng làm việc hiện đại"
+  },
+  "recipecard": {
+   "meaning": "Recipe card food layout",
+   "meaning_vi": "bố cục thẻ công thức nấu ăn"
+  },
+  "roomredesign": {
+   "meaning": "Redesigned room interior concept",
+   "meaning_vi": "phương án thiết kế lại phòng"
+  },
+  "virtualstaging": {
+   "meaning": "Virtually staged empty room",
+   "meaning_vi": "dàn dựng nội thất ảo cho phòng trống"
+  }
+ },
+ "videoMeanings": {
+  "dollyin": {
+   "meaning": "Camera pushes straight toward subject",
+   "meaning_vi": "camera tiến thẳng tới chủ thể"
+  },
+  "fastpush": {
+   "meaning": "Fast push in then decelerate",
+   "meaning_vi": "tiến nhanh rồi hãm lại"
+  },
+  "diagonalpush": {
+   "meaning": "Diagonal push across the frame",
+   "meaning_vi": "tiến chéo theo đường chéo khung"
+  },
+  "ceilingpush": {
+   "meaning": "High push in close to ceiling",
+   "meaning_vi": "tiến sát trần từ trên cao"
+  },
+  "dolly": {
+   "meaning": "Dolly in or out on rails, generic",
+   "meaning_vi": "tiến/lùi trên ray (bản chung)"
+  },
+  "zoom": {
+   "meaning": "Lens zoom without moving camera",
+   "meaning_vi": "thu phóng bằng ống kính (không dịch chuyển)"
+  },
+  "slowzoom": {
+   "meaning": "Slow zoom",
+   "meaning_vi": "thu phóng chậm"
+  },
+  "truckright": {
+   "meaning": "Truck sideways to the right",
+   "meaning_vi": "trượt ngang sang phải"
+  },
+  "diagonalslide": {
+   "meaning": "Sideways slide with slight push in",
+   "meaning_vi": "trượt ngang kèm tiến nhẹ"
+  },
+  "pillarreveal": {
+   "meaning": "Slide out from behind a pillar",
+   "meaning_vi": "trượt ra từ sau cột"
+  },
+  "parallelwall": {
+   "meaning": "Slide parallel along a wall",
+   "meaning_vi": "trượt song song bức tường"
+  },
+  "panright": {
+   "meaning": "Pan horizontally to the right",
+   "meaning_vi": "lia ngang sang phải"
+  },
+  "whippan": {
+   "meaning": "Very fast blurred whip pan",
+   "meaning_vi": "quét ngang cực nhanh (nhòe)"
+  },
+  "anticipationpan": {
+   "meaning": "Pan ahead before subject arrives",
+   "meaning_vi": "lia trước khi chủ thể tới"
+  },
+  "scanreturn": {
+   "meaning": "Scan the scene then return to start",
+   "meaning_vi": "lia khám phá cảnh rồi trả về điểm đầu"
+  },
+  "pedestaldown": {
+   "meaning": "Lower the camera straight down",
+   "meaning_vi": "hạ máy xuống thẳng đứng"
+  },
+  "jibreveal": {
+   "meaning": "Jib rises over obstruction to reveal",
+   "meaning_vi": "nâng máy vượt qua vật cản để lộ cảnh"
+  },
+  "roofreveal": {
+   "meaning": "Rise up over a rooftop",
+   "meaning_vi": "nâng qua mái nhà"
+  },
+  "stairascent": {
+   "meaning": "Follow subject up the stairs",
+   "meaning_vi": "theo chủ thể lên cầu thang"
+  },
+  "arcright": {
+   "meaning": "Arc around to the right",
+   "meaning_vi": "đi theo cung sang phải"
+  },
+  "orbit360": {
+   "meaning": "Full 360 degree orbit around subject",
+   "meaning_vi": "vòng trọn 360° quanh chủ thể"
+  },
+  "loworbit": {
+   "meaning": "Orbit from a low angle",
+   "meaning_vi": "vòng ở góc thấp"
+  },
+  "spiraldescend": {
+   "meaning": "Spiral down while rotating",
+   "meaning_vi": "vừa xoay vừa hạ xuống"
+  },
+  "rearfollow": {
+   "meaning": "Follow behind the subject",
+   "meaning_vi": "theo sau lưng chủ thể"
+  },
+  "shoulderfollow": {
+   "meaning": "Over-the-shoulder follow",
+   "meaning_vi": "theo qua vai"
+  },
+  "highfollow": {
+   "meaning": "Follow from a high angle",
+   "meaning_vi": "theo ở góc cao"
+  },
+  "catchup": {
+   "meaning": "Catch up to the subject",
+   "meaning_vi": "đuổi kịp chủ thể"
+  },
+  "tracking": {
+   "meaning": "Camera moves alongside the subject",
+   "meaning_vi": "máy di chuyển song song chủ thể"
+  },
+  "backwardtracking": {
+   "meaning": "Track backward ahead of subject",
+   "meaning_vi": "lùi theo chủ thể"
+  },
+  "droneapproach": {
+   "meaning": "Drone flies in from a distance",
+   "meaning_vi": "bay từ xa tiến tới"
+  },
+  "dronedescend": {
+   "meaning": "Drone descends straight down",
+   "meaning_vi": "bay xuống thẳng"
+  },
+  "droneflyby": {
+   "meaning": "Drone flies past sideways",
+   "meaning_vi": "bay ngang qua"
+  },
+  "ridgereveal": {
+   "meaning": "Fly over a ridge to reveal",
+   "meaning_vi": "bay qua sống núi để lộ cảnh"
+  },
+  "aerialshot": {
+   "meaning": "Aerial shot, high opening view",
+   "meaning_vi": "cú máy trên không / mở cảnh từ trên cao"
+  },
+  "droneforward": {
+   "meaning": "Drone moves forward, back, up or down",
+   "meaning_vi": "bay tới / lùi / lên / xuống"
+  },
+  "fpvchase": {
+   "meaning": "FPV-style chase of a target",
+   "meaning_vi": "đuổi theo mục tiêu kiểu FPV"
+  },
+  "fpvbank": {
+   "meaning": "FPV camera banks into a turn",
+   "meaning_vi": "nghiêng máy khi vào cua"
+  },
+  "tunnelflight": {
+   "meaning": "Flight through a tunnel",
+   "meaning_vi": "bay xuyên đường hầm"
+  },
+  "groundskim": {
+   "meaning": "Skim low over the ground",
+   "meaning_vi": "bay sát mặt đất"
+  },
+  "fpv": {
+   "meaning": "First-person drone camera view",
+   "meaning_vi": "góc nhìn camera gắn drone"
+  },
+  "handheldwalk": {
+   "meaning": "Handheld shot while walking",
+   "meaning_vi": "cầm tay khi đang đi bộ"
+  },
+  "gimbalglide": {
+   "meaning": "Smooth gimbal glide",
+   "meaning_vi": "trượt mượt nhờ gimbal"
+  },
+  "helmetturn": {
+   "meaning": "Helmet-cam view as the head turns",
+   "meaning_vi": "góc camera gắn mũ, quay đầu"
+  },
+  "wheeltrack": {
+   "meaning": "Low shot tracking a wheel",
+   "meaning_vi": "góc thấp bám theo bánh xe"
+  },
+  "steadicam": {
+   "meaning": "Balanced smooth Steadicam movement",
+   "meaning_vi": "cầm tay đã cân bằng, mượt"
+  },
+  "pushorbit": {
+   "meaning": "Push in while orbiting the subject",
+   "meaning_vi": "vừa tiến vừa xoay quanh chủ thể"
+  },
+  "descendpush": {
+   "meaning": "Descend while pushing in",
+   "meaning_vi": "vừa hạ xuống vừa tiến vào"
+  },
+  "tiltretreat": {
+   "meaning": "Tilt down while retreating",
+   "meaning_vi": "vừa chúc máy vừa lùi"
+  },
+  "looppath": {
+   "meaning": "Closed path that joins into a loop",
+   "meaning_vi": "đường đi khép kín, nối được thành vòng"
+  },
+  "facereveal": {
+   "meaning": "Reveal the face",
+   "meaning_vi": "để lộ gương mặt"
+  },
+  "doorreveal": {
+   "meaning": "Reveal through a doorway",
+   "meaning_vi": "để lộ qua ô cửa"
+  },
+  "wide": {
+   "meaning": "Wide angle showing the whole scene",
+   "meaning_vi": "góc rộng, thấy toàn cảnh"
+  },
+  "overhead": {
+   "meaning": "Top-down overhead view",
+   "meaning_vi": "nhìn từ trên xuống"
+  },
+  "pov": {
+   "meaning": "Character's first-person point of view",
+   "meaning_vi": "góc nhìn thứ nhất của nhân vật"
+  },
+  "fullbody": {
+   "meaning": "Full body head-to-toe framing",
+   "meaning_vi": "lấy trọn người từ đầu tới chân"
+  },
+  "rackfocus": {
+   "meaning": "Rack focus from one subject to another",
+   "meaning_vi": "chuyển nét từ vật này sang vật khác"
+  },
+  "deepfocus": {
+   "meaning": "Deep focus, near and far both sharp",
+   "meaning_vi": "nét sâu, cả gần lẫn xa đều rõ"
+  },
+  "bokeh": {
+   "meaning": "Soft out-of-focus bokeh highlights",
+   "meaning_vi": "đốm sáng mờ ở vùng ngoài nét"
+  },
+  "macrofocus": {
+   "meaning": "Extreme close-up macro focus",
+   "meaning_vi": "lấy nét cận siêu nhỏ"
+  },
+  "anamorphic": {
+   "meaning": "Anamorphic lens with horizontal flare",
+   "meaning_vi": "ống kính anamorphic, nhòe ngang đặc trưng"
+  },
+  "bluehour": {
+   "meaning": "Cold blue hour twilight",
+   "meaning_vi": "giờ xanh, chạng vạng lạnh"
+  },
+  "softlight": {
+   "meaning": "Diffused light with soft shadows",
+   "meaning_vi": "sáng tán xạ, bóng mềm"
+  },
+  "spotlight": {
+   "meaning": "Single spotlight on one spot",
+   "meaning_vi": "đèn rọi một điểm"
+  },
+  "nightscene": {
+   "meaning": "Night scene",
+   "meaning_vi": "cảnh ban đêm"
+  },
+  "leadinglines": {
+   "meaning": "Leading lines guiding the eye",
+   "meaning_vi": "đường dẫn mắt về chủ thể"
+  },
+  "foreground": {
+   "meaning": "Foreground object adding depth",
+   "meaning_vi": "có vật tiền cảnh tạo lớp"
+  },
+  "negativespace": {
+   "meaning": "Large empty space around subject",
+   "meaning_vi": "khoảng trống lớn quanh chủ thể"
+  },
+  "hyperlapse": {
+   "meaning": "Fast time-lapse with camera movement",
+   "meaning_vi": "tua nhanh kèm di chuyển"
+  },
+  "motionblur": {
+   "meaning": "Motion blur",
+   "meaning_vi": "nhòe chuyển động"
+  },
+  "freeze": {
+   "meaning": "Freeze on a single frame",
+   "meaning_vi": "đứng hình một khung"
+  },
+  "bullettime": {
+   "meaning": "Bullet time, frozen time with moving camera",
+   "meaning_vi": "thời gian đóng băng, camera vẫn đi"
+  },
+  "running": {
+   "meaning": "Running action",
+   "meaning_vi": "đang chạy"
+  },
+  "reveal": {
+   "meaning": "Reveal the subject or object",
+   "meaning_vi": "để lộ chủ thể/vật"
+  },
+  "morph": {
+   "meaning": "Morph one object into another",
+   "meaning_vi": "biến đổi vật này thành vật khác"
+  },
+  "whiptransition": {
+   "meaning": "Whip-pan scene transition",
+   "meaning_vi": "chuyển cảnh bằng cú quét nhanh"
+  },
+  "flashtransition": {
+   "meaning": "Flash of light transition",
+   "meaning_vi": "chuyển cảnh bằng lóe sáng"
+  },
+  "seamlessloop": {
+   "meaning": "Seamless loop with no visible seam",
+   "meaning_vi": "lặp không thấy điểm nối"
+  },
+  "objecttransition": {
+   "meaning": "Transition through an object",
+   "meaning_vi": "chuyển cảnh qua một vật thể"
+  },
+  "paperworld": {
+   "meaning": "World made of paper",
+   "meaning_vi": "thế giới làm bằng giấy"
+  },
+  "underwater": {
+   "meaning": "Underwater scene",
+   "meaning_vi": "dưới nước"
+  },
+  "rain": {
+   "meaning": "Rain or heavy downpour",
+   "meaning_vi": "mưa / mưa lớn"
+  },
+  "explosion": {
+   "meaning": "Explosion blast",
+   "meaning_vi": "vụ nổ"
+  },
+  "wind": {
+   "meaning": "Blowing wind",
+   "meaning_vi": "gió thổi"
+  },
+  "sunrays": {
+   "meaning": "Sun rays breaking through",
+   "meaning_vi": "tia nắng xuyên qua"
+  },
+  "watersplash": {
+   "meaning": "Water splash",
+   "meaning_vi": "nước bắn"
+  },
+  "filmic": {
+   "meaning": "Filmic look with fine grain",
+   "meaning_vi": "giống phim nhựa, hạt mịn"
+  },
+  "documentary": {
+   "meaning": "Documentary-style realism",
+   "meaning_vi": "chân thực như phim tài liệu"
+  },
+  "epic": {
+   "meaning": "Epic large-scale look",
+   "meaning_vi": "hoành tráng, quy mô lớn"
+  },
+  "productreveal": {
+   "meaning": "Product reveal",
+   "meaning_vi": "mở lộ sản phẩm"
+  },
+  "logoreveal": {
+   "meaning": "Logo reveal",
+   "meaning_vi": "lộ logo"
+  },
+  "foodcommercial": {
+   "meaning": "Food commercial look",
+   "meaning_vi": "quảng cáo đồ ăn"
+  },
+  "beforeafter": {
+   "meaning": "Before and after comparison",
+   "meaning_vi": "trước và sau"
+  },
+  "premium-unboxing": {
+   "meaning": "Premium unboxing",
+   "meaning_vi": "mở hộp cao cấp"
+  },
+  "problem-solution-ad": {
+   "meaning": "Problem-then-solution ad",
+   "meaning_vi": "nêu vấn đề rồi đưa giải pháp"
+  },
+  "pattern-interrupt": {
+   "meaning": "Pattern interrupt to grab attention",
+   "meaning_vi": "phá nhịp để gây chú ý"
+  },
+  "buy-now-ad": {
+   "meaning": "Buy-now urgency ad",
+   "meaning_vi": "quảng cáo thúc mua ngay"
+  },
+  "360-degree-showcase": {
+   "meaning": "360 degree product showcase",
+   "meaning_vi": "trưng bày 360°"
+  },
+  "dollyout": {
+   "meaning": "Camera pulls back, revealing more of the scene",
+   "meaning_vi": "camera lùi ra, lộ thêm cảnh"
+  },
+  "micropush": {
+   "meaning": "Slight push in, adding depth",
+   "meaning_vi": "đẩy nhẹ, tăng chiều sâu"
+  },
+  "diagonalretreat": {
+   "meaning": "Diagonal backward retreat",
+   "meaning_vi": "lùi chéo"
+  },
+  "pushthrough": {
+   "meaning": "Move forward through a doorway",
+   "meaning_vi": "tiến xuyên qua khe cửa"
+  },
+  "pushin": {
+   "meaning": "Push in toward the subject",
+   "meaning_vi": "đẩy vào chủ thể"
+  },
+  "zoomin": {
+   "meaning": "Zoom in",
+   "meaning_vi": "phóng to"
+  },
+  "fastzoom": {
+   "meaning": "Rapid zoom",
+   "meaning_vi": "thu phóng nhanh"
+  },
+  "shortslider": {
+   "meaning": "Short lateral slider move",
+   "meaning_vi": "trượt ngang đoạn ngắn"
+  },
+  "countertrack": {
+   "meaning": "Camera moves against the subject's direction",
+   "meaning_vi": "camera đi ngược hướng chủ thể"
+  },
+  "windowslide": {
+   "meaning": "Slide in from outside a window",
+   "meaning_vi": "trượt từ ngoài cửa sổ vào"
+  },
+  "layeredslide": {
+   "meaning": "Slide through several depth layers",
+   "meaning_vi": "trượt xuyên nhiều lớp chiều sâu"
+  },
+  "tiltup": {
+   "meaning": "Tilt the camera upward",
+   "meaning_vi": "chúc máy lên trên"
+  },
+  "whiptilt": {
+   "meaning": "Very fast whip tilt upward",
+   "meaning_vi": "hất máy lên cực nhanh"
+  },
+  "delayedpan": {
+   "meaning": "Let the subject pass, then pan to follow",
+   "meaning_vi": "để chủ thể đi trước rồi mới lia"
+  },
+  "pansweep": {
+   "meaning": "180° sweep revealing the full scene",
+   "meaning_vi": "quét 180° để lộ toàn cảnh"
+  },
+  "craneup": {
+   "meaning": "Crane rises along a wide arc",
+   "meaning_vi": "cần cẩu nâng lên theo cung rộng"
+  },
+  "risetilt": {
+   "meaning": "Rise while tilting down",
+   "meaning_vi": "nâng lên kèm chúc xuống"
+  },
+  "tablerise": {
+   "meaning": "Rise up from below a table surface",
+   "meaning_vi": "nâng từ dưới mặt bàn lên"
+  },
+  "stairdescent": {
+   "meaning": "Follow the subject down the stairs",
+   "meaning_vi": "theo chủ thể xuống cầu thang"
+  },
+  "quarterorbit": {
+   "meaning": "90° orbit around the subject",
+   "meaning_vi": "vòng 90° quanh chủ thể"
+  },
+  "tightorbit": {
+   "meaning": "Close orbit around the subject",
+   "meaning_vi": "vòng sát chủ thể"
+  },
+  "highorbit": {
+   "meaning": "Orbit from a high angle",
+   "meaning_vi": "vòng ở góc cao"
+  },
+  "orbittighten": {
+   "meaning": "Orbit while gradually tightening the radius",
+   "meaning_vi": "xoay và siết bán kính dần"
+  },
+  "frontfollow": {
+   "meaning": "Back away in front of the subject",
+   "meaning_vi": "lùi trước mặt chủ thể"
+  },
+  "three-quarterfollow": {
+   "meaning": "Follow from a front three-quarter angle",
+   "meaning_vi": "theo ở góc 3/4 phía trước"
+  },
+  "overtake": {
+   "meaning": "Overtake the subject and move ahead",
+   "meaning_vi": "vượt lên trước chủ thể"
+  },
+  "curvefollow": {
+   "meaning": "Follow the subject along a curve",
+   "meaning_vi": "theo chủ thể trên đường cong"
+  },
+  "follow": {
+   "meaning": "Follow move (generic)",
+   "meaning_vi": "bám theo (bản chung)"
+  },
+  "gimbal": {
+   "meaning": "Smooth, stabilized follow with no shake",
+   "meaning_vi": "bám mượt, không rung"
+  },
+  "dronepullback": {
+   "meaning": "Drone pulls back to reveal the scene",
+   "meaning_vi": "bay lùi ra để lộ cảnh"
+  },
+  "droneorbit": {
+   "meaning": "Drone orbits around the target",
+   "meaning_vi": "bay vòng quanh mục tiêu"
+  },
+  "topdowntravel": {
+   "meaning": "Travel forward while looking straight down",
+   "meaning_vi": "bay tới trong khi nhìn từ trên xuống"
+  },
+  "aerialretreat": {
+   "meaning": "Fly back and rise at the same time",
+   "meaning_vi": "vừa bay lùi vừa nâng lên"
+  },
+  "birdseye": {
+   "meaning": "Straight-down bird's-eye view",
+   "meaning_vi": "nhìn thẳng từ trên xuống như mắt chim"
+  },
+  "drone": {
+   "meaning": "Drone shot (generic)",
+   "meaning_vi": "cú máy drone (bản chung)"
+  },
+  "fpvdive": {
+   "meaning": "FPV dive straight down",
+   "meaning_vi": "bổ nhào xuống"
+  },
+  "fpvslalom": {
+   "meaning": "FPV weaving through obstacles",
+   "meaning_vi": "luồn lách qua vật cản"
+  },
+  "windowflythrough": {
+   "meaning": "Fly through a window",
+   "meaning_vi": "bay xuyên qua cửa sổ"
+  },
+  "canopyflight": {
+   "meaning": "Fly beneath the tree canopy",
+   "meaning_vi": "bay dưới tán cây"
+  },
+  "fpvflythrough": {
+   "meaning": "Fly through an interior space",
+   "meaning_vi": "bay xuyên qua không gian"
+  },
+  "handheldrun": {
+   "meaning": "Handheld while running",
+   "meaning_vi": "cầm tay khi đang chạy"
+  },
+  "gimbalcorner": {
+   "meaning": "Smooth cornering follow on a gimbal",
+   "meaning_vi": "vào cua mượt theo chủ thể"
+  },
+  "vehicleforward": {
+   "meaning": "Vehicle-mounted, driving forward",
+   "meaning_vi": "gắn xe, chạy tới"
+  },
+  "snorricamwalk": {
+   "meaning": "Body-mounted, face held centered while walking",
+   "meaning_vi": "gắn vào người, mặt giữ giữa khung khi đi"
+  },
+  "dollyzoom": {
+   "meaning": "Pull back while zooming in (Vertigo effect)",
+   "meaning_vi": "lùi ra + zoom vào cùng lúc (hiệu ứng Vertigo)"
+  },
+  "orbitpullback": {
+   "meaning": "Orbit while pulling back",
+   "meaning_vi": "vừa xoay vừa lùi ra"
+  },
+  "trackreveal": {
+   "meaning": "Lateral track revealing the scene",
+   "meaning_vi": "trượt ngang để lộ cảnh"
+  },
+  "slidearc": {
+   "meaning": "Lateral slide along an arc",
+   "meaning_vi": "trượt ngang theo cung"
+  },
+  "slowreveal": {
+   "meaning": "Gradually reveal the subject or object",
+   "meaning_vi": "để lộ chủ thể/vật từ từ"
+  },
+  "environmentreveal": {
+   "meaning": "Reveal the surroundings",
+   "meaning_vi": "để lộ bối cảnh"
+  },
+  "curtainreveal": {
+   "meaning": "Reveal like a curtain being drawn",
+   "meaning_vi": "để lộ như kéo màn"
+  },
+  "tight": {
+   "meaning": "Tight framing with little breathing room",
+   "meaning_vi": "khung chặt, ít khoảng thở"
+  },
+  "lowangle": {
+   "meaning": "Low angle, making the subject look large",
+   "meaning_vi": "góc thấp, chủ thể trông lớn"
+  },
+  "firstperson": {
+   "meaning": "As if seen through the character's eyes",
+   "meaning_vi": "như đang ở trong mắt nhân vật"
+  },
+  "heroshot": {
+   "meaning": "Hero shot that flatters the subject, often low angle",
+   "meaning_vi": "cú tôn chủ thể, thường góc thấp"
+  },
+  "focuspull": {
+   "meaning": "Rack focus onto or off the subject",
+   "meaning_vi": "rút nét ra/vào chủ thể"
+  },
+  "foregroundblur": {
+   "meaning": "Blurred foreground object",
+   "meaning_vi": "vật tiền cảnh mờ"
+  },
+  "shallowdepth": {
+   "meaning": "Shallow depth of field",
+   "meaning_vi": "chiều sâu trường ảnh mỏng"
+  },
+  "macro": {
+   "meaning": "Extreme close-up detail shot",
+   "meaning_vi": "cú máy cận chi tiết"
+  },
+  "softfocus": {
+   "meaning": "Soft, dreamy slight blur",
+   "meaning_vi": "nét mềm, mờ nhẹ như mơ"
+  },
+  "neonlight": {
+   "meaning": "Vivid neon lighting",
+   "meaning_vi": "đèn neon rực màu"
+  },
+  "rimlight": {
+   "meaning": "Bright rim of light around the subject's edge",
+   "meaning_vi": "viền sáng quanh rìa chủ thể"
+  },
+  "volumetric": {
+   "meaning": "Visible light beams in the air",
+   "meaning_vi": "chùm sáng thấy được trong không khí"
+  },
+  "dramaticlighting": {
+   "meaning": "Dramatic lighting with strong contrast",
+   "meaning_vi": "sáng kịch tính, tương phản mạnh"
+  },
+  "ruleofthirds": {
+   "meaning": "Rule-of-thirds framing, subject on an intersection",
+   "meaning_vi": "chia khung 1/3, chủ thể ở giao điểm"
+  },
+  "framewithinframe": {
+   "meaning": "Frame within a frame (door, arch)",
+   "meaning_vi": "khung trong khung (cửa, vòm)"
+  },
+  "slowmotion": {
+   "meaning": "Slow motion",
+   "meaning_vi": "quay chậm"
+  },
+  "speedramp": {
+   "meaning": "Speed change within the clip (slow to fast)",
+   "meaning_vi": "đổi tốc độ giữa clip (chậm ↔ nhanh)"
+  },
+  "smoothmotion": {
+   "meaning": "Smooth motion",
+   "meaning_vi": "chuyển động mượt"
+  },
+  "reverse": {
+   "meaning": "Played in reverse",
+   "meaning_vi": "chạy ngược"
+  },
+  "floating": {
+   "meaning": "Floating weightlessly",
+   "meaning_vi": "trôi lơ lửng"
+  },
+  "walking": {
+   "meaning": "Subject walking",
+   "meaning_vi": "đang đi bộ"
+  },
+  "entrance": {
+   "meaning": "Subject enters the frame",
+   "meaning_vi": "chủ thể đi vào khung"
+  },
+  "glitch": {
+   "meaning": "Technical-fault glitch distortion",
+   "meaning_vi": "nhiễu hình kiểu lỗi kỹ thuật"
+  },
+  "zoomtransition": {
+   "meaning": "Transition via zoom",
+   "meaning_vi": "chuyển cảnh bằng thu phóng"
+  },
+  "blurtransition": {
+   "meaning": "Transition through blur",
+   "meaning_vi": "chuyển cảnh qua nhòe"
+  },
+  "infinitezoom": {
+   "meaning": "Infinitely deep zoom",
+   "meaning_vi": "zoom sâu vô tận"
+  },
+  "scifi": {
+   "meaning": "Science fiction",
+   "meaning_vi": "khoa học viễn tưởng"
+  },
+  "miniature": {
+   "meaning": "Miniature toy-like scale",
+   "meaning_vi": "mô hình thu nhỏ như đồ chơi"
+  },
+  "fog": {
+   "meaning": "Foggy atmosphere",
+   "meaning_vi": "sương mù"
+  },
+  "snow": {
+   "meaning": "Falling snow",
+   "meaning_vi": "tuyết"
+  },
+  "portal": {
+   "meaning": "Sci-fi portal gateway",
+   "meaning_vi": "cổng không gian"
+  },
+  "dust": {
+   "meaning": "Floating dust",
+   "meaning_vi": "bụi bay"
+  },
+  "fallingleaves": {
+   "meaning": "Falling leaves",
+   "meaning_vi": "lá rơi"
+  },
+  "reflection": {
+   "meaning": "Mirror reflection",
+   "meaning_vi": "phản chiếu"
+  },
+  "commercial": {
+   "meaning": "Clean, bright, commercial look",
+   "meaning_vi": "sạch, sáng, kiểu quảng cáo"
+  },
+  "vintagefilm": {
+   "meaning": "Old film with faded silver tones",
+   "meaning_vi": "phim cũ, màu bạc"
+  },
+  "surreal": {
+   "meaning": "Surreal and illogical",
+   "meaning_vi": "siêu thực, phi logic"
+  },
+  "productspin": {
+   "meaning": "Product spinning",
+   "meaning_vi": "sản phẩm xoay"
+  },
+  "fashionfilm": {
+   "meaning": "Fashion film",
+   "meaning_vi": "phim thời trang"
+  },
+  "socialad": {
+   "meaning": "Ad for social media",
+   "meaning_vi": "quảng cáo cho mạng xã hội"
+  },
+  "ugc-product-hook": {
+   "meaning": "Opening like a real user introducing the product",
+   "meaning_vi": "mở đầu kiểu người dùng thật giới thiệu sản phẩm"
+  },
+  "asmr-unboxing": {
+   "meaning": "Unboxing with close-up sound",
+   "meaning_vi": "mở hộp kèm âm thanh cận"
+  },
+  "tiktok-style-ad": {
+   "meaning": "TikTok-style ad",
+   "meaning_vi": "quảng cáo kiểu TikTok"
+  },
+  "luxury-product-ad": {
+   "meaning": "Premium product ad",
+   "meaning_vi": "quảng cáo sản phẩm cao cấp"
+  },
+  "day-in-my-life": {
+   "meaning": "A day in my life",
+   "meaning_vi": "một ngày của tôi"
+  },
+  "slowpush": {
+   "meaning": "Very slow push-in building tension",
+   "meaning_vi": "tiến rất chậm, tạo căng"
+  },
+  "longapproach": {
+   "meaning": "Wide shot pushing into a close-up",
+   "meaning_vi": "từ toàn cảnh vào cận cảnh"
+  },
+  "groundpush": {
+   "meaning": "Slide forward skimming the ground",
+   "meaning_vi": "trượt tới sát mặt đất"
+  },
+  "retreatreveal": {
+   "meaning": "Start close, pull back to reveal wide",
+   "meaning_vi": "bắt đầu gần, lùi ra lộ toàn cảnh"
+  },
+  "pullout": {
+   "meaning": "Pull back away from the subject",
+   "meaning_vi": "kéo ra khỏi chủ thể"
+  },
+  "zoomout": {
+   "meaning": "Zoom out",
+   "meaning_vi": "thu nhỏ"
+  },
+  "truckleft": {
+   "meaning": "Lateral truck to the left",
+   "meaning_vi": "trượt ngang sang trái"
+  },
+  "longslider": {
+   "meaning": "Long lateral slider move",
+   "meaning_vi": "trượt ngang đoạn dài"
+  },
+  "foregroundpass": {
+   "meaning": "Glide past a foreground object",
+   "meaning_vi": "lướt qua vật tiền cảnh"
+  },
+  "doorwayslide": {
+   "meaning": "Slide through a doorway",
+   "meaning_vi": "trượt qua ô cửa"
+  },
+  "panleft": {
+   "meaning": "Pan horizontally to the left",
+   "meaning_vi": "lia ngang sang trái"
+  },
+  "tiltdown": {
+   "meaning": "Tilt the camera downward",
+   "meaning_vi": "chúc máy xuống dưới"
+  },
+  "followpan": {
+   "meaning": "Pan tracking a moving subject",
+   "meaning_vi": "lia bám theo chủ thể đang di chuyển"
+  },
+  "diagonalpan": {
+   "meaning": "Diagonal pan with a tilt",
+   "meaning_vi": "lia chéo kèm chúc máy"
+  },
+  "pedestalup": {
+   "meaning": "Raise the camera vertically",
+   "meaning_vi": "nâng máy lên thẳng đứng"
+  },
+  "cranedown": {
+   "meaning": "Crane lowering on a wide arc",
+   "meaning_vi": "cần cẩu hạ xuống theo cung rộng"
+  },
+  "descendtilt": {
+   "meaning": "Descend while tilting up",
+   "meaning_vi": "hạ xuống kèm ngẩng lên"
+  },
+  "floordrop": {
+   "meaning": "From standing height down to floor",
+   "meaning_vi": "từ đứng hạ xuống sàn"
+  },
+  "arcleft": {
+   "meaning": "Arc around to the left",
+   "meaning_vi": "đi theo cung sang trái"
+  },
+  "halforbit": {
+   "meaning": "Half orbit, 180 degrees",
+   "meaning_vi": "vòng 180°"
+  },
+  "wideorbit": {
+   "meaning": "Wide-radius orbit",
+   "meaning_vi": "vòng bán kính rộng"
+  },
+  "spiralrise": {
+   "meaning": "Orbit while rising",
+   "meaning_vi": "vừa xoay vừa nâng lên"
+  },
+  "orbit": {
+   "meaning": "Orbit around the subject (generic)",
+   "meaning_vi": "xoay quanh chủ thể (bản chung)"
+  },
+  "sidefollow": {
+   "meaning": "Follow from the side",
+   "meaning_vi": "theo bên hông"
+  },
+  "lowfollow": {
+   "meaning": "Follow from a low angle",
+   "meaning_vi": "theo ở góc thấp"
+  },
+  "fallbehind": {
+   "meaning": "Drop back behind the subject",
+   "meaning_vi": "tụt lại phía sau"
+  },
+  "handofftrack": {
+   "meaning": "Hand off tracking to another subject",
+   "meaning_vi": "chuyển điểm bám sang chủ thể khác"
+  },
+  "forwardtracking": {
+   "meaning": "Track forward with the subject",
+   "meaning_vi": "tiến theo chủ thể"
+  },
+  "dronefly": {
+   "meaning": "Fly forward while ascending",
+   "meaning_vi": "bay tới kèm nâng lên"
+  },
+  "droneascend": {
+   "meaning": "Fly straight up",
+   "meaning_vi": "bay lên thẳng"
+  },
+  "droneflyover": {
+   "meaning": "Fly over the top of the target",
+   "meaning_vi": "bay qua đỉnh mục tiêu"
+  },
+  "coastlinefollow": {
+   "meaning": "Follow along a coastline",
+   "meaning_vi": "men theo đường bờ biển"
+  },
+  "droneview": {
+   "meaning": "Aerial view from above",
+   "meaning_vi": "góc nhìn từ trên không"
+  },
+  "flyover": {
+   "meaning": "Fly across the area",
+   "meaning_vi": "bay ngang qua khu vực"
+  },
+  "droneorbit360": {
+   "meaning": "Full 360-degree orbit around the target",
+   "meaning_vi": "bay vòng 360° quanh mục tiêu"
+  },
+  "fpvclimb": {
+   "meaning": "Climb steeply upward",
+   "meaning_vi": "leo vọt lên"
+  },
+  "gapflythrough": {
+   "meaning": "Fly through a narrow gap",
+   "meaning_vi": "bay xuyên qua khe hở"
+  },
+  "doorwayflight": {
+   "meaning": "Fly through a doorway",
+   "meaning_vi": "bay qua ô cửa"
+  },
+  "fpvcorkscrew": {
+   "meaning": "Move forward while spinning 360",
+   "meaning_vi": "vừa tiến vừa xoay 360°"
+  },
+  "handhelddrift": {
+   "meaning": "Handheld gentle drift with natural shake",
+   "meaning_vi": "cầm tay trôi nhẹ, rung tự nhiên"
+  },
+  "shouldersway": {
+   "meaning": "Shaky sway as if resting on a shoulder",
+   "meaning_vi": "rung lắc như đặt trên vai"
+  },
+  "bodycamwalk": {
+   "meaning": "Chest-mounted bodycam while walking",
+   "meaning_vi": "góc camera gắn ngực, đi bộ"
+  },
+  "windowride": {
+   "meaning": "Window-mounted car view looking outward",
+   "meaning_vi": "gắn cửa sổ xe, nhìn ra ngoài"
+  },
+  "handheld": {
+   "meaning": "Handheld (generic)",
+   "meaning_vi": "cầm tay (bản chung)"
+  },
+  "reversevertigo": {
+   "meaning": "Push in while zooming out",
+   "meaning_vi": "tiến vào + zoom ra"
+  },
+  "risepullback": {
+   "meaning": "Rise while pulling back",
+   "meaning_vi": "vừa nâng lên vừa lùi ra"
+  },
+  "panpush": {
+   "meaning": "Pan while pushing in",
+   "meaning_vi": "vừa lia vừa tiến"
+  },
+  "orbitreverse": {
+   "meaning": "Orbit in the opposite direction",
+   "meaning_vi": "xoay ngược chiều quanh chủ thể"
+  },
+  "characterreveal": {
+   "meaning": "Reveal the character",
+   "meaning_vi": "để lộ nhân vật"
+  },
+  "pullbackreveal": {
+   "meaning": "Pull back to reveal the wide scene",
+   "meaning_vi": "lùi ra để lộ toàn cảnh"
+  },
+  "closeup": {
+   "meaning": "Close-up focused on a small detail",
+   "meaning_vi": "cận cảnh, tập trung chi tiết nhỏ"
+  },
+  "establishing": {
+   "meaning": "Opening shot introducing the setting",
+   "meaning_vi": "cú mở cảnh, giới thiệu bối cảnh"
+  },
+  "highangle": {
+   "meaning": "High angle making the subject look small",
+   "meaning_vi": "góc cao, chủ thể trông nhỏ"
+  },
+  "overtheshoulder": {
+   "meaning": "Over-the-shoulder, showing the subject ahead",
+   "meaning_vi": "qua vai, thấy đối tượng phía trước"
+  },
+  "centered": {
+   "meaning": "Subject centered in the frame",
+   "meaning_vi": "chủ thể đặt chính giữa khung"
+  },
+  "shallowfocus": {
+   "meaning": "Shallow focus with a blurred background",
+   "meaning_vi": "nét mỏng, nền mờ"
+  },
+  "backgroundblur": {
+   "meaning": "Blurred background",
+   "meaning_vi": "hậu cảnh mờ"
+  },
+  "telephoto": {
+   "meaning": "Telephoto lens compressing space",
+   "meaning_vi": "ống kính tele, nén không gian"
+  },
+  "lensflare": {
+   "meaning": "Light flare from the lens",
+   "meaning_vi": "lóe sáng do ống kính"
+  },
+  "goldenhour": {
+   "meaning": "Golden hour, warm dawn or dusk light",
+   "meaning_vi": "giờ vàng, nắng ấm lúc bình minh/hoàng hôn"
+  },
+  "moody": {
+   "meaning": "Contrasty dark tones, heavy mood",
+   "meaning_vi": "sáng tối tương phản, nặng tâm trạng"
+  },
+  "silhouette": {
+   "meaning": "Subject as a dark shape against a bright background",
+   "meaning_vi": "chủ thể thành bóng đen trên nền sáng"
+  },
+  "backlight": {
+   "meaning": "Light coming from behind the subject",
+   "meaning_vi": "sáng từ phía sau chủ thể"
+  },
+  "minimal": {
+   "meaning": "Minimal, few extra details",
+   "meaning_vi": "tối giản, ít chi tiết thừa"
+  },
+  "symmetry": {
+   "meaning": "Symmetrical on both sides",
+   "meaning_vi": "đối xứng hai bên"
+  },
+  "diagonal": {
+   "meaning": "Dynamic diagonal composition",
+   "meaning_vi": "bố cục chéo tạo động"
+  },
+  "timelapse": {
+   "meaning": "Time-lapse with sped-up time",
+   "meaning_vi": "tua nhanh thời gian"
+  },
+  "speedup": {
+   "meaning": "Sped up",
+   "meaning_vi": "tăng tốc"
+  },
+  "naturalmotion": {
+   "meaning": "Natural, lifelike motion",
+   "meaning_vi": "chuyển động tự nhiên như thật"
+  },
+  "loop": {
+   "meaning": "Seamless loop",
+   "meaning_vi": "lặp liền mạch"
+  },
+  "falling": {
+   "meaning": "Falling downward",
+   "meaning_vi": "rơi xuống"
+  },
+  "turnaround": {
+   "meaning": "Subject turns around",
+   "meaning_vi": "chủ thể xoay người"
+  },
+  "exit": {
+   "meaning": "Subject leaves the frame",
+   "meaning_vi": "chủ thể rời khung"
+  },
+  "matchcut": {
+   "meaning": "Cut matching shape or motion between scenes",
+   "meaning_vi": "cắt nối hai cảnh giống hình dạng/chuyển động"
+  },
+  "smoketransition": {
+   "meaning": "Transition through smoke",
+   "meaning_vi": "chuyển cảnh qua khói"
+  },
+  "lightleak": {
+   "meaning": "Streak of light leaking into the frame",
+   "meaning_vi": "vệt sáng lọt vào khung"
+  },
+  "worldtransition": {
+   "meaning": "Transition into another world",
+   "meaning_vi": "chuyển sang thế giới khác"
+  },
+  "cyberpunk": {
+   "meaning": "Neon future, dark wet streets",
+   "meaning_vi": "tương lai neon, tối, đường phố ướt"
+  },
+  "space": {
+   "meaning": "Outer space",
+   "meaning_vi": "không gian vũ trụ"
+  },
+  "storm": {
+   "meaning": "Stormy weather",
+   "meaning_vi": "bão"
+  },
+  "fire": {
+   "meaning": "Open flames",
+   "meaning_vi": "lửa"
+  },
+  "particlefx": {
+   "meaning": "Floating effect particles",
+   "meaning_vi": "hạt hiệu ứng bay"
+  },
+  "clouds": {
+   "meaning": "Cloud formations",
+   "meaning_vi": "mây"
+  },
+  "flowerpetals": {
+   "meaning": "Falling flower petals",
+   "meaning_vi": "cánh hoa bay"
+  },
+  "cinematic": {
+   "meaning": "Cinematic film-like contrast and color",
+   "meaning_vi": "chất điện ảnh, tương phản và màu như phim"
+  },
+  "luxury": {
+   "meaning": "Premium, dark, metallic, slow",
+   "meaning_vi": "cao cấp, tối, kim loại, chậm"
+  },
+  "dreamy": {
+   "meaning": "Dreamy, soft, gently lit",
+   "meaning_vi": "mơ màng, mềm, sáng nhẹ"
+  },
+  "blockbuster": {
+   "meaning": "Blockbuster movie style",
+   "meaning_vi": "kiểu phim bom tấn"
+  },
+  "unboxing": {
+   "meaning": "Unboxing reveal",
+   "meaning_vi": "mở hộp"
+  },
+  "techad": {
+   "meaning": "Tech gadget commercial",
+   "meaning_vi": "quảng cáo đồ công nghệ"
+  },
+  "billboard": {
+   "meaning": "Billboard ad style",
+   "meaning_vi": "dạng biển quảng cáo"
+  },
+  "ugc-testimonial": {
+   "meaning": "Real user testimonial",
+   "meaning_vi": "người dùng thật đánh giá"
+  },
+  "product-demo-ad": {
+   "meaning": "Demo ad showing how to use it",
+   "meaning_vi": "quảng cáo demo cách dùng"
+  },
+  "3-second-hook": {
+   "meaning": "First 3 seconds that hook the viewer",
+   "meaning_vi": "3 giây đầu giữ chân người xem"
+  },
+  "conversion-ad": {
+   "meaning": "Conversion-focused ad",
+   "meaning_vi": "quảng cáo hướng chuyển đổi"
+  },
+  "product-launch-ad": {
+   "meaning": "Product launch ad",
+   "meaning_vi": "quảng cáo ra mắt sản phẩm"
+  }
  }
 }
