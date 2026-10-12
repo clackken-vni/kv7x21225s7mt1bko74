@@ -1,6 +1,6 @@
 {
- "version": 1,
- "updated": "2026-10-07",
+ "version": 2,
+ "updated": "2026-10-12",
  "source": "ai-command-playbook.md",
  "rulesText": "## PHẦN 4 — CƠ CHẾ PROMPT-CODE\n\n### 4.1 Nguyên tắc\n\n1. **Viết câu tự nhiên mô tả đúng cái code đó.** Code là ghi chú, câu mới là thứ model đọc.\n2. **1 chuyển động chính + 1 khung + 1 ánh sáng + 1 style.** (khuyến nghị của Google)\n3. **Đừng nhồi >3–6 code.** Model loãng trọng số, code cuối bị bỏ.\n4. **Đừng yêu cầu 2 chuyển động mâu thuẫn** (orbit + static + whip pan).\n5. Bỏ dấu `/` khi cần — nghĩa không đổi.\n\n### 4.2 Vì sao `/` vẫn hữu ích\n\n- Ngắn để nhớ và để chia sẻ (infographic lan truyền dùng dấu `/`).\n- Tạo cảm giác \"lệnh\", dễ dạy người mới.\n- Nhưng **không có giá trị cú pháp**. Đây là điểm hay bị hiểu sai nhất.\n\n---\n\n## PHẦN 7 — LUẬT PHỐI (phần agent phải thuộc)\n\n### 7.1 Thứ tự ghép — 7 tầng\n\n```\n[chủ thể] + [khung/góc] + [chuyển động] + [lens/focus] + [ánh sáng] + [style] + [tốc độ]\n```\n\n- Tầng **1–2 bắt buộc**; tầng 3–7 thêm dần.\n- Tầng sau **không đè** tầng trước — chúng cộng dồn.\n- Dồn cả 7 tầng vào prompt ngắn → model **bỏ sót tầng cuối**. Điểm ngọt: **3–5 code**.\n\n### 7.2 Quy trình 4 bước\n\n1. **Chốt shot** — một cảnh = một hành động rõ. Viết ra: chủ thể + làm gì + cảm giác muốn có.\n2. **Ghép code** — 1 khung + 1 chuyển động + 1 lens + 1 sáng + 1 style.\n3. **Generate** — chọn model + tỉ lệ khung; xuất **1 clip**, xem ngay. Đừng xuất loạt khi chưa chốt.\n4. **Tinh chỉnh ≤3 lượt** — nhắn tiếp trong cùng hội thoại:\n   *\"giữ nguyên, đổi sang /lowangle\"*. Quá 3 lượt → mất ngữ cảnh, làm lại từ bước 1.\n\n### 7.3 Lỗi làm clip/ảnh rối\n\n| Lỗi | Vì sao sai |\n|---|---|\n| `/dollyin` + `/dollyout` | hai code cùng trục, triệt tiêu nhau |\n| `/panleft` + `/panright` | cùng trục, kết quả ngẫu nhiên |\n| `/zoomin` + `/pushin` | gần trùng nghĩa (\"đến gần chủ thể\") — chọn một |\n| 8–10 code một prompt | model loãng trọng số, code cuối bị bỏ |\n| Chuyển cảnh 1 clip | match cut / whip cần **hai** clip khớp hướng + khung |\n| Tả lại nhân vật bằng lời mỗi shot | phải tham chiếu (`@character`, `@me`) |\n| Đổi sáng giữa các shot cùng cảnh | clip gãy, trông giả |\n| Không khoá \"toà nhà/chủ thể đứng yên\" | chủ thể méo, cửa sổ nhảy khi camera bay |\n\n### 7.4 Tổ hợp mẫu (dán nguyên được)\n\n```\nHero entry       /slowmo /dollyin /lowangle /heroshot /cinematic\n360 nhân vật     /orbit360 /fullbody /smoothcamera /cinematic\nDrone travel     /dronefly /aerialreveal /extremewide /goldenhour /cinematic\nPortrait cảm xúc /closeup /dollyin /rackfocus /shallowdepth /softfocus\nSản phẩm cao cấp /orbit /productreveal /macrofocus /dramaticlighting /cinematic\nPOV              /pov /firstperson /handheld /naturalmotion\n```\n\n### 7.5 Alias & biến thể chính tả\n\nCode cộng đồng tồn tại song song nhiều cách viết. Model hiểu cả hai:\n- **Tách từ / viết liền:** `/dolly in` ≡ `/dollyin` · `/pan left` ≡ `/panleft`.\n- **Rút gọn:** `/slowmo` ≡ `/slowmotion` · `/smoke` ≡ `/smoketransition` ·\n  `/productphoto` ≡ `/productshot` · `/extremewide` ≡ `/extremewideangle` ·\n  `/smoothcamera` ≡ `/smoothmotion` · `/bodycam` ≡ `/bodycamwalk` · `/helmet` ≡ `/helmetturn` ·\n  `/vehicle` ≡ `/vehicleforward` · `/wheel` ≡ `/wheeltrack` · `/tunnel` ≡ `/tunnelflight` ·\n  `/gap` ≡ `/gapflythrough` · `/snorricam` ≡ `/snorricamwalk` · `/three-quarter` ≡\n  `/three-quarterfollow`.\n- **Quy tắc thực dụng:** khi không chắc code viết thế nào, **viết nghĩa tiếng Anh của nó**\n  vào prompt. `/slowmo` không ăn → `slow motion`. Đây luôn là đường lui an toàn.\n\n### 7.6 Nối nhiều shot thành cảnh\n\nGiữ **sáng + style cố định**; chỉ đổi **khung + chuyển động**.\nNối bằng: `/matchcut` (khớp hình dạng) · `/whiptransition` (quét nhanh) ·\n`/seamlessloop` (lặp vô hạn).\n\n### 7.5 Bảng giữ nhất quán\n\n| Giữ nguyên | Được đổi |\n|---|---|\n| Style (`architectural visualization`, `octanerender`) | bán kính khung |\n| Lens (`24mm f/8`) | độ cao máy |\n| Câu khoá (\"chủ thể đứng yên\") | tốc độ |\n| Sáng: golden hour **hoặc** blue hour — không trộn trong 1 sequence | chuyển động |\n| Ảnh gốc làm first frame | thời điểm (ngày/chạng vạng/đêm) |\n\n---\n\n### 2.4 Ảnh — Nano Banana Pro (Gemini 3 Pro Image)\n\n**Công thức:** `Subject · Composition · Action · Location · Style · Editing instruction`\n(thêm editing instruction khi sửa ảnh).\n**Thêm được:** aspect ratio (`9:16`, `21:9`…); camera/ánh sáng (`low-angle, f/1.8, golden hour`);\nchữ cần render (`headline \"X\" font bold`); **vai trò từng ảnh input** (Image A = pose,\nB = style, C = background).\n**Giới hạn:** blend tới 6–14 ảnh tùy surface; resize 1K/2K/4K.\n\n**Hai template gốc (Google chính thức):**\n\n1. *Ảnh thật:*\n```\nA photorealistic [shot type] of [subject], [action], set in [environment].\nThe scene is illuminated by [lighting], creating a [mood] atmosphere.\nCaptured with [camera/lens], emphasizing [textures]. [aspect ratio] format.\n```\n2. *Sticker/illustration:*\n```\nA [style] sticker of [subject], featuring [characteristics] and a [palette].\n[line style], [shading style]. The background must be white.\n```\n\n**Quy tắc vàng:** Google nói **\"mô tả cảnh, đừng liệt kê keyword\"**.\n- Dùng thuật ngữ nhiếp ảnh: `85mm lens f/1.4` > `bokeh`.\n- Sửa dần trong hội thoại, **đừng viết lại prompt**.\n- Negative ngữ nghĩa: `empty street with no vehicles` > `no cars`.\n- Chữ phải để trong `\"ngoặc kép\"`.\n\n**Giới hạn thật:** chữ dài kém; nhất quán nhân vật trôi sau ~10 lần sinh; chi tiết nhỏ\n(tay, logo) yếu; ảnh luôn có SynthID.\n\n---\n\n### 3.5 Công thức prompt Veo (dùng cho mọi generation)\n\n```\n[Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance]\n```\n\n- **Camera:** dolly / tracking / crane / aerial / slow pan / POV.\n- **Composition:** wide / close-up / low angle / two-shot.\n- **Lens:** shallow DOF / wide-angle / macro / deep focus.\n- **Âm thanh:** thoại trong `\"ngoặc kép\"`; `SFX: …`; `Ambient noise: …`.\n- **Negative:** mô tả cái muốn loại (*\"desolate landscape with no buildings\"*),\n  **đừng** viết \"no X\".\n- **Timestamp prompting** (nhiều shot trong 1 lần sinh):\n  `[00:00-00:02] …` `[00:02-00:04] …` — mỗi mốc 1 shot + SFX/emotion.\n- **Best practice:** ingredient nền sạch/đã tách nền; prompt chữ **bổ trợ**, không mâu thuẫn\n  với ảnh input.\n\n---\n\n",
  "videoCodes": {
@@ -2082,6 +2082,8 @@
  },
  "combos": [
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "A",
    "name": "Hero sản phẩm",
    "codes": [
@@ -2093,6 +2095,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "C",
    "name": "Cận chất liệu",
    "codes": [
@@ -2104,6 +2108,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "C",
    "name": "Mở hộp",
    "codes": [
@@ -2115,17 +2121,21 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "C",
    "name": "Demo công dụng",
    "codes": [
     "/product-demo-ad",
-    "/before-and-after",
+    "/beforeafter",
     "/matchcut",
     "/softlight",
     "/commercial"
    ]
   },
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "V",
    "name": "Chốt đơn",
    "codes": [
@@ -2137,6 +2147,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Bán hàng online (E-commerce)",
    "funnel": "C",
    "name": "Xoay 360°",
    "codes": [
@@ -2148,6 +2160,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "A",
    "name": "Hook 3 giây",
    "codes": [
@@ -2159,6 +2173,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "C",
    "name": "UGC người thật",
    "codes": [
@@ -2170,6 +2186,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "C",
    "name": "Testimonial",
    "codes": [
@@ -2181,6 +2199,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "C",
    "name": "Vấn đề → giải pháp",
    "codes": [
@@ -2192,6 +2212,8 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "V",
    "name": "Thúc mua",
    "codes": [
@@ -2203,999 +2225,2499 @@
    ]
   },
   {
+   "domain": "video",
+   "category": "Quảng cáo trả phí",
    "funnel": "A",
    "name": "Quảng cáo cao cấp",
    "codes": [
     "/luxury-product-ad",
     "/slowpush",
     "/rimlight",
-    "/smoke",
+    "/smoketransition",
     "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "hook lướt",
+   "codes": [
+    "/3-second-hook",
+    "/zoomtransition",
+    "/neonlight",
+    "/tiktok-style-ad",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "một ngày của tôi",
+   "codes": [
+    "/day-in-my-life",
+    "/handheldwalk",
+    "/naturalmotion",
+    "/goldenhour",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "chuyển cảnh mượt",
+   "codes": [
+    "/seamlessloop",
+    "/matchcut",
+    "/whiptransition",
+    "/cinematic",
+    "/smoothmotion"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "vòng lặp vô hạn",
+   "codes": [
+    "/seamlessloop",
+    "/looppath",
+    "/orbit360",
+    "/neonlight",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "biến hình",
+   "codes": [
+    "/morph",
+    "/worldtransition",
+    "/objecttransition",
+    "/glitch",
+    "/surreal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Social organic",
+   "funnel": null,
+   "name": "nhảy theo nhạc",
+   "codes": [
+    "/turnaround",
+    "/bullettime",
+    "/speedramp",
+    "/neonlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thương hiệu",
+   "funnel": null,
+   "name": "phim thương hiệu",
+   "codes": [
+    "/establishing",
+    "/droneapproach",
+    "/goldenhour",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thương hiệu",
+   "funnel": null,
+   "name": "ra mắt logo",
+   "codes": [
+    "/logoreveal",
+    "/particlefx",
+    "/slowpush",
+    "/rimlight",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thương hiệu",
+   "funnel": null,
+   "name": "tuyên ngôn",
+   "codes": [
+    "/silhouette",
+    "/pedestalup",
+    "/backlight",
+    "/volumetric",
+    "/epic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thương hiệu",
+   "funnel": null,
+   "name": "chân dung founder",
+   "codes": [
+    "/closeup",
+    "/rackfocus",
+    "/softlight",
+    "/shallowdepth",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thương hiệu",
+   "funnel": null,
+   "name": "quy trình làm sản phẩm",
+   "codes": [
+    "/macro",
+    "/handhelddrift",
+    "/softlight",
+    "/naturalmotion",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "B2B · SaaS · App",
+   "funnel": null,
+   "name": "màn hình sản phẩm",
+   "codes": [
+    "/techad",
+    "/pushin",
+    "/macrofocus",
+    "/neonlight",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "B2B · SaaS · App",
+   "funnel": null,
+   "name": "nỗi đau vận hành",
+   "codes": [
+    "/problem-solution-ad",
+    "/matchcut",
+    "/descendpush",
+    "/moody",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "B2B · SaaS · App",
+   "funnel": null,
+   "name": "luồng sử dụng",
+   "codes": [
+    "/techad",
+    "/panpush",
+    "/shallowfocus",
+    "/smoothmotion",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "B2B · SaaS · App",
+   "funnel": null,
+   "name": "demo tính năng",
+   "codes": [
+    "/product-demo-ad",
+    "/panpush",
+    "/neonlight",
+    "/smoothmotion",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "B2B · SaaS · App",
+   "funnel": null,
+   "name": "khách hàng nói",
+   "codes": [
+    "/ugc-testimonial",
+    "/shoulderfollow",
+    "/softlight",
+    "/documentary",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Bất động sản",
+   "funnel": null,
+   "name": "mở cảnh khu",
+   "codes": [
+    "/droneapproach",
+    "/aerialretreat",
+    "/goldenhour",
+    "/wide",
+    "/epic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Bất động sản",
+   "funnel": null,
+   "name": "tour trong nhà",
+   "codes": [
+    "/gimbalglide",
+    "/doorwayslide",
+    "/wide",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Bất động sản",
+   "funnel": null,
+   "name": "chi tiết nội thất",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/softlight",
+    "/shallowdepth",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Bất động sản",
+   "funnel": null,
+   "name": "ban công view",
+   "codes": [
+    "/pedestalup",
+    "/pansweep",
+    "/sunrays",
+    "/goldenhour",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Bất động sản",
+   "funnel": null,
+   "name": "chốt liên hệ",
+   "codes": [
+    "/buy-now-ad",
+    "/zoomtransition",
+    "/spotlight",
+    "/commercial",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "F&B",
+   "funnel": null,
+   "name": "món ăn hero",
+   "codes": [
+    "/foodcommercial",
+    "/macrofocus",
+    "/tablerise",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "F&B",
+   "funnel": null,
+   "name": "rót/đổ",
+   "codes": [
+    "/watersplash",
+    "/slowmotion",
+    "/macrofocus",
+    "/backlight",
+    "/filmic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "F&B",
+   "funnel": null,
+   "name": "không gian quán",
+   "codes": [
+    "/gimbalglide",
+    "/doorwayslide",
+    "/goldenhour",
+    "/softlight",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "F&B",
+   "funnel": null,
+   "name": "quy trình bếp",
+   "codes": [
+    "/handheldwalk",
+    "/macro",
+    "/naturalmotion",
+    "/softlight",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "F&B",
+   "funnel": null,
+   "name": "combo khuyến mãi",
+   "codes": [
+    "/conversion-ad",
+    "/productspin",
+    "/spotlight",
+    "/speedramp",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Beauty · Skincare · Spa",
+   "funnel": null,
+   "name": "texture kem",
+   "codes": [
+    "/macrofocus",
+    "/slowmotion",
+    "/softlight",
+    "/shallowdepth",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Beauty · Skincare · Spa",
+   "funnel": null,
+   "name": "da trước/sau",
+   "codes": [
+    "/beforeafter",
+    "/matchcut",
+    "/closeup",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Beauty · Skincare · Spa",
+   "funnel": null,
+   "name": "routine 3 bước",
+   "codes": [
+    "/product-demo-ad",
+    "/tablerise",
+    "/softlight",
+    "/smoothmotion",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Beauty · Skincare · Spa",
+   "funnel": null,
+   "name": "thư giãn spa",
+   "codes": [
+    "/slowpush",
+    "/softlight",
+    "/volumetric",
+    "/flowerpetals",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Beauty · Skincare · Spa",
+   "funnel": null,
+   "name": "serum nhỏ giọt",
+   "codes": [
+    "/macrofocus",
+    "/slowmotion",
+    "/backlight",
+    "/watersplash",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thời trang · POD",
+   "funnel": null,
+   "name": "lookbook",
+   "codes": [
+    "/fashionfilm",
+    "/turnaround",
+    "/sidefollow",
+    "/neonlight",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thời trang · POD",
+   "funnel": null,
+   "name": "sàn diễn",
+   "codes": [
+    "/frontfollow",
+    "/spotlight",
+    "/flashtransition",
+    "/blockbuster",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thời trang · POD",
+   "funnel": null,
+   "name": "chi tiết vải/hình in",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/softlight",
+    "/shallowdepth",
+    "/filmic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thời trang · POD",
+   "funnel": null,
+   "name": "người mẫu ngoài phố",
+   "codes": [
+    "/handheldwalk",
+    "/follow",
+    "/goldenhour",
+    "/naturalmotion",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thời trang · POD",
+   "funnel": null,
+   "name": "mockup áo",
+   "codes": [
+    "/productspin",
+    "/tablerise",
+    "/softlight",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Fitness · Gym · Wellness",
+   "funnel": null,
+   "name": "năng lượng tập",
+   "codes": [
+    "/handheldrun",
+    "/speedramp",
+    "/lowangle",
+    "/neonlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Fitness · Gym · Wellness",
+   "funnel": null,
+   "name": "kỹ thuật động tác",
+   "codes": [
+    "/slowmotion",
+    "/sidefollow",
+    "/lowangle",
+    "/softlight",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Fitness · Gym · Wellness",
+   "funnel": null,
+   "name": "trước/sau 30 ngày",
+   "codes": [
+    "/beforeafter",
+    "/matchcut",
+    "/turnaround",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Fitness · Gym · Wellness",
+   "funnel": null,
+   "name": "tinh thần",
+   "codes": [
+    "/silhouette",
+    "/pedestalup",
+    "/backlight",
+    "/volumetric",
+    "/epic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Giáo dục · Khóa học",
+   "funnel": null,
+   "name": "giới thiệu giảng viên",
+   "codes": [
+    "/closeup",
+    "/rackfocus",
+    "/softlight",
+    "/shallowdepth",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Giáo dục · Khóa học",
+   "funnel": null,
+   "name": "lớp học thật",
+   "codes": [
+    "/gimbalglide",
+    "/shoulderfollow",
+    "/goldenhour",
+    "/naturalmotion",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Giáo dục · Khóa học",
+   "funnel": null,
+   "name": "nội dung khóa",
+   "codes": [
+    "/techad",
+    "/panpush",
+    "/smoothmotion",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Giáo dục · Khóa học",
+   "funnel": null,
+   "name": "kết quả học viên",
+   "codes": [
+    "/ugc-testimonial",
+    "/closeup",
+    "/softlight",
+    "/documentary",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Sự kiện · Wedding",
+   "funnel": null,
+   "name": "mở cảnh tiệc",
+   "codes": [
+    "/establishing",
+    "/droneapproach",
+    "/goldenhour",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Sự kiện · Wedding",
+   "funnel": null,
+   "name": "khoảnh khắc",
+   "codes": [
+    "/closeup",
+    "/slowpush",
+    "/backlight",
+    "/softlight",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Sự kiện · Wedding",
+   "funnel": null,
+   "name": "phần nhảy/đông người",
+   "codes": [
+    "/handhelddrift",
+    "/neonlight",
+    "/speedramp",
+    "/blockbuster",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Sự kiện · Wedding",
+   "funnel": null,
+   "name": "chi tiết trang trí",
+   "codes": [
+    "/macrofocus",
+    "/gimbalglide",
+    "/softlight",
+    "/flowerpetals",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Du lịch · Khách sạn",
+   "funnel": null,
+   "name": "mở cảnh resort",
+   "codes": [
+    "/droneflyover",
+    "/aerialretreat",
+    "/goldenhour",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Du lịch · Khách sạn",
+   "funnel": null,
+   "name": "phòng nghỉ",
+   "codes": [
+    "/gimbalglide",
+    "/windowslide",
+    "/softlight",
+    "/wide",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Du lịch · Khách sạn",
+   "funnel": null,
+   "name": "bãi biển/hồ bơi",
+   "codes": [
+    "/groundskim",
+    "/watersplash",
+    "/sunrays",
+    "/goldenhour",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Du lịch · Khách sạn",
+   "funnel": null,
+   "name": "trải nghiệm",
+   "codes": [
+    "/fpvchase",
+    "/canopyflight",
+    "/naturalmotion",
+    "/goldenhour",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Du lịch · Khách sạn",
+   "funnel": null,
+   "name": "ẩm thực tại chỗ",
+   "codes": [
+    "/foodcommercial",
+    "/macrofocus",
+    "/slowmotion",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Y tế · Nha khoa · Phòng khám",
+   "funnel": null,
+   "name": "cơ sở vật chất",
+   "codes": [
+    "/gimbalglide",
+    "/wide",
+    "/softlight",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Y tế · Nha khoa · Phòng khám",
+   "funnel": null,
+   "name": "bác sĩ",
+   "codes": [
+    "/closeup",
+    "/slowpush",
+    "/softlight",
+    "/shallowdepth",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Y tế · Nha khoa · Phòng khám",
+   "funnel": null,
+   "name": "trước/sau điều trị",
+   "codes": [
+    "/beforeafter",
+    "/matchcut",
+    "/closeup",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Y tế · Nha khoa · Phòng khám",
+   "funnel": null,
+   "name": "quy trình vô trùng",
+   "codes": [
+    "/macro",
+    "/handhelddrift",
+    "/softlight",
+    "/naturalmotion",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Ô tô · Xe máy",
+   "funnel": null,
+   "name": "xe hero",
+   "codes": [
+    "/productspin",
+    "/loworbit",
+    "/rimlight",
+    "/smoketransition",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Ô tô · Xe máy",
+   "funnel": null,
+   "name": "chạy đường",
+   "codes": [
+    "/vehicleforward",
+    "/follow",
+    "/motionblur",
+    "/goldenhour",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Ô tô · Xe máy",
+   "funnel": null,
+   "name": "nội thất xe",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/softlight",
+    "/shallowdepth",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Ô tô · Xe máy",
+   "funnel": null,
+   "name": "drift/tốc độ",
+   "codes": [
+    "/fpvchase",
+    "/groundskim",
+    "/speedramp",
+    "/dust",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Công nghệ · Gadget",
+   "funnel": null,
+   "name": "hero thiết bị",
+   "codes": [
+    "/techad",
+    "/productspin",
+    "/neonlight",
+    "/rimlight",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Công nghệ · Gadget",
+   "funnel": null,
+   "name": "cận chi tiết",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/shallowdepth",
+    "/softlight",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Công nghệ · Gadget",
+   "funnel": null,
+   "name": "mở hộp",
+   "codes": [
+    "/premium-unboxing",
+    "/tablerise",
+    "/softlight",
+    "/smoothmotion",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Công nghệ · Gadget",
+   "funnel": null,
+   "name": "tính năng",
+   "codes": [
+    "/product-demo-ad",
+    "/panpush",
+    "/neonlight",
+    "/smoothmotion",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Công nghệ · Gadget",
+   "funnel": null,
+   "name": "mở bán",
+   "codes": [
+    "/product-launch-ad",
+    "/fastpush",
+    "/flashtransition",
+    "/spotlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tài chính · Bảo hiểm",
+   "funnel": null,
+   "name": "niềm tin",
+   "codes": [
+    "/establishing",
+    "/pedestalup",
+    "/goldenhour",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tài chính · Bảo hiểm",
+   "funnel": null,
+   "name": "con người",
+   "codes": [
+    "/closeup",
+    "/rackfocus",
+    "/softlight",
+    "/documentary",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tài chính · Bảo hiểm",
+   "funnel": null,
+   "name": "quy trình số",
+   "codes": [
+    "/techad",
+    "/smoothmotion",
+    "/neonlight",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tài chính · Bảo hiểm",
+   "funnel": null,
+   "name": "an tâm",
+   "codes": [
+    "/silhouette",
+    "/slowpush",
+    "/backlight",
+    "/softlight",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nội thất · Xây dựng",
+   "funnel": null,
+   "name": "tổng thể công trình",
+   "codes": [
+    "/droneapproach",
+    "/wide",
+    "/goldenhour",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nội thất · Xây dựng",
+   "funnel": null,
+   "name": "dạo phòng",
+   "codes": [
+    "/gimbalglide",
+    "/doorwayslide",
+    "/wide",
+    "/softlight",
+    "/luxury"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nội thất · Xây dựng",
+   "funnel": null,
+   "name": "chi tiết vật liệu",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/shallowdepth",
+    "/softlight",
+    "/filmic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nội thất · Xây dựng",
+   "funnel": null,
+   "name": "trước/sau cải tạo",
+   "codes": [
+    "/beforeafter",
+    "/matchcut",
+    "/panpush",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nông sản · Đặc sản",
+   "funnel": null,
+   "name": "cánh đồng/vùng trồng",
+   "codes": [
+    "/droneflyover",
+    "/goldenhour",
+    "/wide",
+    "/epic",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nông sản · Đặc sản",
+   "funnel": null,
+   "name": "thu hoạch",
+   "codes": [
+    "/handheldwalk",
+    "/macro",
+    "/naturalmotion",
+    "/goldenhour",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nông sản · Đặc sản",
+   "funnel": null,
+   "name": "đóng gói",
+   "codes": [
+    "/productspin",
+    "/tablerise",
+    "/softlight",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Nông sản · Đặc sản",
+   "funnel": null,
+   "name": "thưởng thức",
+   "codes": [
+    "/foodcommercial",
+    "/macrofocus",
+    "/slowmotion",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thú cưng",
+   "funnel": null,
+   "name": "chân dung pet",
+   "codes": [
+    "/closeup",
+    "/slowpush",
+    "/softlight",
+    "/shallowdepth",
+    "/dreamy"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thú cưng",
+   "funnel": null,
+   "name": "pet chạy",
+   "codes": [
+    "/follow",
+    "/groundskim",
+    "/slowmotion",
+    "/goldenhour",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thú cưng",
+   "funnel": null,
+   "name": "sản phẩm cho pet",
+   "codes": [
+    "/productspin",
+    "/tablerise",
+    "/softlight",
+    "/minimal",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Thú cưng",
+   "funnel": null,
+   "name": "vui nhộn",
+   "codes": [
+    "/handhelddrift",
+    "/speedramp",
+    "/neonlight",
+    "/blockbuster",
+    "/surreal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Personal brand · KOL",
+   "funnel": null,
+   "name": "intro kênh",
+   "codes": [
+    "/facereveal",
+    "/slowpush",
+    "/rimlight",
+    "/neonlight",
+    "/cinematic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Personal brand · KOL",
+   "funnel": null,
+   "name": "ngày làm việc",
+   "codes": [
+    "/day-in-my-life",
+    "/handheldwalk",
+    "/naturalmotion",
+    "/goldenhour",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Personal brand · KOL",
+   "funnel": null,
+   "name": "thể hiện chuyên môn",
+   "codes": [
+    "/closeup",
+    "/rackfocus",
+    "/softlight",
+    "/documentary",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Personal brand · KOL",
+   "funnel": null,
+   "name": "nhận diện thương hiệu",
+   "codes": [
+    "/logoreveal",
+    "/particlefx",
+    "/neonlight",
+    "/cinematic",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Personal brand · KOL",
+   "funnel": null,
+   "name": "kêu gọi theo dõi",
+   "codes": [
+    "/conversion-ad",
+    "/zoomtransition",
+    "/spotlight",
+    "/commercial",
+    "/minimal"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tuyển dụng",
+   "funnel": null,
+   "name": "văn hoá công ty",
+   "codes": [
+    "/day-in-my-life",
+    "/gimbalglide",
+    "/naturalmotion",
+    "/softlight",
+    "/documentary"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tuyển dụng",
+   "funnel": null,
+   "name": "đồng nghiệp nói",
+   "codes": [
+    "/ugc-testimonial",
+    "/shoulderfollow",
+    "/softlight",
+    "/documentary",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Tuyển dụng",
+   "funnel": null,
+   "name": "vị trí đang tuyển",
+   "codes": [
+    "/conversion-ad",
+    "/panpush",
+    "/minimal",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Game · App mobile",
+   "funnel": null,
+   "name": "trailer game",
+   "codes": [
+    "/worldtransition",
+    "/bullettime",
+    "/explosion",
+    "/blockbuster",
+    "/epic"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Game · App mobile",
+   "funnel": null,
+   "name": "gameplay",
+   "codes": [
+    "/fpvchase",
+    "/speedramp",
+    "/neonlight",
+    "/smoothmotion",
+    "/cyberpunk"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Game · App mobile",
+   "funnel": null,
+   "name": "nhân vật game",
+   "codes": [
+    "/characterreveal",
+    "/orbit360",
+    "/particlefx",
+    "/rimlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "video",
+   "category": "Game · App mobile",
+   "funnel": null,
+   "name": "cài đặt ngay",
+   "codes": [
+    "/conversion-ad",
+    "/fastpush",
+    "/flashtransition",
+    "/neonlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "V",
+   "name": "Hero sản phẩm nền trắng chuẩn sàn",
+   "codes": [
+    "/heroimage",
+    "/amazonready",
+    "/productshot",
+    "/backgroundswap"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "C",
+   "name": "Bộ catalog đa góc nhất quán",
+   "codes": [
+    "/catalogset",
+    "/turntable",
+    "/productshot",
+    "/colorways"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "A",
+   "name": "Ảnh sản phẩm lơ lửng sang trọng",
+   "codes": [
+    "/floatingproduct",
+    "/luxuryshot",
+    "/podiumshot",
+    "/glassreflection"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "C",
+   "name": "Flat lay sản phẩm kèm phụ kiện",
+   "codes": [
+    "/flatlay",
+    "/insidethebox",
+    "/productshot",
+    "/partslist"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "C",
+   "name": "Bóc tách cấu tạo sản phẩm 3D",
+   "codes": [
+    "/exploded3d",
+    "/partslist",
+    "/blueprintview",
+    "/isometricproduct"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "A",
+   "name": "Ảnh lifestyle sản phẩm ngoài trời",
+   "codes": [
+    "/lifestyleshot",
+    "/naturebackdrop",
+    "/handheld",
+    "/onmodel"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "C",
+   "name": "So sánh trước sau cho quảng cáo",
+   "codes": [
+    "/beforeafterproduct",
+    "/comparisonad",
+    "/staticad",
+    "/comparisonchart"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "V",
+   "name": "Bộ biến thể quảng cáo đa kênh",
+   "codes": [
+    "/adset",
+    "/staticad",
+    "/storyad",
+    "/carouselad",
+    "/bannerad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "C",
+   "name": "Mockup bao bì hộp quà thương hiệu",
+   "codes": [
+    "/boxmockup",
+    "/giftbox",
+    "/packagingdesign",
+    "/bagmockup"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sản phẩm thương mại",
+   "funnel": "A",
+   "name": "Splash nước bắt mắt cho sản phẩm",
+   "codes": [
+    "/splashshot",
+    "/productshot",
+    "/macroshot",
+    "/podiumshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "C",
+   "name": "Ma-nơ-canh vô hình cho thời trang",
+   "codes": [
+    "/ghostmannequin",
+    "/catalogset",
+    "/productshot",
+    "/colorways"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "A",
+   "name": "Trang sức cận cảnh trên mặt bóng",
+   "codes": [
+    "/macroshot",
+    "/glassreflection",
+    "/luxuryshot",
+    "/podiumshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "V",
+   "name": "Trang sức đeo trên người mẫu",
+   "codes": [
+    "/onmodel",
+    "/luxuryshot",
+    "/macroshot",
+    "/heroimage"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "C",
+   "name": "Bộ phối màu cho bộ sưu tập",
+   "codes": [
+    "/colorways",
+    "/catalogset",
+    "/ghostmannequin",
+    "/flatlay"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "A",
+   "name": "Ảnh thời trang ngoài trời giờ vàng",
+   "codes": [
+    "/onmodel",
+    "/naturebackdrop",
+    "/lifestyleshot",
+    "/goldenhourportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "V",
+   "name": "Mockup áo thun in thương hiệu",
+   "codes": [
+    "/tshirtmockup",
+    "/brandmerch",
+    "/flatlay",
+    "/onmodel"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "C",
+   "name": "Lookbook đổi trang phục theo phong cách",
+   "codes": [
+    "/outfitswap",
+    "/onmodel",
+    "/catalogset",
+    "/instagrid"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Thời trang & Trang sức",
+   "funnel": "R",
+   "name": "Trang sức theo mùa lễ hội",
+   "codes": [
+    "/seasonalshot",
+    "/macroshot",
+    "/giftbox",
+    "/luxuryshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "C",
+   "name": "Ảnh món ăn cho thực đơn",
+   "codes": [
+    "/menuphoto",
+    "/foodshot",
+    "/menudesign",
+    "/recipecard"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "A",
+   "name": "Đồ uống dàn dựng có nước bắn",
+   "codes": [
+    "/drinkshot",
+    "/splashshot",
+    "/macroshot",
+    "/podiumshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "C",
+   "name": "Mockup lon và nhãn chai giải khát",
+   "codes": [
+    "/canmockup",
+    "/bottlelabel",
+    "/packagingdesign",
+    "/productshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "A",
+   "name": "Thẻ công thức nấu ăn chia sẻ",
+   "codes": [
+    "/recipecard",
+    "/foodshot",
+    "/flatlay",
+    "/howtoillustration"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "V",
+   "name": "Ảnh quảng cáo ưu đãi nhà hàng",
+   "codes": [
+    "/offerad",
+    "/foodshot",
+    "/menuphoto",
+    "/staticad",
+    "/storyad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "A",
+   "name": "Món ăn flat lay cho mạng xã hội",
+   "codes": [
+    "/flatlay",
+    "/foodshot",
+    "/instagrid",
+    "/storycover"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "A",
+   "name": "Poster sự kiện ẩm thực",
+   "codes": [
+    "/eventflyer",
+    "/foodshot",
+    "/drinkshot",
+    "/countdownpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Ẩm thực & Đồ uống",
+   "funnel": "R",
+   "name": "Email nhắc lại món khách đã thích",
+   "codes": [
+    "/emailheader",
+    "/retargetad",
+    "/menuphoto",
+    "/foodshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "C",
+   "name": "Hồ sơ LinkedIn chuyên nghiệp",
+   "codes": [
+    "/corporateheadshot",
+    "/linkedinbanner",
+    "/profilepic",
+    "/casualheadshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "C",
+   "name": "Chân dung nhà sáng lập cho trang công ty",
+   "codes": [
+    "/founderportrait",
+    "/teamphoto",
+    "/officespace",
+    "/bwportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Bộ ảnh casting diễn viên",
+   "codes": [
+    "/actorheadshot",
+    "/bwportrait",
+    "/outfitswap",
+    "/vintageportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Chân dung bìa sách tác giả",
+   "codes": [
+    "/authorphoto",
+    "/bookcover",
+    "/goldenhourportrait",
+    "/magazinecover"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Ảnh hồ sơ hẹn hò tự nhiên",
+   "codes": [
+    "/datingprofile",
+    "/goldenhourportrait",
+    "/casualheadshot",
+    "/lifestyleshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Chân dung thú cưng làm thiệp lễ",
+   "codes": [
+    "/petportrait",
+    "/holidaycard",
+    "/watercolor",
+    "/postermockup"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Poster phim biếm họa gia đình",
+   "codes": [
+    "/caricature",
+    "/cartoonme",
+    "/popart",
+    "/movieposter"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "A",
+   "name": "Thiệp cưới minh họa giờ hoàng hôn",
+   "codes": [
+    "/weddinginvite",
+    "/goldenhourportrait",
+    "/watercolor",
+    "/patterndesign"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "C",
+   "name": "Bộ nhận diện podcast cá nhân",
+   "codes": [
+    "/podcastportrait",
+    "/podcastcover",
+    "/quotecard",
+    "/bwportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Chân dung & Cá nhân",
+   "funnel": "R",
+   "name": "Thông báo tốt nghiệp kèm thẻ kỷ niệm",
+   "codes": [
+    "/graduationportrait",
+    "/teamphoto",
+    "/tradingcard",
+    "/announcementpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "C",
+   "name": "Bộ nhận diện thương hiệu khởi nghiệp",
+   "codes": [
+    "/brandboard",
+    "/logoconcepts",
+    "/colorpalette",
+    "/businesscard"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "C",
+   "name": "Logo chữ và ấn phẩm văn phòng",
+   "codes": [
+    "/wordmark",
+    "/monogram",
+    "/letterhead",
+    "/iconlogo"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "V",
+   "name": "Chiến dịch ra mắt sản phẩm mới",
+   "codes": [
+    "/announcementpost",
+    "/countdownpost",
+    "/adset",
+    "/offerad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "A",
+   "name": "Chiến dịch quảng cáo ngoài trời",
+   "codes": [
+    "/billboard",
+    "/busstopad",
+    "/subwayad",
+    "/bannerad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "C",
+   "name": "Trang giới thiệu dịch vụ doanh nghiệp",
+   "codes": [
+    "/landingmock",
+    "/emailheader",
+    "/staticad",
+    "/processdiagram"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "C",
+   "name": "Hồ sơ năng lực gửi khách hàng",
+   "codes": [
+    "/orgchart",
+    "/slidevisual",
+    "/pricingtable",
+    "/iconset"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "C",
+   "name": "Bộ ấn phẩm chứng thực khách hàng",
+   "codes": [
+    "/testimonialad",
+    "/quotecard",
+    "/statgraphic",
+    "/comparisonchart"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "A",
+   "name": "Diễn giả và sự kiện hội thảo",
+   "codes": [
+    "/speakerphoto",
+    "/eventflyer",
+    "/slidevisual",
+    "/linkedinbanner"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Doanh nghiệp & Thương hiệu",
+   "funnel": "V",
+   "name": "Bao bì thương hiệu đồ uống",
+   "codes": [
+    "/bottlelabel",
+    "/canmockup",
+    "/packagingdesign",
+    "/shelfshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "V",
+   "name": "Tin đăng bán nhà trọn gói",
+   "codes": [
+    "/listingphoto",
+    "/virtualstaging",
+    "/floorplan3d",
+    "/realtorheadshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "A",
+   "name": "Nhà phố lên đèn ban đêm",
+   "codes": [
+    "/nightshot",
+    "/exteriorrender",
+    "/listingphoto",
+    "/mapgraphic"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "C",
+   "name": "Cải tạo bếp trước và sau",
+   "codes": [
+    "/kitchenreno",
+    "/roomredesign",
+    "/comparisonad",
+    "/virtualstaging"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "C",
+   "name": "Mood board thiết kế nội thất",
+   "codes": [
+    "/moodboard",
+    "/roomredesign",
+    "/colorpalette",
+    "/floorplan3d"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "C",
+   "name": "Hướng dẫn mặt bằng căn hộ",
+   "codes": [
+    "/floorplan3d",
+    "/blueprintview",
+    "/howtoillustration",
+    "/mapgraphic"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "A",
+   "name": "Sân vườn cảnh quan nhiệt đới",
+   "codes": [
+    "/gardenplan",
+    "/exteriorrender",
+    "/moodboard",
+    "/nightshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bất động sản & Nội thất",
+   "funnel": "C",
+   "name": "Thương hiệu cá nhân môi giới bất động sản",
+   "codes": [
+    "/realtorheadshot",
+    "/businesscard",
+    "/linkedinbanner",
+    "/listingphoto"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "A",
+   "name": "Bộ nhận diện kênh YouTube đồng bộ",
+   "codes": [
+    "/youtubebanner",
+    "/profilepic",
+    "/thumbnailimage",
+    "/instagrid",
+    "/reelcover"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "A",
+   "name": "Bìa video ngắn cho TikTok và Reels",
+   "codes": [
+    "/tiktokcover",
+    "/reelcover",
+    "/storycover",
+    "/thumbnailimage",
+    "/statgraphic"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "A",
+   "name": "Lưới Instagram đồng bộ thương hiệu",
+   "codes": [
+    "/instagrid",
+    "/carouselcover",
+    "/quotecard",
+    "/statgraphic"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "C",
+   "name": "Carousel hướng dẫn từng bước",
+   "codes": [
+    "/carouselcover",
+    "/howtoillustration",
+    "/processdiagram",
+    "/statgraphic",
+    "/iconset"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "V",
+   "name": "Đếm ngược ngày ra mắt",
+   "codes": [
+    "/countdownpost",
+    "/announcementpost",
+    "/storycover",
+    "/eventflyer"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "C",
+   "name": "Bộ ảnh bìa podcast chuyên nghiệp",
+   "codes": [
+    "/podcastcover",
+    "/podcastportrait",
+    "/quotecard",
+    "/bwportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "A",
+   "name": "Banner hồ sơ LinkedIn chuyên nghiệp",
+   "codes": [
+    "/linkedinbanner",
+    "/corporateheadshot",
+    "/headshot",
+    "/quotecard"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "C",
+   "name": "Ghim Pinterest dọc thu hút click",
+   "codes": [
+    "/pinterestpin",
+    "/flatlay",
+    "/howtoillustration",
+    "/quotecard"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Mạng xã hội & Nội dung số",
+   "funnel": "A",
+   "name": "Meme thương hiệu dễ lan truyền",
+   "codes": [
+    "/memeformat",
+    "/cartoonme",
+    "/statgraphic",
+    "/announcementpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "V",
+   "name": "Quảng cáo khuyến mãi giảm giá",
+   "codes": [
+    "/offerad",
+    "/staticad",
+    "/bannerad",
+    "/storyad",
+    "/countdownpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "C",
+   "name": "Bộ biến thể quảng cáo để test A/B",
+   "codes": [
+    "/adset",
+    "/staticad",
+    "/carouselad",
+    "/comparisonad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "C",
+   "name": "Quảng cáo so sánh trước và sau",
+   "codes": [
+    "/comparisonad",
+    "/beforeafterproduct",
+    "/testimonialad",
+    "/offerad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "C",
+   "name": "Storyboard quảng cáo video",
+   "codes": [
+    "/adstoryboard",
+    "/storyad",
+    "/staticad",
+    "/carouselad",
+    "/thumbnailimage"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "A",
+   "name": "Banner ngang cho email và landing",
+   "codes": [
+    "/bannerad",
+    "/emailheader",
+    "/landingmock",
+    "/statgraphic"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "A",
+   "name": "Billboard và quảng cáo ngoài trời",
+   "codes": [
+    "/billboard",
+    "/busstopad",
+    "/subwayad",
+    "/postermockup",
+    "/storefront"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "A",
+   "name": "Quảng cáo tạp chí full trang",
+   "codes": [
+    "/magazinead",
+    "/postermockup",
+    "/luxuryshot",
+    "/testimonialad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "V",
+   "name": "Quảng cáo retargeting nhắc lại",
+   "codes": [
+    "/retargetad",
+    "/offerad",
+    "/testimonialad",
+    "/staticad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Quảng cáo & Khuyến mãi",
+   "funnel": "C",
+   "name": "Quảng cáo native kiểu bài viết",
+   "codes": [
+    "/uglyad",
+    "/staticad",
+    "/memeformat",
+    "/testimonialad"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "V",
+   "name": "Bộ bao bì sản phẩm hoàn chỉnh",
+   "codes": [
+    "/packagingdesign",
+    "/boxmockup",
+    "/bottlelabel",
+    "/canmockup",
+    "/shelfshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "A",
+   "name": "Mockup túi giấy thương hiệu",
+   "codes": [
+    "/bagmockup",
+    "/packagingdesign",
+    "/brandmerch",
+    "/storefront"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "V",
+   "name": "Hộp quà cao cấp theo mùa",
+   "codes": [
+    "/giftbox",
+    "/boxmockup",
+    "/seasonalshot",
+    "/luxuryshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "C",
+   "name": "Nhãn chai đồ uống nổi bật",
+   "codes": [
+    "/bottlelabel",
+    "/drinkshot",
+    "/glassreflection",
+    "/productshot"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "C",
+   "name": "Mockup lon nước giải khát",
+   "codes": [
+    "/canmockup",
+    "/splashshot",
+    "/drinkshot",
+    "/productshot",
+    "/colorways"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "A",
+   "name": "Bìa sách và ấn phẩm tác giả",
+   "codes": [
+    "/bookcover",
+    "/authorphoto",
+    "/patterndesign",
+    "/magazinecover"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "A",
+   "name": "Mockup áo thun và merch",
+   "codes": [
+    "/tshirtmockup",
+    "/brandmerch",
+    "/ghostmannequin",
+    "/patterndesign"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Bao bì & Mockup",
+   "funnel": "A",
+   "name": "Sticker sheet linh vật thương hiệu",
+   "codes": [
+    "/stickersheet",
+    "/mascotdesign",
+    "/patterndesign",
+    "/iconset"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Nhân vật giả tưởng anime",
+   "codes": [
+    "/anime",
+    "/fantasyme",
+    "/lineart",
+    "/conceptart"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Siêu anh hùng comic",
+   "codes": [
+    "/comicbook",
+    "/superhero",
+    "/popart",
+    "/lineart"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "C",
+   "name": "Minh họa truyện thiếu nhi",
+   "codes": [
+    "/childrensbook",
+    "/watercolor",
+    "/pencilsketch",
+    "/sketchbook"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": null,
+   "name": "Ký họa chì chân dung",
+   "codes": [
+    "/pencilsketch",
+    "/charcoal",
+    "/bwportrait",
+    "/sketchbook"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Bối cảnh phong cách Ghibli",
+   "codes": [
+    "/ghibli",
+    "/environmentart",
+    "/anime",
+    "/watercolor"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": null,
+   "name": "Manga trắng đen",
+   "codes": [
+    "/manga",
+    "/crosshatching",
+    "/inkdrawing",
+    "/bwportrait"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Đất sét stop-motion",
+   "codes": [
+    "/claymation",
+    "/clayrender",
+    "/3dcharacter",
+    "/miniature"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Hoạt hình 3D kiểu Pixar",
+   "codes": [
+    "/pixar",
+    "/3dcharacter",
+    "/3drender",
+    "/childrensbook"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Nghệ thuật & Minh hoạ",
+   "funnel": "A",
+   "name": "Poster phim điện ảnh",
+   "codes": [
+    "/movieposter",
+    "/mattepainting",
+    "/environmentart",
+    "/postermockup"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Sơ đồ quy trình dịch vụ",
+   "codes": [
+    "/processdiagram",
+    "/infographic",
+    "/iconset",
+    "/slidevisual"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Hướng dẫn từng bước",
+   "codes": [
+    "/howtoillustration",
+    "/checklistgraphic",
+    "/processdiagram",
+    "/iconset"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "V",
+   "name": "Bảng so sánh gói giá",
+   "codes": [
+    "/pricingtable",
+    "/comparisonchart",
+    "/infographic",
+    "/iconset"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Lộ trình học tập",
+   "codes": [
+    "/roadmapgraphic",
+    "/timelineposter",
+    "/infographic",
+    "/slidevisual"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Poster số liệu ngành",
+   "codes": [
+    "/statposter",
+    "/infographic",
+    "/comparisonchart",
+    "/slidevisual"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Giải phẫu chú thích bộ phận",
+   "codes": [
+    "/anatomyof",
+    "/xrayview",
+    "/cutaway",
+    "/exploded3d"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Sơ đồ lắp ráp sản phẩm",
+   "codes": [
+    "/assemblysteps",
+    "/partslist",
+    "/insidethebox",
+    "/exploded3d"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Thẻ công thức nấu ăn",
+   "codes": [
+    "/recipecard",
+    "/howtoillustration",
+    "/foodshot",
+    "/menuphoto"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Infographic & Giáo dục",
+   "funnel": "C",
+   "name": "Slide thuyết trình khóa học",
+   "codes": [
+    "/slidevisual",
+    "/infographic",
+    "/statgraphic",
+    "/laptopmockup"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "C",
+   "name": "Thiệp cưới màu nước",
+   "codes": [
+    "/weddinginvite",
+    "/watercolor",
+    "/patterndesign",
+    "/papercut"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "R",
+   "name": "Thiệp mừng lễ cuối năm",
+   "codes": [
+    "/holidaycard",
+    "/papercut",
+    "/patterndesign",
+    "/giftbox"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "A",
+   "name": "Poster sự kiện hội thảo",
+   "codes": [
+    "/eventflyer",
+    "/speakerphoto",
+    "/postermockup",
+    "/announcementpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "V",
+   "name": "Đếm ngược khai trương",
+   "codes": [
+    "/countdownpost",
+    "/storycover",
+    "/staticad",
+    "/announcementpost"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "A",
+   "name": "Story mời tham dự",
+   "codes": [
+    "/storycover",
+    "/reelcover",
+    "/eventflyer",
+    "/quotecard"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "C",
+   "name": "Ảnh tốt nghiệp chia sẻ",
+   "codes": [
+    "/graduationportrait",
+    "/announcementpost",
+    "/quotecard",
+    "/instagrid"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "V",
+   "name": "Merch kỷ niệm sự kiện",
+   "codes": [
+    "/brandmerch",
+    "/tshirtmockup",
+    "/stickersheet",
+    "/bagmockup"
+   ]
+  },
+  {
+   "domain": "image",
+   "category": "Sự kiện & Thiệp",
+   "funnel": "A",
+   "name": "Ảnh tập thể sự kiện công ty",
+   "codes": [
+    "/teamphoto",
+    "/eventflyer",
+    "/linkedinbanner",
+    "/instagrid"
    ]
   }
  ],
- "codeMeanings": {
-  "en": {
-   "video": {
-    "dollyin": "Camera pushes straight toward subject",
-    "fastpush": "Fast push in then decelerate",
-    "diagonalpush": "Diagonal push across the frame",
-    "ceilingpush": "High push in close to ceiling",
-    "dolly": "Dolly in or out on rails, generic",
-    "zoom": "Lens zoom without moving camera",
-    "slowzoom": "Slow zoom",
-    "truckright": "Truck sideways to the right",
-    "diagonalslide": "Sideways slide with slight push in",
-    "pillarreveal": "Slide out from behind a pillar",
-    "parallelwall": "Slide parallel along a wall",
-    "panright": "Pan horizontally to the right",
-    "whippan": "Very fast blurred whip pan",
-    "anticipationpan": "Pan ahead before subject arrives",
-    "scanreturn": "Scan the scene then return to start",
-    "pedestaldown": "Lower the camera straight down",
-    "jibreveal": "Jib rises over obstruction to reveal",
-    "roofreveal": "Rise up over a rooftop",
-    "stairascent": "Follow subject up the stairs",
-    "arcright": "Arc around to the right",
-    "orbit360": "Full 360 degree orbit around subject",
-    "loworbit": "Orbit from a low angle",
-    "spiraldescend": "Spiral down while rotating",
-    "rearfollow": "Follow behind the subject",
-    "shoulderfollow": "Over-the-shoulder follow",
-    "highfollow": "Follow from a high angle",
-    "catchup": "Catch up to the subject",
-    "tracking": "Camera moves alongside the subject",
-    "backwardtracking": "Track backward ahead of subject",
-    "droneapproach": "Drone flies in from a distance",
-    "dronedescend": "Drone descends straight down",
-    "droneflyby": "Drone flies past sideways",
-    "ridgereveal": "Fly over a ridge to reveal",
-    "aerialshot": "Aerial shot, high opening view",
-    "droneforward": "Drone moves forward, back, up or down",
-    "fpvchase": "FPV-style chase of a target",
-    "fpvbank": "FPV camera banks into a turn",
-    "tunnelflight": "Flight through a tunnel",
-    "groundskim": "Skim low over the ground",
-    "fpv": "First-person drone camera view",
-    "handheldwalk": "Handheld shot while walking",
-    "gimbalglide": "Smooth gimbal glide",
-    "helmetturn": "Helmet-cam view as the head turns",
-    "wheeltrack": "Low shot tracking a wheel",
-    "steadicam": "Balanced smooth Steadicam movement",
-    "pushorbit": "Push in while orbiting the subject",
-    "descendpush": "Descend while pushing in",
-    "tiltretreat": "Tilt down while retreating",
-    "looppath": "Closed path that joins into a loop",
-    "facereveal": "Reveal the face",
-    "doorreveal": "Reveal through a doorway",
-    "wide": "Wide angle showing the whole scene",
-    "overhead": "Top-down overhead view",
-    "pov": "Character's first-person point of view",
-    "fullbody": "Full body head-to-toe framing",
-    "rackfocus": "Rack focus from one subject to another",
-    "deepfocus": "Deep focus, near and far both sharp",
-    "bokeh": "Soft out-of-focus bokeh highlights",
-    "macrofocus": "Extreme close-up macro focus",
-    "anamorphic": "Anamorphic lens with horizontal flare",
-    "bluehour": "Cold blue hour twilight",
-    "softlight": "Diffused light with soft shadows",
-    "spotlight": "Single spotlight on one spot",
-    "nightscene": "Night scene",
-    "leadinglines": "Leading lines guiding the eye",
-    "foreground": "Foreground object adding depth",
-    "negativespace": "Large empty space around subject",
-    "hyperlapse": "Fast time-lapse with camera movement",
-    "motionblur": "Motion blur",
-    "freeze": "Freeze on a single frame",
-    "bullettime": "Bullet time, frozen time with moving camera",
-    "running": "Running action",
-    "reveal": "Reveal the subject or object",
-    "morph": "Morph one object into another",
-    "whiptransition": "Whip-pan scene transition",
-    "flashtransition": "Flash of light transition",
-    "seamlessloop": "Seamless loop with no visible seam",
-    "objecttransition": "Transition through an object",
-    "paperworld": "World made of paper",
-    "underwater": "Underwater scene",
-    "rain": "Rain or heavy downpour",
-    "explosion": "Explosion blast",
-    "wind": "Blowing wind",
-    "sunrays": "Sun rays breaking through",
-    "watersplash": "Water splash",
-    "filmic": "Filmic look with fine grain",
-    "documentary": "Documentary-style realism",
-    "epic": "Epic large-scale look",
-    "productreveal": "Product reveal",
-    "logoreveal": "Logo reveal",
-    "foodcommercial": "Food commercial look",
-    "beforeafter": "Before and after comparison",
-    "premium-unboxing": "Premium unboxing",
-    "problem-solution-ad": "Problem-then-solution ad",
-    "pattern-interrupt": "Pattern interrupt to grab attention",
-    "buy-now-ad": "Buy-now urgency ad",
-    "360-degree-showcase": "360 degree product showcase",
-    "dollyout": "Camera pulls back, revealing more of the scene",
-    "micropush": "Slight push in, adding depth",
-    "diagonalretreat": "Diagonal backward retreat",
-    "pushthrough": "Move forward through a doorway",
-    "pushin": "Push in toward the subject",
-    "zoomin": "Zoom in",
-    "fastzoom": "Rapid zoom",
-    "shortslider": "Short lateral slider move",
-    "countertrack": "Camera moves against the subject's direction",
-    "windowslide": "Slide in from outside a window",
-    "layeredslide": "Slide through several depth layers",
-    "tiltup": "Tilt the camera upward",
-    "whiptilt": "Very fast whip tilt upward",
-    "delayedpan": "Let the subject pass, then pan to follow",
-    "pansweep": "180° sweep revealing the full scene",
-    "craneup": "Crane rises along a wide arc",
-    "risetilt": "Rise while tilting down",
-    "tablerise": "Rise up from below a table surface",
-    "stairdescent": "Follow the subject down the stairs",
-    "quarterorbit": "90° orbit around the subject",
-    "tightorbit": "Close orbit around the subject",
-    "highorbit": "Orbit from a high angle",
-    "orbittighten": "Orbit while gradually tightening the radius",
-    "frontfollow": "Back away in front of the subject",
-    "three-quarterfollow": "Follow from a front three-quarter angle",
-    "overtake": "Overtake the subject and move ahead",
-    "curvefollow": "Follow the subject along a curve",
-    "follow": "Follow move (generic)",
-    "gimbal": "Smooth, stabilized follow with no shake",
-    "dronepullback": "Drone pulls back to reveal the scene",
-    "droneorbit": "Drone orbits around the target",
-    "topdowntravel": "Travel forward while looking straight down",
-    "aerialretreat": "Fly back and rise at the same time",
-    "birdseye": "Straight-down bird's-eye view",
-    "drone": "Drone shot (generic)",
-    "fpvdive": "FPV dive straight down",
-    "fpvslalom": "FPV weaving through obstacles",
-    "windowflythrough": "Fly through a window",
-    "canopyflight": "Fly beneath the tree canopy",
-    "fpvflythrough": "Fly through an interior space",
-    "handheldrun": "Handheld while running",
-    "gimbalcorner": "Smooth cornering follow on a gimbal",
-    "vehicleforward": "Vehicle-mounted, driving forward",
-    "snorricamwalk": "Body-mounted, face held centered while walking",
-    "dollyzoom": "Pull back while zooming in (Vertigo effect)",
-    "orbitpullback": "Orbit while pulling back",
-    "trackreveal": "Lateral track revealing the scene",
-    "slidearc": "Lateral slide along an arc",
-    "slowreveal": "Gradually reveal the subject or object",
-    "environmentreveal": "Reveal the surroundings",
-    "curtainreveal": "Reveal like a curtain being drawn",
-    "tight": "Tight framing with little breathing room",
-    "lowangle": "Low angle, making the subject look large",
-    "firstperson": "As if seen through the character's eyes",
-    "heroshot": "Hero shot that flatters the subject, often low angle",
-    "focuspull": "Rack focus onto or off the subject",
-    "foregroundblur": "Blurred foreground object",
-    "shallowdepth": "Shallow depth of field",
-    "macro": "Extreme close-up detail shot",
-    "softfocus": "Soft, dreamy slight blur",
-    "neonlight": "Vivid neon lighting",
-    "rimlight": "Bright rim of light around the subject's edge",
-    "volumetric": "Visible light beams in the air",
-    "dramaticlighting": "Dramatic lighting with strong contrast",
-    "ruleofthirds": "Rule-of-thirds framing, subject on an intersection",
-    "framewithinframe": "Frame within a frame (door, arch)",
-    "slowmotion": "Slow motion",
-    "speedramp": "Speed change within the clip (slow to fast)",
-    "smoothmotion": "Smooth motion",
-    "reverse": "Played in reverse",
-    "floating": "Floating weightlessly",
-    "walking": "Subject walking",
-    "entrance": "Subject enters the frame",
-    "glitch": "Technical-fault glitch distortion",
-    "zoomtransition": "Transition via zoom",
-    "blurtransition": "Transition through blur",
-    "infinitezoom": "Infinitely deep zoom",
-    "scifi": "Science fiction",
-    "miniature": "Miniature toy-like scale",
-    "fog": "Foggy atmosphere",
-    "snow": "Falling snow",
-    "portal": "Sci-fi portal gateway",
-    "dust": "Floating dust",
-    "fallingleaves": "Falling leaves",
-    "reflection": "Mirror reflection",
-    "commercial": "Clean, bright, commercial look",
-    "vintagefilm": "Old film with faded silver tones",
-    "surreal": "Surreal and illogical",
-    "productspin": "Product spinning",
-    "fashionfilm": "Fashion film",
-    "socialad": "Ad for social media",
-    "ugc-product-hook": "Opening like a real user introducing the product",
-    "asmr-unboxing": "Unboxing with close-up sound",
-    "tiktok-style-ad": "TikTok-style ad",
-    "luxury-product-ad": "Premium product ad",
-    "day-in-my-life": "A day in my life",
-    "slowpush": "Very slow push-in building tension",
-    "longapproach": "Wide shot pushing into a close-up",
-    "groundpush": "Slide forward skimming the ground",
-    "retreatreveal": "Start close, pull back to reveal wide",
-    "pullout": "Pull back away from the subject",
-    "zoomout": "Zoom out",
-    "truckleft": "Lateral truck to the left",
-    "longslider": "Long lateral slider move",
-    "foregroundpass": "Glide past a foreground object",
-    "doorwayslide": "Slide through a doorway",
-    "panleft": "Pan horizontally to the left",
-    "tiltdown": "Tilt the camera downward",
-    "followpan": "Pan tracking a moving subject",
-    "diagonalpan": "Diagonal pan with a tilt",
-    "pedestalup": "Raise the camera vertically",
-    "cranedown": "Crane lowering on a wide arc",
-    "descendtilt": "Descend while tilting up",
-    "floordrop": "From standing height down to floor",
-    "arcleft": "Arc around to the left",
-    "halforbit": "Half orbit, 180 degrees",
-    "wideorbit": "Wide-radius orbit",
-    "spiralrise": "Orbit while rising",
-    "orbit": "Orbit around the subject (generic)",
-    "sidefollow": "Follow from the side",
-    "lowfollow": "Follow from a low angle",
-    "fallbehind": "Drop back behind the subject",
-    "handofftrack": "Hand off tracking to another subject",
-    "forwardtracking": "Track forward with the subject",
-    "dronefly": "Fly forward while ascending",
-    "droneascend": "Fly straight up",
-    "droneflyover": "Fly over the top of the target",
-    "coastlinefollow": "Follow along a coastline",
-    "droneview": "Aerial view from above",
-    "flyover": "Fly across the area",
-    "droneorbit360": "Full 360-degree orbit around the target",
-    "fpvclimb": "Climb steeply upward",
-    "gapflythrough": "Fly through a narrow gap",
-    "doorwayflight": "Fly through a doorway",
-    "fpvcorkscrew": "Move forward while spinning 360",
-    "handhelddrift": "Handheld gentle drift with natural shake",
-    "shouldersway": "Shaky sway as if resting on a shoulder",
-    "bodycamwalk": "Chest-mounted bodycam while walking",
-    "windowride": "Window-mounted car view looking outward",
-    "handheld": "Handheld (generic)",
-    "reversevertigo": "Push in while zooming out",
-    "risepullback": "Rise while pulling back",
-    "panpush": "Pan while pushing in",
-    "orbitreverse": "Orbit in the opposite direction",
-    "characterreveal": "Reveal the character",
-    "pullbackreveal": "Pull back to reveal the wide scene",
-    "closeup": "Close-up focused on a small detail",
-    "establishing": "Opening shot introducing the setting",
-    "highangle": "High angle making the subject look small",
-    "overtheshoulder": "Over-the-shoulder, showing the subject ahead",
-    "centered": "Subject centered in the frame",
-    "shallowfocus": "Shallow focus with a blurred background",
-    "backgroundblur": "Blurred background",
-    "telephoto": "Telephoto lens compressing space",
-    "lensflare": "Light flare from the lens",
-    "goldenhour": "Golden hour, warm dawn or dusk light",
-    "moody": "Contrasty dark tones, heavy mood",
-    "silhouette": "Subject as a dark shape against a bright background",
-    "backlight": "Light coming from behind the subject",
-    "minimal": "Minimal, few extra details",
-    "symmetry": "Symmetrical on both sides",
-    "diagonal": "Dynamic diagonal composition",
-    "timelapse": "Time-lapse with sped-up time",
-    "speedup": "Sped up",
-    "naturalmotion": "Natural, lifelike motion",
-    "loop": "Seamless loop",
-    "falling": "Falling downward",
-    "turnaround": "Subject turns around",
-    "exit": "Subject leaves the frame",
-    "matchcut": "Cut matching shape or motion between scenes",
-    "smoketransition": "Transition through smoke",
-    "lightleak": "Streak of light leaking into the frame",
-    "worldtransition": "Transition into another world",
-    "cyberpunk": "Neon future, dark wet streets",
-    "space": "Outer space",
-    "storm": "Stormy weather",
-    "fire": "Open flames",
-    "particlefx": "Floating effect particles",
-    "clouds": "Cloud formations",
-    "flowerpetals": "Falling flower petals",
-    "cinematic": "Cinematic film-like contrast and color",
-    "luxury": "Premium, dark, metallic, slow",
-    "dreamy": "Dreamy, soft, gently lit",
-    "blockbuster": "Blockbuster movie style",
-    "unboxing": "Unboxing reveal",
-    "techad": "Tech gadget commercial",
-    "billboard": "Billboard ad style",
-    "ugc-testimonial": "Real user testimonial",
-    "product-demo-ad": "Demo ad showing how to use it",
-    "3-second-hook": "First 3 seconds that hook the viewer",
-    "conversion-ad": "Conversion-focused ad",
-    "product-launch-ad": "Product launch ad"
-   },
-   "image": {
-    "actorheadshot": "Professional actor headshot for casting",
-    "authorphoto": "Author portrait for book jacket",
-    "bwportrait": "Black and white portrait",
-    "casualheadshot": "Relaxed casual professional headshot",
-    "corporateheadshot": "Corporate business headshot on office backdrop",
-    "datingprofile": "Approachable dating profile photo",
-    "doctorportrait": "Medical professional portrait in clinical setting",
-    "fitnessportrait": "Athletic fitness portrait with gym setting",
-    "founderportrait": "Startup founder portrait for company page",
-    "goldenhourportrait": "Portrait in warm golden hour light",
-    "graduationportrait": "Graduation portrait in cap and gown",
-    "headshot": "Standard professional headshot",
-    "outfitswap": "Portrait with outfit changed to new clothing",
-    "passportphoto": "Official passport photo on plain background",
-    "podcastportrait": "Podcast host portrait with microphone",
-    "realtorheadshot": "Real estate agent headshot",
-    "speakerphoto": "Conference speaker portrait on stage",
-    "teamphoto": "Group team photo for company",
-    "vintageportrait": "Retro vintage-style portrait",
-    "appicon": "Mobile app icon design",
-    "brandboard": "Brand identity board with assets",
-    "brandmerch": "Branded merchandise mockup collection",
-    "businesscard": "Business card design mockup",
-    "colorpalette": "Brand color palette swatches",
-    "favicon": "Website favicon icon design",
-    "iconlogo": "Icon-based logo mark",
-    "letterhead": "Company letterhead stationery design",
-    "logoconcepts": "Multiple logo concept options",
-    "logomotion": "Animated logo motion graphic",
-    "mascotdesign": "Brand mascot character design",
-    "monogram": "Monogram initials logo",
-    "patterndesign": "Seamless repeating pattern design",
-    "rebrand": "Refreshed rebrand identity design",
-    "storefront": "Retail storefront signage design",
-    "wordmark": "Typography-based wordmark logo",
-    "3dcharacter": "Three-dimensional character model",
-    "3drender": "Photorealistic 3D render",
-    "anime": "Japanese anime illustration style",
-    "blender": "Blender 3D software render style",
-    "cartoonme": "Cartoon caricature of the subject",
-    "charcoal": "Charcoal drawing style",
-    "childrensbook": "Children's book illustration style",
-    "claymation": "Claymation stop-motion clay style",
-    "comicbook": "Comic book panel art style",
-    "conceptart": "Concept art illustration",
-    "crosshatching": "Cross-hatched pen shading style",
-    "embroidery": "Embroidered stitched fabric artwork",
-    "environmentart": "Environment and scenery concept art",
-    "ghibli": "Studio Ghibli anime film style",
-    "graffiti": "Graffiti street art spray style",
-    "inkdrawing": "Ink pen drawing style",
-    "lineart": "Clean line art outline drawing",
-    "lowpoly": "Low-polygon geometric 3D style",
-    "manga": "Japanese manga black and white style",
-    "mattepainting": "Cinematic matte painting backdrop",
-    "octanerender": "Octane 3D render with glossy lighting",
-    "oilpainting": "Classical oil painting style",
-    "papercut": "Layered paper cut-out art style",
-    "pencilsketch": "Graphite pencil sketch style",
-    "pixar": "Pixar 3D animated film style",
-    "pixelart": "Retro pixel art sprite style",
-    "popart": "Pop art bold color style",
-    "sketchbook": "Hand-drawn sketchbook page style",
-    "stainedglass": "Stained glass window panel art",
-    "tattoodesign": "Tattoo flash design artwork",
-    "unrealengine": "Unreal Engine real-time 3D render",
-    "vectorflat": "Flat vector illustration style",
-    "voxel": "Voxel blocky 3D cube style",
-    "watercolor": "Watercolor painting style",
-    "amazonready": "Clean marketplace-compliant white background product image",
-    "backgroundswap": "Product with its background replaced",
-    "beforeafterproduct": "Side-by-side before and after product comparison",
-    "catalogset": "Consistent multi-angle catalog image set",
-    "colorways": "Product shown in multiple colour variants",
-    "flatlay": "Overhead top-down product layout",
-    "floatingproduct": "Product levitating against a plain backdrop",
-    "ghostmannequin": "Invisible mannequin apparel shot",
-    "glassreflection": "Product on a glossy reflective surface",
-    "handheld": "Product held in a hand",
-    "heroimage": "Main hero product image",
-    "lifestyleshot": "Product in a real-life usage setting",
-    "luxuryshot": "Premium styled luxury product image",
-    "macroshot": "Extreme close-up detail shot",
-    "naturebackdrop": "Product against a natural outdoor backdrop",
-    "onmodel": "Product worn or held by a model",
-    "podiumshot": "Product displayed on a raised podium",
-    "productshot": "Standard studio product image",
-    "seasonalshot": "Product styled for a seasonal theme",
-    "splashshot": "Product with liquid splash around it",
-    "announcementpost": "Bold announcement social post",
-    "carouselcover": "Cover slide for a social carousel",
-    "countdownpost": "Countdown or launch-timer social post",
-    "eventflyer": "Promotional event flyer graphic",
-    "instagrid": "Coordinated Instagram grid layout",
-    "linkedinbanner": "Professional LinkedIn profile banner",
-    "memeformat": "Meme-style image with caption text",
-    "pinterestpin": "Tall vertical Pinterest pin graphic",
-    "podcastcover": "Podcast episode or show cover art",
-    "profilepic": "Round social profile avatar",
-    "quotecard": "Quote overlaid on a styled background",
-    "reelcover": "Vertical cover frame for a short video reel",
-    "statgraphic": "Single statistic highlighted graphic",
-    "storycover": "Vertical story cover graphic",
-    "thumbnailimage": "Clickable video thumbnail image",
-    "tiktokcover": "Vertical TikTok video cover",
-    "twitterheader": "Wide Twitter profile header image",
-    "youtubebanner": "Wide YouTube channel banner",
-    "anatomyof": "Labelled breakdown of a subject's parts",
-    "checklistgraphic": "Graphic checklist with tickable items",
-    "comparisonchart": "Side-by-side comparison chart",
-    "howtoillustration": "Step-by-step how-to illustration",
-    "iconset": "Matching set of simple icons",
-    "infographic": "Data-driven informational graphic",
-    "mapgraphic": "Illustrated map or location graphic",
-    "orgchart": "Organisational hierarchy chart",
-    "pricingtable": "Tiered pricing comparison table",
-    "processdiagram": "Flow diagram of a process",
-    "roadmapgraphic": "Timeline roadmap graphic",
-    "slidevisual": "Visual for a presentation slide",
-    "statposter": "Poster built around key statistics",
-    "timelineposter": "Poster showing events along a timeline",
-    "assemblysteps": "Step-by-step assembly instruction diagram",
-    "blueprintview": "Technical blueprint drawing view",
-    "clayrender": "Untextured clay material 3D render",
-    "cutaway": "Cutaway view revealing interior structure",
-    "exploded3d": "Exploded 3D view of separated parts",
-    "giantscale": "Giant scale product comparison shot",
-    "insidethebox": "What's inside the box layout",
-    "isometricproduct": "Isometric angle product view",
-    "materialswap": "Material swap variant render",
-    "miniature": "Miniature scale model look",
-    "partslist": "Numbered parts list diagram",
-    "turntable": "Rotating turntable product view",
-    "wireframerender": "Wireframe 3D render view",
-    "xrayview": "X-ray see-through view",
-    "bagmockup": "Shopping bag mockup",
-    "bookcover": "Book cover mockup",
-    "bottlelabel": "Bottle label mockup",
-    "boxmockup": "Product box mockup",
-    "canmockup": "Beverage can mockup",
-    "giftbox": "Gift box packaging shot",
-    "laptopmockup": "Laptop screen mockup",
-    "menudesign": "Restaurant menu design",
-    "packagingdesign": "Product packaging design",
-    "phonemockup": "Phone screen mockup",
-    "postermockup": "Poster mockup in scene",
-    "shelfshot": "Retail shelf product shot",
-    "stickersheet": "Die-cut sticker sheet layout",
-    "tshirtmockup": "T-shirt apparel mockup",
-    "actionfigure": "Collectible action figure toy",
-    "ageprogression": "Age progression portrait series",
-    "babyphoto": "Baby photo portrait",
-    "caricature": "Exaggerated caricature portrait",
-    "dreamcar": "Custom dream car render",
-    "fantasyme": "Fantasy character portrait",
-    "holidaycard": "Holiday greeting card design",
-    "magazinecover": "Magazine cover portrait",
-    "movieposter": "Movie poster style image",
-    "petportrait": "Pet portrait",
-    "superhero": "Superhero character portrait",
-    "timetravel": "Time travel era portrait",
-    "tradingcard": "Trading card portrait",
-    "weddinginvite": "Wedding invitation design",
-    "adset": "Multi-variant ad set pack",
-    "adstoryboard": "Storyboard sequence for an ad",
-    "appstoreshots": "App store screenshot set",
-    "bannerad": "Wide banner advertisement",
-    "billboard": "Large outdoor billboard mockup",
-    "busstopad": "Bus stop shelter ad mockup",
-    "carouselad": "Swipeable multi-panel carousel ad",
-    "comparisonad": "Before-and-after comparison ad",
-    "emailheader": "Email newsletter header banner",
-    "landingmock": "Landing page mockup shot",
-    "magazinead": "Full-page magazine advertisement",
-    "offerad": "Promotional discount offer ad",
-    "retargetad": "Retargeting reminder advertisement",
-    "staticad": "Single static social ad",
-    "storyad": "Vertical story-format ad",
-    "subwayad": "Subway station ad poster",
-    "testimonialad": "Customer testimonial quote ad",
-    "uglyad": "Deliberately ugly native-style ad",
-    "drinkshot": "Styled beverage product shot",
-    "exteriorrender": "3D exterior architectural render",
-    "floorplan3d": "3D floor plan visualization",
-    "foodshot": "Appetizing food photography",
-    "gardenplan": "Landscape garden design plan",
-    "kitchenreno": "Renovated kitchen interior",
-    "listingphoto": "Real estate listing photo",
-    "menuphoto": "Restaurant menu food photo",
-    "moodboard": "Interior design mood board",
-    "nightshot": "Evening nighttime exterior shot",
-    "officespace": "Modern office workspace interior",
-    "recipecard": "Recipe card food layout",
-    "roomredesign": "Redesigned room interior concept",
-    "virtualstaging": "Virtually staged empty room"
-   }
-  },
-  "vi": {
-   "video": {
-    "dollyin": "camera tiến thẳng tới chủ thể",
-    "dollyout": "camera lùi ra, lộ thêm cảnh",
-    "slowpush": "tiến rất chậm, tạo căng",
-    "fastpush": "tiến nhanh rồi hãm lại",
-    "micropush": "đẩy nhẹ, tăng chiều sâu",
-    "longapproach": "từ toàn cảnh vào cận cảnh",
-    "diagonalpush": "tiến chéo theo đường chéo khung",
-    "diagonalretreat": "lùi chéo",
-    "groundpush": "trượt tới sát mặt đất",
-    "ceilingpush": "tiến sát trần từ trên cao",
-    "pushthrough": "tiến xuyên qua khe cửa",
-    "retreatreveal": "bắt đầu gần, lùi ra lộ toàn cảnh",
-    "dolly": "tiến/lùi trên ray (bản chung)",
-    "pushin": "đẩy vào chủ thể",
-    "pullout": "kéo ra khỏi chủ thể",
-    "zoom": "thu phóng bằng ống kính (không dịch chuyển)",
-    "zoomin": "phóng to",
-    "zoomout": "thu nhỏ",
-    "slowzoom": "thu phóng chậm",
-    "fastzoom": "thu phóng nhanh",
-    "truckleft": "trượt ngang sang trái",
-    "truckright": "trượt ngang sang phải",
-    "shortslider": "trượt ngang đoạn ngắn",
-    "longslider": "trượt ngang đoạn dài",
-    "diagonalslide": "trượt ngang kèm tiến nhẹ",
-    "countertrack": "camera đi ngược hướng chủ thể",
-    "foregroundpass": "lướt qua vật tiền cảnh",
-    "pillarreveal": "trượt ra từ sau cột",
-    "windowslide": "trượt từ ngoài cửa sổ vào",
-    "doorwayslide": "trượt qua ô cửa",
-    "parallelwall": "trượt song song bức tường",
-    "layeredslide": "trượt xuyên nhiều lớp chiều sâu",
-    "panleft": "lia ngang sang trái",
-    "panright": "lia ngang sang phải",
-    "tiltup": "chúc máy lên trên",
-    "tiltdown": "chúc máy xuống dưới",
-    "whippan": "quét ngang cực nhanh (nhòe)",
-    "whiptilt": "hất máy lên cực nhanh",
-    "followpan": "lia bám theo chủ thể đang di chuyển",
-    "anticipationpan": "lia trước khi chủ thể tới",
-    "delayedpan": "để chủ thể đi trước rồi mới lia",
-    "diagonalpan": "lia chéo kèm chúc máy",
-    "scanreturn": "lia khám phá cảnh rồi trả về điểm đầu",
-    "pansweep": "quét 180° để lộ toàn cảnh",
-    "pedestalup": "nâng máy lên thẳng đứng",
-    "pedestaldown": "hạ máy xuống thẳng đứng",
-    "craneup": "cần cẩu nâng lên theo cung rộng",
-    "cranedown": "cần cẩu hạ xuống theo cung rộng",
-    "jibreveal": "nâng máy vượt qua vật cản để lộ cảnh",
-    "risetilt": "nâng lên kèm chúc xuống",
-    "descendtilt": "hạ xuống kèm ngẩng lên",
-    "roofreveal": "nâng qua mái nhà",
-    "tablerise": "nâng từ dưới mặt bàn lên",
-    "floordrop": "từ đứng hạ xuống sàn",
-    "stairascent": "theo chủ thể lên cầu thang",
-    "stairdescent": "theo chủ thể xuống cầu thang",
-    "arcleft": "đi theo cung sang trái",
-    "arcright": "đi theo cung sang phải",
-    "quarterorbit": "vòng 90° quanh chủ thể",
-    "halforbit": "vòng 180°",
-    "orbit360": "vòng trọn 360° quanh chủ thể",
-    "tightorbit": "vòng sát chủ thể",
-    "wideorbit": "vòng bán kính rộng",
-    "loworbit": "vòng ở góc thấp",
-    "highorbit": "vòng ở góc cao",
-    "spiralrise": "vừa xoay vừa nâng lên",
-    "spiraldescend": "vừa xoay vừa hạ xuống",
-    "orbittighten": "xoay và siết bán kính dần",
-    "orbit": "xoay quanh chủ thể (bản chung)",
-    "rearfollow": "theo sau lưng chủ thể",
-    "frontfollow": "lùi trước mặt chủ thể",
-    "sidefollow": "theo bên hông",
-    "shoulderfollow": "theo qua vai",
-    "three-quarterfollow": "theo ở góc 3/4 phía trước",
-    "lowfollow": "theo ở góc thấp",
-    "highfollow": "theo ở góc cao",
-    "overtake": "vượt lên trước chủ thể",
-    "fallbehind": "tụt lại phía sau",
-    "catchup": "đuổi kịp chủ thể",
-    "curvefollow": "theo chủ thể trên đường cong",
-    "handofftrack": "chuyển điểm bám sang chủ thể khác",
-    "tracking": "máy di chuyển song song chủ thể",
-    "follow": "bám theo (bản chung)",
-    "forwardtracking": "tiến theo chủ thể",
-    "backwardtracking": "lùi theo chủ thể",
-    "gimbal": "bám mượt, không rung",
-    "dronefly": "bay tới kèm nâng lên",
-    "droneapproach": "bay từ xa tiến tới",
-    "dronepullback": "bay lùi ra để lộ cảnh",
-    "droneascend": "bay lên thẳng",
-    "dronedescend": "bay xuống thẳng",
-    "droneorbit": "bay vòng quanh mục tiêu",
-    "droneflyover": "bay qua đỉnh mục tiêu",
-    "droneflyby": "bay ngang qua",
-    "topdowntravel": "bay tới trong khi nhìn từ trên xuống",
-    "coastlinefollow": "men theo đường bờ biển",
-    "ridgereveal": "bay qua sống núi để lộ cảnh",
-    "aerialretreat": "vừa bay lùi vừa nâng lên",
-    "droneview": "góc nhìn từ trên không",
-    "aerialshot": "cú máy trên không / mở cảnh từ trên cao",
-    "birdseye": "nhìn thẳng từ trên xuống như mắt chim",
-    "flyover": "bay ngang qua khu vực",
-    "droneforward": "bay tới / lùi / lên / xuống",
-    "drone": "cú máy drone (bản chung)",
-    "droneorbit360": "bay vòng 360° quanh mục tiêu",
-    "fpvchase": "đuổi theo mục tiêu kiểu FPV",
-    "fpvdive": "bổ nhào xuống",
-    "fpvclimb": "leo vọt lên",
-    "fpvbank": "nghiêng máy khi vào cua",
-    "fpvslalom": "luồn lách qua vật cản",
-    "gapflythrough": "bay xuyên qua khe hở",
-    "tunnelflight": "bay xuyên đường hầm",
-    "windowflythrough": "bay xuyên qua cửa sổ",
-    "doorwayflight": "bay qua ô cửa",
-    "groundskim": "bay sát mặt đất",
-    "canopyflight": "bay dưới tán cây",
-    "fpvcorkscrew": "vừa tiến vừa xoay 360°",
-    "fpv": "góc nhìn camera gắn drone",
-    "fpvflythrough": "bay xuyên qua không gian",
-    "handhelddrift": "cầm tay trôi nhẹ, rung tự nhiên",
-    "handheldwalk": "cầm tay khi đang đi bộ",
-    "handheldrun": "cầm tay khi đang chạy",
-    "shouldersway": "rung lắc như đặt trên vai",
-    "gimbalglide": "trượt mượt nhờ gimbal",
-    "gimbalcorner": "vào cua mượt theo chủ thể",
-    "bodycamwalk": "góc camera gắn ngực, đi bộ",
-    "helmetturn": "góc camera gắn mũ, quay đầu",
-    "vehicleforward": "gắn xe, chạy tới",
-    "windowride": "gắn cửa sổ xe, nhìn ra ngoài",
-    "wheeltrack": "góc thấp bám theo bánh xe",
-    "snorricamwalk": "gắn vào người, mặt giữ giữa khung khi đi",
-    "handheld": "cầm tay (bản chung)",
-    "steadicam": "cầm tay đã cân bằng, mượt",
-    "dollyzoom": "lùi ra + zoom vào cùng lúc (hiệu ứng Vertigo)",
-    "reversevertigo": "tiến vào + zoom ra",
-    "pushorbit": "vừa tiến vừa xoay quanh chủ thể",
-    "orbitpullback": "vừa xoay vừa lùi ra",
-    "risepullback": "vừa nâng lên vừa lùi ra",
-    "descendpush": "vừa hạ xuống vừa tiến vào",
-    "trackreveal": "trượt ngang để lộ cảnh",
-    "panpush": "vừa lia vừa tiến",
-    "tiltretreat": "vừa chúc máy vừa lùi",
-    "slidearc": "trượt ngang theo cung",
-    "orbitreverse": "xoay ngược chiều quanh chủ thể",
-    "looppath": "đường đi khép kín, nối được thành vòng",
-    "slowreveal": "để lộ chủ thể/vật từ từ",
-    "characterreveal": "để lộ nhân vật",
-    "facereveal": "để lộ gương mặt",
-    "environmentreveal": "để lộ bối cảnh",
-    "pullbackreveal": "lùi ra để lộ toàn cảnh",
-    "doorreveal": "để lộ qua ô cửa",
-    "curtainreveal": "để lộ như kéo màn",
-    "closeup": "cận cảnh, tập trung chi tiết nhỏ",
-    "wide": "góc rộng, thấy toàn cảnh",
-    "tight": "khung chặt, ít khoảng thở",
-    "establishing": "cú mở cảnh, giới thiệu bối cảnh",
-    "overhead": "nhìn từ trên xuống",
-    "lowangle": "góc thấp, chủ thể trông lớn",
-    "highangle": "góc cao, chủ thể trông nhỏ",
-    "pov": "góc nhìn thứ nhất của nhân vật",
-    "firstperson": "như đang ở trong mắt nhân vật",
-    "overtheshoulder": "qua vai, thấy đối tượng phía trước",
-    "fullbody": "lấy trọn người từ đầu tới chân",
-    "heroshot": "cú tôn chủ thể, thường góc thấp",
-    "centered": "chủ thể đặt chính giữa khung",
-    "rackfocus": "chuyển nét từ vật này sang vật khác",
-    "focuspull": "rút nét ra/vào chủ thể",
-    "shallowfocus": "nét mỏng, nền mờ",
-    "deepfocus": "nét sâu, cả gần lẫn xa đều rõ",
-    "foregroundblur": "vật tiền cảnh mờ",
-    "backgroundblur": "hậu cảnh mờ",
-    "bokeh": "đốm sáng mờ ở vùng ngoài nét",
-    "shallowdepth": "chiều sâu trường ảnh mỏng",
-    "telephoto": "ống kính tele, nén không gian",
-    "macrofocus": "lấy nét cận siêu nhỏ",
-    "macro": "cú máy cận chi tiết",
-    "lensflare": "lóe sáng do ống kính",
-    "anamorphic": "ống kính anamorphic, nhòe ngang đặc trưng",
-    "softfocus": "nét mềm, mờ nhẹ như mơ",
-    "goldenhour": "giờ vàng, nắng ấm lúc bình minh/hoàng hôn",
-    "bluehour": "giờ xanh, chạng vạng lạnh",
-    "neonlight": "đèn neon rực màu",
-    "moody": "sáng tối tương phản, nặng tâm trạng",
-    "softlight": "sáng tán xạ, bóng mềm",
-    "rimlight": "viền sáng quanh rìa chủ thể",
-    "silhouette": "chủ thể thành bóng đen trên nền sáng",
-    "spotlight": "đèn rọi một điểm",
-    "volumetric": "chùm sáng thấy được trong không khí",
-    "backlight": "sáng từ phía sau chủ thể",
-    "nightscene": "cảnh ban đêm",
-    "dramaticlighting": "sáng kịch tính, tương phản mạnh",
-    "minimal": "tối giản, ít chi tiết thừa",
-    "leadinglines": "đường dẫn mắt về chủ thể",
-    "ruleofthirds": "chia khung 1/3, chủ thể ở giao điểm",
-    "symmetry": "đối xứng hai bên",
-    "foreground": "có vật tiền cảnh tạo lớp",
-    "framewithinframe": "khung trong khung (cửa, vòm)",
-    "diagonal": "bố cục chéo tạo động",
-    "negativespace": "khoảng trống lớn quanh chủ thể",
-    "slowmotion": "quay chậm",
-    "timelapse": "tua nhanh thời gian",
-    "hyperlapse": "tua nhanh kèm di chuyển",
-    "speedramp": "đổi tốc độ giữa clip (chậm ↔ nhanh)",
-    "speedup": "tăng tốc",
-    "motionblur": "nhòe chuyển động",
-    "smoothmotion": "chuyển động mượt",
-    "naturalmotion": "chuyển động tự nhiên như thật",
-    "freeze": "đứng hình một khung",
-    "reverse": "chạy ngược",
-    "loop": "lặp liền mạch",
-    "bullettime": "thời gian đóng băng, camera vẫn đi",
-    "floating": "trôi lơ lửng",
-    "falling": "rơi xuống",
-    "running": "đang chạy",
-    "walking": "đang đi bộ",
-    "turnaround": "chủ thể xoay người",
-    "reveal": "để lộ chủ thể/vật",
-    "entrance": "chủ thể đi vào khung",
-    "exit": "chủ thể rời khung",
-    "morph": "biến đổi vật này thành vật khác",
-    "glitch": "nhiễu hình kiểu lỗi kỹ thuật",
-    "matchcut": "cắt nối hai cảnh giống hình dạng/chuyển động",
-    "whiptransition": "chuyển cảnh bằng cú quét nhanh",
-    "zoomtransition": "chuyển cảnh bằng thu phóng",
-    "smoketransition": "chuyển cảnh qua khói",
-    "flashtransition": "chuyển cảnh bằng lóe sáng",
-    "blurtransition": "chuyển cảnh qua nhòe",
-    "lightleak": "vệt sáng lọt vào khung",
-    "seamlessloop": "lặp không thấy điểm nối",
-    "infinitezoom": "zoom sâu vô tận",
-    "worldtransition": "chuyển sang thế giới khác",
-    "objecttransition": "chuyển cảnh qua một vật thể",
-    "scifi": "khoa học viễn tưởng",
-    "cyberpunk": "tương lai neon, tối, đường phố ướt",
-    "paperworld": "thế giới làm bằng giấy",
-    "miniature": "mô hình thu nhỏ như đồ chơi",
-    "space": "không gian vũ trụ",
-    "underwater": "dưới nước",
-    "fog": "sương mù",
-    "storm": "bão",
-    "rain": "mưa / mưa lớn",
-    "snow": "tuyết",
-    "fire": "lửa",
-    "explosion": "vụ nổ",
-    "portal": "cổng không gian",
-    "particlefx": "hạt hiệu ứng bay",
-    "wind": "gió thổi",
-    "dust": "bụi bay",
-    "clouds": "mây",
-    "sunrays": "tia nắng xuyên qua",
-    "fallingleaves": "lá rơi",
-    "flowerpetals": "cánh hoa bay",
-    "watersplash": "nước bắn",
-    "reflection": "phản chiếu",
-    "cinematic": "chất điện ảnh, tương phản và màu như phim",
-    "filmic": "giống phim nhựa, hạt mịn",
-    "commercial": "sạch, sáng, kiểu quảng cáo",
-    "luxury": "cao cấp, tối, kim loại, chậm",
-    "documentary": "chân thực như phim tài liệu",
-    "vintagefilm": "phim cũ, màu bạc",
-    "dreamy": "mơ màng, mềm, sáng nhẹ",
-    "epic": "hoành tráng, quy mô lớn",
-    "surreal": "siêu thực, phi logic",
-    "blockbuster": "kiểu phim bom tấn",
-    "productreveal": "mở lộ sản phẩm",
-    "productspin": "sản phẩm xoay",
-    "unboxing": "mở hộp",
-    "logoreveal": "lộ logo",
-    "fashionfilm": "phim thời trang",
-    "techad": "quảng cáo đồ công nghệ",
-    "foodcommercial": "quảng cáo đồ ăn",
-    "socialad": "quảng cáo cho mạng xã hội",
-    "billboard": "dạng biển quảng cáo",
-    "beforeafter": "trước và sau",
-    "ugc-product-hook": "mở đầu kiểu người dùng thật giới thiệu sản phẩm",
-    "ugc-testimonial": "người dùng thật đánh giá",
-    "premium-unboxing": "mở hộp cao cấp",
-    "asmr-unboxing": "mở hộp kèm âm thanh cận",
-    "product-demo-ad": "quảng cáo demo cách dùng",
-    "problem-solution-ad": "nêu vấn đề rồi đưa giải pháp",
-    "tiktok-style-ad": "quảng cáo kiểu TikTok",
-    "3-second-hook": "3 giây đầu giữ chân người xem",
-    "pattern-interrupt": "phá nhịp để gây chú ý",
-    "luxury-product-ad": "quảng cáo sản phẩm cao cấp",
-    "conversion-ad": "quảng cáo hướng chuyển đổi",
-    "buy-now-ad": "quảng cáo thúc mua ngay",
-    "day-in-my-life": "một ngày của tôi",
-    "product-launch-ad": "quảng cáo ra mắt sản phẩm",
-    "360-degree-showcase": "trưng bày 360°"
-   },
-   "image": {
-    "actorheadshot": "ảnh chân dung diễn viên để casting",
-    "authorphoto": "ảnh chân dung tác giả in bìa sách",
-    "bwportrait": "chân dung đen trắng",
-    "casualheadshot": "ảnh chân dung chuyên nghiệp phong cách thoải mái",
-    "corporateheadshot": "ảnh chân dung doanh nghiệp nền văn phòng",
-    "datingprofile": "ảnh hồ sơ hẹn hò thân thiện, dễ gần",
-    "doctorportrait": "chân dung bác sĩ trong bối cảnh y tế",
-    "fitnessportrait": "chân dung thể hình trong phòng gym",
-    "founderportrait": "chân dung nhà sáng lập cho trang công ty",
-    "goldenhourportrait": "chân dung dưới nắng vàng giờ hoàng hôn",
-    "graduationportrait": "ảnh tốt nghiệp đội mũ áo cử nhân",
-    "headshot": "ảnh chân dung chuyên nghiệp tiêu chuẩn",
-    "outfitswap": "đổi trang phục trong ảnh chân dung",
-    "passportphoto": "ảnh thẻ hộ chiếu nền trơn",
-    "podcastportrait": "chân dung người dẫn podcast cùng micro",
-    "realtorheadshot": "ảnh chân dung môi giới bất động sản",
-    "speakerphoto": "ảnh diễn giả trên sân khấu hội thảo",
-    "teamphoto": "ảnh tập thể nhóm công ty",
-    "vintageportrait": "chân dung phong cách cổ điển retro",
-    "appicon": "thiết kế icon ứng dụng di động",
-    "brandboard": "bảng nhận diện thương hiệu đầy đủ",
-    "brandmerch": "bộ mockup sản phẩm in thương hiệu",
-    "businesscard": "thiết kế mockup danh thiếp",
-    "colorpalette": "bảng phối màu thương hiệu",
-    "favicon": "thiết kế favicon cho website",
-    "iconlogo": "logo dạng icon biểu tượng",
-    "letterhead": "thiết kế giấy tiêu đề văn phòng",
-    "logoconcepts": "nhiều phương án ý tưởng logo",
-    "logomotion": "logo chuyển động dạng motion graphic",
-    "mascotdesign": "thiết kế linh vật thương hiệu",
-    "monogram": "logo chữ lồng từ tên viết tắt",
-    "patterndesign": "thiết kế họa tiết lặp liền mạch",
-    "rebrand": "thiết kế nhận diện thương hiệu làm mới",
-    "storefront": "thiết kế biển hiệu mặt tiền cửa hàng",
-    "wordmark": "logo dạng chữ viết cách điệu",
-    "3dcharacter": "mô hình nhân vật ba chiều",
-    "3drender": "ảnh dựng 3D chân thực",
-    "anime": "phong cách minh họa anime Nhật Bản",
-    "blender": "phong cách dựng 3D bằng Blender",
-    "cartoonme": "ảnh biếm họa hoạt hình của nhân vật",
-    "charcoal": "phong cách vẽ than chì",
-    "childrensbook": "phong cách minh họa truyện thiếu nhi",
-    "claymation": "phong cách đất sét tạo hình stop-motion",
-    "comicbook": "phong cách tranh truyện comic",
-    "conceptart": "tranh ý tưởng concept art",
-    "crosshatching": "phong cách đánh bóng bằng gạch chéo",
-    "embroidery": "hình thêu chỉ trên vải",
-    "environmentart": "tranh concept bối cảnh phong cảnh",
-    "ghibli": "phong cách phim hoạt hình Ghibli",
-    "graffiti": "phong cách graffiti xịt sơn đường phố",
-    "inkdrawing": "phong cách vẽ bằng mực bút",
-    "lineart": "tranh nét vẽ viền sạch sẽ",
-    "lowpoly": "phong cách 3D đa giác thấp",
-    "manga": "phong cách manga trắng đen Nhật Bản",
-    "mattepainting": "tranh nền phông điện ảnh matte painting",
-    "octanerender": "ảnh dựng 3D Octane ánh bóng loáng",
-    "oilpainting": "phong cách tranh sơn dầu cổ điển",
-    "papercut": "phong cách tranh cắt giấy nhiều lớp",
-    "pencilsketch": "phong cách ký họa bút chì",
-    "pixar": "phong cách phim hoạt hình 3D Pixar",
-    "pixelart": "phong cách pixel art cổ điển",
-    "popart": "phong cách pop art màu sắc mạnh",
-    "sketchbook": "phong cách trang sổ ký họa tay",
-    "stainedglass": "tranh kính màu ghép ô",
-    "tattoodesign": "thiết kế hình xăm",
-    "unrealengine": "ảnh dựng 3D thời gian thực Unreal Engine",
-    "vectorflat": "phong cách minh họa vector phẳng",
-    "voxel": "phong cách 3D khối vuông voxel",
-    "watercolor": "phong cách tranh màu nước",
-    "amazonready": "ảnh sản phẩm nền trắng chuẩn sàn thương mại điện tử",
-    "backgroundswap": "ảnh sản phẩm đã thay nền mới",
-    "beforeafterproduct": "ảnh so sánh sản phẩm trước và sau",
-    "catalogset": "bộ ảnh catalog nhiều góc nhất quán",
-    "colorways": "ảnh sản phẩm với nhiều phối màu khác nhau",
-    "flatlay": "chụp từ trên xuống, xếp phẳng",
-    "floatingproduct": "sản phẩm lơ lửng trên nền trơn",
-    "ghostmannequin": "ảnh quần áo kiểu ma-nơ-canh vô hình",
-    "glassreflection": "sản phẩm đặt trên mặt bóng phản chiếu",
-    "handheld": "sản phẩm cầm trên tay",
-    "heroimage": "ảnh sản phẩm chính",
-    "lifestyleshot": "ảnh sản phẩm trong bối cảnh đời thường",
-    "luxuryshot": "ảnh sản phẩm cao cấp sang trọng",
-    "macroshot": "ảnh cận cảnh chi tiết cực gần",
-    "naturebackdrop": "sản phẩm trên nền thiên nhiên ngoài trời",
-    "onmodel": "sản phẩm được người mẫu mặc hoặc cầm",
-    "podiumshot": "sản phẩm trưng bày trên bục nổi",
-    "productshot": "ảnh sản phẩm studio tiêu chuẩn",
-    "seasonalshot": "ảnh sản phẩm theo chủ đề mùa",
-    "splashshot": "sản phẩm có nước bắn tung quanh",
-    "announcementpost": "bài đăng thông báo nổi bật",
-    "carouselcover": "ảnh bìa cho bộ ảnh carousel",
-    "countdownpost": "bài đăng đếm ngược khai trương",
-    "eventflyer": "poster quảng bá sự kiện",
-    "instagrid": "bố cục lưới ảnh Instagram đồng bộ",
-    "linkedinbanner": "ảnh bìa hồ sơ LinkedIn chuyên nghiệp",
-    "memeformat": "ảnh kiểu meme có chữ chú thích",
-    "pinterestpin": "ảnh ghim Pinterest dọc khổ lớn",
-    "podcastcover": "ảnh bìa podcast",
-    "profilepic": "ảnh đại diện tròn cho hồ sơ",
-    "quotecard": "ảnh chèn câu trích dẫn lên nền trang trí",
-    "reelcover": "ảnh bìa dọc cho video ngắn reel",
-    "statgraphic": "đồ họa làm nổi bật một số liệu",
-    "storycover": "ảnh bìa dọc cho story",
-    "thumbnailimage": "ảnh thumbnail cho video",
-    "tiktokcover": "ảnh bìa video TikTok dạng dọc",
-    "twitterheader": "ảnh bìa ngang hồ sơ Twitter",
-    "youtubebanner": "ảnh bìa ngang kênh YouTube",
-    "anatomyof": "hình mổ xẻ chú thích từng bộ phận",
-    "checklistgraphic": "đồ họa danh sách cần làm có ô tick",
-    "comparisonchart": "bảng biểu đồ so sánh song song",
-    "howtoillustration": "hình minh họa hướng dẫn từng bước",
-    "iconset": "bộ icon đồng nhất cùng phong cách",
-    "infographic": "đồ họa thông tin dựa trên dữ liệu",
-    "mapgraphic": "đồ họa bản đồ hoặc vị trí",
-    "orgchart": "sơ đồ tổ chức phân cấp",
-    "pricingtable": "bảng so sánh các gói giá",
-    "processdiagram": "sơ đồ luồng các bước quy trình",
-    "roadmapgraphic": "đồ họa lộ trình theo thời gian",
-    "slidevisual": "hình ảnh cho slide thuyết trình",
-    "statposter": "poster xoay quanh các số liệu chính",
-    "timelineposter": "poster thể hiện sự kiện theo dòng thời gian",
-    "assemblysteps": "sơ đồ các bước lắp ráp",
-    "blueprintview": "bản vẽ kỹ thuật kiểu blueprint",
-    "clayrender": "render 3D chất liệu đất sét chưa tô màu",
-    "cutaway": "mặt cắt lộ cấu trúc bên trong",
-    "exploded3d": "tách rời các bộ phận dạng 3D",
-    "giantscale": "ảnh so sánh sản phẩm phóng to khổng lồ",
-    "insidethebox": "bố cục ảnh toàn bộ phụ kiện trong hộp",
-    "isometricproduct": "góc nhìn sản phẩm kiểu isometric",
-    "materialswap": "biến thể đổi chất liệu bề mặt",
-    "miniature": "hiệu ứng mô hình thu nhỏ",
-    "partslist": "sơ đồ danh sách phụ kiện đánh số",
-    "turntable": "ảnh sản phẩm xoay vòng nhiều góc",
-    "wireframerender": "render 3D dạng khung dây",
-    "xrayview": "góc nhìn xuyên thấu kiểu X-quang",
-    "bagmockup": "mockup túi giấy mua hàng",
-    "bookcover": "mockup bìa sách",
-    "bottlelabel": "mockup nhãn chai",
-    "boxmockup": "mockup hộp sản phẩm",
-    "canmockup": "mockup lon nước giải khát",
-    "giftbox": "ảnh hộp quà bao bì",
-    "laptopmockup": "mockup màn hình laptop",
-    "menudesign": "thiết kế menu nhà hàng",
-    "packagingdesign": "thiết kế bao bì sản phẩm",
-    "phonemockup": "mockup màn hình điện thoại",
-    "postermockup": "mockup poster trong bối cảnh",
-    "shelfshot": "ảnh sản phẩm trên kệ bán lẻ",
-    "stickersheet": "bố cục sheet sticker cắt hình",
-    "tshirtmockup": "mockup áo thun",
-    "actionfigure": "mô hình đồ chơi nhân vật sưu tầm",
-    "ageprogression": "chuỗi chân dung theo tuổi tác",
-    "babyphoto": "ảnh chân dung em bé",
-    "caricature": "chân dung biếm họa phóng đại",
-    "dreamcar": "render xe mơ ước tùy chỉnh",
-    "fantasyme": "chân dung nhân vật giả tưởng",
-    "holidaycard": "thiết kế thiệp chúc mừng lễ",
-    "magazinecover": "chân dung bìa tạp chí",
-    "movieposter": "ảnh kiểu poster phim",
-    "petportrait": "chân dung thú cưng",
-    "superhero": "chân dung nhân vật siêu anh hùng",
-    "timetravel": "chân dung theo bối cảnh thời đại",
-    "tradingcard": "chân dung thẻ bài sưu tầm",
-    "weddinginvite": "thiết kế thiệp cưới",
-    "adset": "bộ nhiều biến thể quảng cáo",
-    "adstoryboard": "storyboard diễn tiến cho quảng cáo",
-    "appstoreshots": "bộ ảnh chụp màn hình app store",
-    "bannerad": "banner quảng cáo khổ ngang",
-    "billboard": "mockup biển quảng cáo ngoài trời lớn",
-    "busstopad": "mockup quảng cáo nhà chờ xe buýt",
-    "carouselad": "quảng cáo carousel nhiều khung vuốt",
-    "comparisonad": "quảng cáo so sánh trước và sau",
-    "emailheader": "banner đầu email newsletter",
-    "landingmock": "ảnh mockup trang landing page",
-    "magazinead": "quảng cáo full trang tạp chí",
-    "offerad": "quảng cáo khuyến mãi ưu đãi",
-    "retargetad": "quảng cáo nhắc lại retargeting",
-    "staticad": "quảng cáo tĩnh một ảnh mạng xã hội",
-    "storyad": "quảng cáo dạng story khổ dọc",
-    "subwayad": "poster quảng cáo trong ga tàu điện",
-    "testimonialad": "quảng cáo kèm lời chứng thực khách hàng",
-    "uglyad": "quảng cáo cố tình xấu kiểu native",
-    "drinkshot": "ảnh sản phẩm đồ uống được dàn dựng",
-    "exteriorrender": "render 3D ngoại thất kiến trúc",
-    "floorplan3d": "sơ đồ mặt bằng 3D",
-    "foodshot": "ảnh chụp món ăn bắt mắt",
-    "gardenplan": "bản vẽ thiết kế sân vườn cảnh quan",
-    "kitchenreno": "nội thất bếp sau cải tạo",
-    "listingphoto": "ảnh đăng tin bất động sản",
-    "menuphoto": "ảnh món ăn cho thực đơn nhà hàng",
-    "moodboard": "bảng mood board thiết kế nội thất",
-    "nightshot": "ảnh ngoại cảnh ban đêm",
-    "officespace": "nội thất văn phòng làm việc hiện đại",
-    "recipecard": "bố cục thẻ công thức nấu ăn",
-    "roomredesign": "phương án thiết kế lại phòng",
-    "virtualstaging": "dàn dựng nội thất ảo cho phòng trống"
-   }
-  }
- },
  "imageMeanings": {
   "actorheadshot": {
    "meaning": "Professional actor headshot for casting",
