@@ -1,1 +1,3199 @@
-{"version":1,"updated":"2026-10-07","source":"ai-command-playbook.md","rulesText":"## PHẦN 4 — CƠ CHẾ PROMPT-CODE\n\n### 4.1 Nguyên tắc\n\n1. **Viết câu tự nhiên mô tả đúng cái code đó.** Code là ghi chú, câu mới là thứ model đọc.\n2. **1 chuyển động chính + 1 khung + 1 ánh sáng + 1 style.** (khuyến nghị của Google)\n3. **Đừng nhồi >3–6 code.** Model loãng trọng số, code cuối bị bỏ.\n4. **Đừng yêu cầu 2 chuyển động mâu thuẫn** (orbit + static + whip pan).\n5. Bỏ dấu `/` khi cần — nghĩa không đổi.\n\n### 4.2 Vì sao `/` vẫn hữu ích\n\n- Ngắn để nhớ và để chia sẻ (infographic lan truyền dùng dấu `/`).\n- Tạo cảm giác \"lệnh\", dễ dạy người mới.\n- Nhưng **không có giá trị cú pháp**. Đây là điểm hay bị hiểu sai nhất.\n\n---\n\n## PHẦN 7 — LUẬT PHỐI (phần agent phải thuộc)\n\n### 7.1 Thứ tự ghép — 7 tầng\n\n```\n[chủ thể] + [khung/góc] + [chuyển động] + [lens/focus] + [ánh sáng] + [style] + [tốc độ]\n```\n\n- Tầng **1–2 bắt buộc**; tầng 3–7 thêm dần.\n- Tầng sau **không đè** tầng trước — chúng cộng dồn.\n- Dồn cả 7 tầng vào prompt ngắn → model **bỏ sót tầng cuối**. Điểm ngọt: **3–5 code**.\n\n### 7.2 Quy trình 4 bước\n\n1. **Chốt shot** — một cảnh = một hành động rõ. Viết ra: chủ thể + làm gì + cảm giác muốn có.\n2. **Ghép code** — 1 khung + 1 chuyển động + 1 lens + 1 sáng + 1 style.\n3. **Generate** — chọn model + tỉ lệ khung; xuất **1 clip**, xem ngay. Đừng xuất loạt khi chưa chốt.\n4. **Tinh chỉnh ≤3 lượt** — nhắn tiếp trong cùng hội thoại:\n   *\"giữ nguyên, đổi sang /lowangle\"*. Quá 3 lượt → mất ngữ cảnh, làm lại từ bước 1.\n\n### 7.3 Lỗi làm clip/ảnh rối\n\n| Lỗi | Vì sao sai |\n|---|---|\n| `/dollyin` + `/dollyout` | hai code cùng trục, triệt tiêu nhau |\n| `/panleft` + `/panright` | cùng trục, kết quả ngẫu nhiên |\n| `/zoomin` + `/pushin` | gần trùng nghĩa (\"đến gần chủ thể\") — chọn một |\n| 8–10 code một prompt | model loãng trọng số, code cuối bị bỏ |\n| Chuyển cảnh 1 clip | match cut / whip cần **hai** clip khớp hướng + khung |\n| Tả lại nhân vật bằng lời mỗi shot | phải tham chiếu (`@character`, `@me`) |\n| Đổi sáng giữa các shot cùng cảnh | clip gãy, trông giả |\n| Không khoá \"toà nhà/chủ thể đứng yên\" | chủ thể méo, cửa sổ nhảy khi camera bay |\n\n### 7.4 Tổ hợp mẫu (dán nguyên được)\n\n```\nHero entry       /slowmo /dollyin /lowangle /heroshot /cinematic\n360 nhân vật     /orbit360 /fullbody /smoothcamera /cinematic\nDrone travel     /dronefly /aerialreveal /extremewide /goldenhour /cinematic\nPortrait cảm xúc /closeup /dollyin /rackfocus /shallowdepth /softfocus\nSản phẩm cao cấp /orbit /productreveal /macrofocus /dramaticlighting /cinematic\nPOV              /pov /firstperson /handheld /naturalmotion\n```\n\n### 7.5 Alias & biến thể chính tả\n\nCode cộng đồng tồn tại song song nhiều cách viết. Model hiểu cả hai:\n- **Tách từ / viết liền:** `/dolly in` ≡ `/dollyin` · `/pan left` ≡ `/panleft`.\n- **Rút gọn:** `/slowmo` ≡ `/slowmotion` · `/smoke` ≡ `/smoketransition` ·\n  `/productphoto` ≡ `/productshot` · `/extremewide` ≡ `/extremewideangle` ·\n  `/smoothcamera` ≡ `/smoothmotion` · `/bodycam` ≡ `/bodycamwalk` · `/helmet` ≡ `/helmetturn` ·\n  `/vehicle` ≡ `/vehicleforward` · `/wheel` ≡ `/wheeltrack` · `/tunnel` ≡ `/tunnelflight` ·\n  `/gap` ≡ `/gapflythrough` · `/snorricam` ≡ `/snorricamwalk` · `/three-quarter` ≡\n  `/three-quarterfollow`.\n- **Quy tắc thực dụng:** khi không chắc code viết thế nào, **viết nghĩa tiếng Anh của nó**\n  vào prompt. `/slowmo` không ăn → `slow motion`. Đây luôn là đường lui an toàn.\n\n### 7.6 Nối nhiều shot thành cảnh\n\nGiữ **sáng + style cố định**; chỉ đổi **khung + chuyển động**.\nNối bằng: `/matchcut` (khớp hình dạng) · `/whiptransition` (quét nhanh) ·\n`/seamlessloop` (lặp vô hạn).\n\n### 7.5 Bảng giữ nhất quán\n\n| Giữ nguyên | Được đổi |\n|---|---|\n| Style (`architectural visualization`, `octanerender`) | bán kính khung |\n| Lens (`24mm f/8`) | độ cao máy |\n| Câu khoá (\"chủ thể đứng yên\") | tốc độ |\n| Sáng: golden hour **hoặc** blue hour — không trộn trong 1 sequence | chuyển động |\n| Ảnh gốc làm first frame | thời điểm (ngày/chạng vạng/đêm) |\n\n---\n\n### 2.4 Ảnh — Nano Banana Pro (Gemini 3 Pro Image)\n\n**Công thức:** `Subject · Composition · Action · Location · Style · Editing instruction`\n(thêm editing instruction khi sửa ảnh).\n**Thêm được:** aspect ratio (`9:16`, `21:9`…); camera/ánh sáng (`low-angle, f/1.8, golden hour`);\nchữ cần render (`headline \"X\" font bold`); **vai trò từng ảnh input** (Image A = pose,\nB = style, C = background).\n**Giới hạn:** blend tới 6–14 ảnh tùy surface; resize 1K/2K/4K.\n\n**Hai template gốc (Google chính thức):**\n\n1. *Ảnh thật:*\n```\nA photorealistic [shot type] of [subject], [action], set in [environment].\nThe scene is illuminated by [lighting], creating a [mood] atmosphere.\nCaptured with [camera/lens], emphasizing [textures]. [aspect ratio] format.\n```\n2. *Sticker/illustration:*\n```\nA [style] sticker of [subject], featuring [characteristics] and a [palette].\n[line style], [shading style]. The background must be white.\n```\n\n**Quy tắc vàng:** Google nói **\"mô tả cảnh, đừng liệt kê keyword\"**.\n- Dùng thuật ngữ nhiếp ảnh: `85mm lens f/1.4` > `bokeh`.\n- Sửa dần trong hội thoại, **đừng viết lại prompt**.\n- Negative ngữ nghĩa: `empty street with no vehicles` > `no cars`.\n- Chữ phải để trong `\"ngoặc kép\"`.\n\n**Giới hạn thật:** chữ dài kém; nhất quán nhân vật trôi sau ~10 lần sinh; chi tiết nhỏ\n(tay, logo) yếu; ảnh luôn có SynthID.\n\n---\n\n### 3.5 Công thức prompt Veo (dùng cho mọi generation)\n\n```\n[Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance]\n```\n\n- **Camera:** dolly / tracking / crane / aerial / slow pan / POV.\n- **Composition:** wide / close-up / low angle / two-shot.\n- **Lens:** shallow DOF / wide-angle / macro / deep focus.\n- **Âm thanh:** thoại trong `\"ngoặc kép\"`; `SFX: …`; `Ambient noise: …`.\n- **Negative:** mô tả cái muốn loại (*\"desolate landscape with no buildings\"*),\n  **đừng** viết \"no X\".\n- **Timestamp prompting** (nhiều shot trong 1 lần sinh):\n  `[00:00-00:02] …` `[00:02-00:04] …` — mỗi mốc 1 shot + SFX/emotion.\n- **Best practice:** ingredient nền sạch/đã tách nền; prompt chữ **bổ trợ**, không mâu thuẫn\n  với ảnh input.\n\n---\n\n","videoCodes":{"dollyin":{"alias":["dollyin","dolly in"],"meaning":"camera tiến thẳng tới chủ thể"},"dollyout":{"alias":["dollyout","dolly out"],"meaning":"camera lùi ra, lộ thêm cảnh"},"slowpush":{"alias":["slowpush","slow push"],"meaning":"tiến rất chậm, tạo căng"},"fastpush":{"alias":["fastpush","fast push"],"meaning":"tiến nhanh rồi hãm lại"},"micropush":{"alias":["micropush","micro push"],"meaning":"đẩy nhẹ, tăng chiều sâu"},"longapproach":{"alias":["longapproach","long approach"],"meaning":"từ toàn cảnh vào cận cảnh"},"diagonalpush":{"alias":["diagonalpush","diagonal push"],"meaning":"tiến chéo theo đường chéo khung"},"diagonalretreat":{"alias":["diagonalretreat","diagonal retreat"],"meaning":"lùi chéo"},"groundpush":{"alias":["groundpush","ground push"],"meaning":"trượt tới sát mặt đất"},"ceilingpush":{"alias":["ceilingpush","ceiling push"],"meaning":"tiến sát trần từ trên cao"},"pushthrough":{"alias":["pushthrough","push through"],"meaning":"tiến xuyên qua khe cửa"},"retreatreveal":{"alias":["retreatreveal","retreat reveal"],"meaning":"bắt đầu gần, lùi ra lộ toàn cảnh"},"dolly":{"alias":["dolly"],"meaning":"tiến/lùi trên ray (bản chung)"},"pushin":{"alias":["pushin"],"meaning":"đẩy vào chủ thể"},"pullout":{"alias":["pullout"],"meaning":"kéo ra khỏi chủ thể"},"zoom":{"alias":["zoom"],"meaning":"thu phóng bằng ống kính (không dịch chuyển)"},"zoomin":{"alias":["zoomin"],"meaning":"phóng to"},"zoomout":{"alias":["zoomout"],"meaning":"thu nhỏ"},"slowzoom":{"alias":["slowzoom"],"meaning":"thu phóng chậm"},"fastzoom":{"alias":["fastzoom"],"meaning":"thu phóng nhanh"},"truckleft":{"alias":["truckleft","truck left"],"meaning":"trượt ngang sang trái"},"truckright":{"alias":["truckright","truck right"],"meaning":"trượt ngang sang phải"},"shortslider":{"alias":["shortslider","short slider"],"meaning":"trượt ngang đoạn ngắn"},"longslider":{"alias":["longslider","long slider"],"meaning":"trượt ngang đoạn dài"},"diagonalslide":{"alias":["diagonalslide","diagonal slide"],"meaning":"trượt ngang kèm tiến nhẹ"},"countertrack":{"alias":["countertrack","counter track"],"meaning":"camera đi ngược hướng chủ thể"},"foregroundpass":{"alias":["foregroundpass","foreground pass"],"meaning":"lướt qua vật tiền cảnh"},"pillarreveal":{"alias":["pillarreveal","pillar reveal"],"meaning":"trượt ra từ sau cột"},"windowslide":{"alias":["windowslide","window slide"],"meaning":"trượt từ ngoài cửa sổ vào"},"doorwayslide":{"alias":["doorwayslide","doorway slide"],"meaning":"trượt qua ô cửa"},"parallelwall":{"alias":["parallelwall","parallel wall"],"meaning":"trượt song song bức tường"},"layeredslide":{"alias":["layeredslide","layered slide"],"meaning":"trượt xuyên nhiều lớp chiều sâu"},"panleft":{"alias":["panleft","pan left"],"meaning":"lia ngang sang trái"},"panright":{"alias":["panright","pan right"],"meaning":"lia ngang sang phải"},"tiltup":{"alias":["tiltup","tilt up"],"meaning":"chúc máy lên trên"},"tiltdown":{"alias":["tiltdown","tilt down"],"meaning":"chúc máy xuống dưới"},"whippan":{"alias":["whippan","whip pan"],"meaning":"quét ngang cực nhanh (nhòe)"},"whiptilt":{"alias":["whiptilt","whip tilt"],"meaning":"hất máy lên cực nhanh"},"followpan":{"alias":["followpan","follow pan"],"meaning":"lia bám theo chủ thể đang di chuyển"},"anticipationpan":{"alias":["anticipationpan","anticipation pan"],"meaning":"lia trước khi chủ thể tới"},"delayedpan":{"alias":["delayedpan","delayed pan"],"meaning":"để chủ thể đi trước rồi mới lia"},"diagonalpan":{"alias":["diagonalpan","diagonal pan"],"meaning":"lia chéo kèm chúc máy"},"scanreturn":{"alias":["scanreturn","scan return"],"meaning":"lia khám phá cảnh rồi trả về điểm đầu"},"pansweep":{"alias":["pansweep","pan sweep"],"meaning":"quét 180° để lộ toàn cảnh"},"pedestalup":{"alias":["pedestalup","pedestal up"],"meaning":"nâng máy lên thẳng đứng"},"pedestaldown":{"alias":["pedestaldown","pedestal down"],"meaning":"hạ máy xuống thẳng đứng"},"craneup":{"alias":["craneup","crane up"],"meaning":"cần cẩu nâng lên theo cung rộng"},"cranedown":{"alias":["cranedown","crane down"],"meaning":"cần cẩu hạ xuống theo cung rộng"},"jibreveal":{"alias":["jibreveal","jib reveal"],"meaning":"nâng máy vượt qua vật cản để lộ cảnh"},"risetilt":{"alias":["risetilt","rise tilt"],"meaning":"nâng lên kèm chúc xuống"},"descendtilt":{"alias":["descendtilt","descend tilt"],"meaning":"hạ xuống kèm ngẩng lên"},"roofreveal":{"alias":["roofreveal","roof reveal"],"meaning":"nâng qua mái nhà"},"tablerise":{"alias":["tablerise","table rise"],"meaning":"nâng từ dưới mặt bàn lên"},"floordrop":{"alias":["floordrop","floor drop"],"meaning":"từ đứng hạ xuống sàn"},"stairascent":{"alias":["stairascent","stair ascent"],"meaning":"theo chủ thể lên cầu thang"},"stairdescent":{"alias":["stairdescent","stair descent"],"meaning":"theo chủ thể xuống cầu thang"},"arcleft":{"alias":["arcleft","arc left"],"meaning":"đi theo cung sang trái"},"arcright":{"alias":["arcright","arc right"],"meaning":"đi theo cung sang phải"},"quarterorbit":{"alias":["quarterorbit","quarter orbit"],"meaning":"vòng 90° quanh chủ thể"},"halforbit":{"alias":["halforbit","half orbit"],"meaning":"vòng 180°"},"orbit360":{"alias":["orbit360"],"meaning":"vòng trọn 360° quanh chủ thể"},"tightorbit":{"alias":["tightorbit","tight orbit"],"meaning":"vòng sát chủ thể"},"wideorbit":{"alias":["wideorbit","wide orbit"],"meaning":"vòng bán kính rộng"},"loworbit":{"alias":["loworbit","low orbit"],"meaning":"vòng ở góc thấp"},"highorbit":{"alias":["highorbit","high orbit"],"meaning":"vòng ở góc cao"},"spiralrise":{"alias":["spiralrise","spiral rise"],"meaning":"vừa xoay vừa nâng lên"},"spiraldescend":{"alias":["spiraldescend","spiral descend"],"meaning":"vừa xoay vừa hạ xuống"},"orbittighten":{"alias":["orbittighten","orbit tighten"],"meaning":"xoay và siết bán kính dần"},"orbit":{"alias":["orbit"],"meaning":"xoay quanh chủ thể (bản chung)"},"rearfollow":{"alias":["rearfollow","rear follow"],"meaning":"theo sau lưng chủ thể"},"frontfollow":{"alias":["frontfollow","front follow"],"meaning":"lùi trước mặt chủ thể"},"sidefollow":{"alias":["sidefollow","side follow"],"meaning":"theo bên hông"},"shoulderfollow":{"alias":["shoulderfollow","shoulder follow"],"meaning":"theo qua vai"},"three-quarterfollow":{"alias":["three-quarterfollow"],"meaning":"theo ở góc 3/4 phía trước"},"lowfollow":{"alias":["lowfollow","low follow"],"meaning":"theo ở góc thấp"},"highfollow":{"alias":["highfollow","high follow"],"meaning":"theo ở góc cao"},"overtake":{"alias":["overtake"],"meaning":"vượt lên trước chủ thể"},"fallbehind":{"alias":["fallbehind","fall behind"],"meaning":"tụt lại phía sau"},"catchup":{"alias":["catchup","catch up"],"meaning":"đuổi kịp chủ thể"},"curvefollow":{"alias":["curvefollow","curve follow"],"meaning":"theo chủ thể trên đường cong"},"handofftrack":{"alias":["handofftrack","handoff track"],"meaning":"chuyển điểm bám sang chủ thể khác"},"tracking":{"alias":["tracking"],"meaning":"máy di chuyển song song chủ thể"},"follow":{"alias":["follow","followcam"],"meaning":"bám theo (bản chung)"},"forwardtracking":{"alias":["forwardtracking"],"meaning":"tiến theo chủ thể"},"backwardtracking":{"alias":["backwardtracking"],"meaning":"lùi theo chủ thể"},"gimbal":{"alias":["gimbal","smoothfollow"],"meaning":"bám mượt, không rung"},"dronefly":{"alias":["dronefly","drone fly"],"meaning":"bay tới kèm nâng lên"},"droneapproach":{"alias":["droneapproach","drone approach"],"meaning":"bay từ xa tiến tới"},"dronepullback":{"alias":["dronepullback","drone pullback"],"meaning":"bay lùi ra để lộ cảnh"},"droneascend":{"alias":["droneascend","drone ascend"],"meaning":"bay lên thẳng"},"dronedescend":{"alias":["dronedescend","drone descend"],"meaning":"bay xuống thẳng"},"droneorbit":{"alias":["droneorbit","drone orbit"],"meaning":"bay vòng quanh mục tiêu"},"droneflyover":{"alias":["droneflyover","drone flyover"],"meaning":"bay qua đỉnh mục tiêu"},"droneflyby":{"alias":["droneflyby","drone flyby"],"meaning":"bay ngang qua"},"topdowntravel":{"alias":["topdowntravel","topdown travel"],"meaning":"bay tới trong khi nhìn từ trên xuống"},"coastlinefollow":{"alias":["coastlinefollow","coastline follow"],"meaning":"men theo đường bờ biển"},"ridgereveal":{"alias":["ridgereveal","ridge reveal"],"meaning":"bay qua sống núi để lộ cảnh"},"aerialretreat":{"alias":["aerialretreat","aerial retreat"],"meaning":"vừa bay lùi vừa nâng lên"},"droneview":{"alias":["droneview","aerial"],"meaning":"góc nhìn từ trên không"},"aerialshot":{"alias":["aerialshot","aerialreveal"],"meaning":"cú máy trên không / mở cảnh từ trên cao"},"birdseye":{"alias":["birdseye"],"meaning":"nhìn thẳng từ trên xuống như mắt chim"},"flyover":{"alias":["flyover"],"meaning":"bay ngang qua khu vực"},"droneforward":{"alias":["droneforward","dronebackward","droneup","dronedown"],"meaning":"bay tới / lùi / lên / xuống"},"drone":{"alias":["drone"],"meaning":"cú máy drone (bản chung)"},"droneorbit360":{"alias":["droneorbit360"],"meaning":"bay vòng 360° quanh mục tiêu"},"fpvchase":{"alias":["fpvchase","fpv chase"],"meaning":"đuổi theo mục tiêu kiểu FPV"},"fpvdive":{"alias":["fpvdive","fpv dive"],"meaning":"bổ nhào xuống"},"fpvclimb":{"alias":["fpvclimb","fpv climb"],"meaning":"leo vọt lên"},"fpvbank":{"alias":["fpvbank","fpv bank"],"meaning":"nghiêng máy khi vào cua"},"fpvslalom":{"alias":["fpvslalom","fpv slalom"],"meaning":"luồn lách qua vật cản"},"gapflythrough":{"alias":["gapflythrough"],"meaning":"bay xuyên qua khe hở"},"tunnelflight":{"alias":["tunnelflight"],"meaning":"bay xuyên đường hầm"},"windowflythrough":{"alias":["windowflythrough"],"meaning":"bay xuyên qua cửa sổ"},"doorwayflight":{"alias":["doorwayflight"],"meaning":"bay qua ô cửa"},"groundskim":{"alias":["groundskim","ground skim"],"meaning":"bay sát mặt đất"},"canopyflight":{"alias":["canopyflight","canopy flight"],"meaning":"bay dưới tán cây"},"fpvcorkscrew":{"alias":["fpvcorkscrew"],"meaning":"vừa tiến vừa xoay 360°"},"fpv":{"alias":["fpv","fpvdrone"],"meaning":"góc nhìn camera gắn drone"},"fpvflythrough":{"alias":["fpvflythrough","flythrough"],"meaning":"bay xuyên qua không gian"},"handhelddrift":{"alias":["handhelddrift","handheld drift"],"meaning":"cầm tay trôi nhẹ, rung tự nhiên"},"handheldwalk":{"alias":["handheldwalk","handheld walk"],"meaning":"cầm tay khi đang đi bộ"},"handheldrun":{"alias":["handheldrun","handheld run"],"meaning":"cầm tay khi đang chạy"},"shouldersway":{"alias":["shouldersway"],"meaning":"rung lắc như đặt trên vai"},"gimbalglide":{"alias":["gimbalglide","gimbal glide"],"meaning":"trượt mượt nhờ gimbal"},"gimbalcorner":{"alias":["gimbalcorner","gimbal corner"],"meaning":"vào cua mượt theo chủ thể"},"bodycamwalk":{"alias":["bodycamwalk"],"meaning":"góc camera gắn ngực, đi bộ"},"helmetturn":{"alias":["helmetturn"],"meaning":"góc camera gắn mũ, quay đầu"},"vehicleforward":{"alias":["vehicleforward"],"meaning":"gắn xe, chạy tới"},"windowride":{"alias":["windowride"],"meaning":"gắn cửa sổ xe, nhìn ra ngoài"},"wheeltrack":{"alias":["wheeltrack"],"meaning":"góc thấp bám theo bánh xe"},"snorricamwalk":{"alias":["snorricamwalk"],"meaning":"gắn vào người, mặt giữ giữa khung khi đi"},"handheld":{"alias":["handheld"],"meaning":"cầm tay (bản chung)"},"steadicam":{"alias":["steadicam"],"meaning":"cầm tay đã cân bằng, mượt"},"dollyzoom":{"alias":["dollyzoom","dolly zoom"],"meaning":"lùi ra + zoom vào cùng lúc (hiệu ứng Vertigo)"},"reversevertigo":{"alias":["reversevertigo","reverse vertigo"],"meaning":"tiến vào + zoom ra"},"pushorbit":{"alias":["pushorbit","push orbit"],"meaning":"vừa tiến vừa xoay quanh chủ thể"},"orbitpullback":{"alias":["orbitpullback","orbit pullback"],"meaning":"vừa xoay vừa lùi ra"},"risepullback":{"alias":["risepullback","rise pullback"],"meaning":"vừa nâng lên vừa lùi ra"},"descendpush":{"alias":["descendpush","descend push"],"meaning":"vừa hạ xuống vừa tiến vào"},"trackreveal":{"alias":["trackreveal","track reveal"],"meaning":"trượt ngang để lộ cảnh"},"panpush":{"alias":["panpush","pan push"],"meaning":"vừa lia vừa tiến"},"tiltretreat":{"alias":["tiltretreat","tilt retreat"],"meaning":"vừa chúc máy vừa lùi"},"slidearc":{"alias":["slidearc","slide arc"],"meaning":"trượt ngang theo cung"},"orbitreverse":{"alias":["orbitreverse","orbit reverse"],"meaning":"xoay ngược chiều quanh chủ thể"},"looppath":{"alias":["looppath","loop path"],"meaning":"đường đi khép kín, nối được thành vòng"},"slowreveal":{"alias":["slowreveal"],"meaning":"để lộ chủ thể/vật từ từ"},"characterreveal":{"alias":["characterreveal"],"meaning":"để lộ nhân vật"},"facereveal":{"alias":["facereveal"],"meaning":"để lộ gương mặt"},"environmentreveal":{"alias":["environmentreveal"],"meaning":"để lộ bối cảnh"},"pullbackreveal":{"alias":["pullbackreveal"],"meaning":"lùi ra để lộ toàn cảnh"},"doorreveal":{"alias":["doorreveal"],"meaning":"để lộ qua ô cửa"},"curtainreveal":{"alias":["curtainreveal"],"meaning":"để lộ như kéo màn"},"closeup":{"alias":["closeup"],"meaning":"cận cảnh, tập trung chi tiết nhỏ"},"wide":{"alias":["wide","wideangle"],"meaning":"góc rộng, thấy toàn cảnh"},"tight":{"alias":["tight"],"meaning":"khung chặt, ít khoảng thở"},"establishing":{"alias":["establishing"],"meaning":"cú mở cảnh, giới thiệu bối cảnh"},"overhead":{"alias":["overhead"],"meaning":"nhìn từ trên xuống"},"lowangle":{"alias":["lowangle"],"meaning":"góc thấp, chủ thể trông lớn"},"highangle":{"alias":["highangle"],"meaning":"góc cao, chủ thể trông nhỏ"},"pov":{"alias":["pov"],"meaning":"góc nhìn thứ nhất của nhân vật"},"firstperson":{"alias":["firstperson"],"meaning":"như đang ở trong mắt nhân vật"},"overtheshoulder":{"alias":["overtheshoulder"],"meaning":"qua vai, thấy đối tượng phía trước"},"fullbody":{"alias":["fullbody"],"meaning":"lấy trọn người từ đầu tới chân"},"heroshot":{"alias":["heroshot"],"meaning":"cú tôn chủ thể, thường góc thấp"},"centered":{"alias":["centered"],"meaning":"chủ thể đặt chính giữa khung"},"rackfocus":{"alias":["rackfocus"],"meaning":"chuyển nét từ vật này sang vật khác"},"focuspull":{"alias":["focuspull"],"meaning":"rút nét ra/vào chủ thể"},"shallowfocus":{"alias":["shallowfocus"],"meaning":"nét mỏng, nền mờ"},"deepfocus":{"alias":["deepfocus"],"meaning":"nét sâu, cả gần lẫn xa đều rõ"},"foregroundblur":{"alias":["foregroundblur"],"meaning":"vật tiền cảnh mờ"},"backgroundblur":{"alias":["backgroundblur"],"meaning":"hậu cảnh mờ"},"bokeh":{"alias":["bokeh"],"meaning":"đốm sáng mờ ở vùng ngoài nét"},"shallowdepth":{"alias":["shallowdepth"],"meaning":"chiều sâu trường ảnh mỏng"},"telephoto":{"alias":["telephoto"],"meaning":"ống kính tele, nén không gian"},"macrofocus":{"alias":["macrofocus"],"meaning":"lấy nét cận siêu nhỏ"},"macro":{"alias":["macro"],"meaning":"cú máy cận chi tiết"},"lensflare":{"alias":["lensflare"],"meaning":"lóe sáng do ống kính"},"anamorphic":{"alias":["anamorphic"],"meaning":"ống kính anamorphic, nhòe ngang đặc trưng"},"softfocus":{"alias":["softfocus"],"meaning":"nét mềm, mờ nhẹ như mơ"},"goldenhour":{"alias":["goldenhour"],"meaning":"giờ vàng, nắng ấm lúc bình minh/hoàng hôn"},"bluehour":{"alias":["bluehour"],"meaning":"giờ xanh, chạng vạng lạnh"},"neonlight":{"alias":["neonlight"],"meaning":"đèn neon rực màu"},"moody":{"alias":["moody"],"meaning":"sáng tối tương phản, nặng tâm trạng"},"softlight":{"alias":["softlight"],"meaning":"sáng tán xạ, bóng mềm"},"rimlight":{"alias":["rimlight"],"meaning":"viền sáng quanh rìa chủ thể"},"silhouette":{"alias":["silhouette"],"meaning":"chủ thể thành bóng đen trên nền sáng"},"spotlight":{"alias":["spotlight"],"meaning":"đèn rọi một điểm"},"volumetric":{"alias":["volumetric"],"meaning":"chùm sáng thấy được trong không khí"},"backlight":{"alias":["backlight"],"meaning":"sáng từ phía sau chủ thể"},"nightscene":{"alias":["nightscene"],"meaning":"cảnh ban đêm"},"dramaticlighting":{"alias":["dramaticlighting"],"meaning":"sáng kịch tính, tương phản mạnh"},"minimal":{"alias":["minimal"],"meaning":"tối giản, ít chi tiết thừa"},"leadinglines":{"alias":["leadinglines"],"meaning":"đường dẫn mắt về chủ thể"},"ruleofthirds":{"alias":["ruleofthirds"],"meaning":"chia khung 1/3, chủ thể ở giao điểm"},"symmetry":{"alias":["symmetry"],"meaning":"đối xứng hai bên"},"foreground":{"alias":["foreground"],"meaning":"có vật tiền cảnh tạo lớp"},"framewithinframe":{"alias":["framewithinframe"],"meaning":"khung trong khung (cửa, vòm)"},"diagonal":{"alias":["diagonal"],"meaning":"bố cục chéo tạo động"},"negativespace":{"alias":["negativespace"],"meaning":"khoảng trống lớn quanh chủ thể"},"slowmotion":{"alias":["slowmotion"],"meaning":"quay chậm"},"timelapse":{"alias":["timelapse"],"meaning":"tua nhanh thời gian"},"hyperlapse":{"alias":["hyperlapse"],"meaning":"tua nhanh kèm di chuyển"},"speedramp":{"alias":["speedramp"],"meaning":"đổi tốc độ giữa clip (chậm ↔ nhanh)"},"speedup":{"alias":["speedup"],"meaning":"tăng tốc"},"motionblur":{"alias":["motionblur"],"meaning":"nhòe chuyển động"},"smoothmotion":{"alias":["smoothmotion"],"meaning":"chuyển động mượt"},"naturalmotion":{"alias":["naturalmotion"],"meaning":"chuyển động tự nhiên như thật"},"freeze":{"alias":["freeze","freezeframe"],"meaning":"đứng hình một khung"},"reverse":{"alias":["reverse"],"meaning":"chạy ngược"},"loop":{"alias":["loop"],"meaning":"lặp liền mạch"},"bullettime":{"alias":["bullettime"],"meaning":"thời gian đóng băng, camera vẫn đi"},"floating":{"alias":["floating"],"meaning":"trôi lơ lửng"},"falling":{"alias":["falling"],"meaning":"rơi xuống"},"running":{"alias":["running"],"meaning":"đang chạy"},"walking":{"alias":["walking"],"meaning":"đang đi bộ"},"turnaround":{"alias":["turnaround"],"meaning":"chủ thể xoay người"},"reveal":{"alias":["reveal"],"meaning":"để lộ chủ thể/vật"},"entrance":{"alias":["entrance"],"meaning":"chủ thể đi vào khung"},"exit":{"alias":["exit"],"meaning":"chủ thể rời khung"},"morph":{"alias":["morph"],"meaning":"biến đổi vật này thành vật khác"},"glitch":{"alias":["glitch"],"meaning":"nhiễu hình kiểu lỗi kỹ thuật"},"matchcut":{"alias":["matchcut"],"meaning":"cắt nối hai cảnh giống hình dạng/chuyển động"},"whiptransition":{"alias":["whiptransition"],"meaning":"chuyển cảnh bằng cú quét nhanh"},"zoomtransition":{"alias":["zoomtransition"],"meaning":"chuyển cảnh bằng thu phóng"},"smoketransition":{"alias":["smoketransition"],"meaning":"chuyển cảnh qua khói"},"flashtransition":{"alias":["flashtransition"],"meaning":"chuyển cảnh bằng lóe sáng"},"blurtransition":{"alias":["blurtransition"],"meaning":"chuyển cảnh qua nhòe"},"lightleak":{"alias":["lightleak"],"meaning":"vệt sáng lọt vào khung"},"seamlessloop":{"alias":["seamlessloop"],"meaning":"lặp không thấy điểm nối"},"infinitezoom":{"alias":["infinitezoom"],"meaning":"zoom sâu vô tận"},"worldtransition":{"alias":["worldtransition"],"meaning":"chuyển sang thế giới khác"},"objecttransition":{"alias":["objecttransition"],"meaning":"chuyển cảnh qua một vật thể"},"scifi":{"alias":["scifi"],"meaning":"khoa học viễn tưởng"},"cyberpunk":{"alias":["cyberpunk"],"meaning":"tương lai neon, tối, đường phố ướt"},"paperworld":{"alias":["paperworld"],"meaning":"thế giới làm bằng giấy"},"miniature":{"alias":["miniature","toyworld"],"meaning":"mô hình thu nhỏ như đồ chơi"},"space":{"alias":["space"],"meaning":"không gian vũ trụ"},"underwater":{"alias":["underwater"],"meaning":"dưới nước"},"fog":{"alias":["fog","mist"],"meaning":"sương mù"},"storm":{"alias":["storm"],"meaning":"bão"},"rain":{"alias":["rain","heavyrain"],"meaning":"mưa / mưa lớn"},"snow":{"alias":["snow"],"meaning":"tuyết"},"fire":{"alias":["fire"],"meaning":"lửa"},"explosion":{"alias":["explosion"],"meaning":"vụ nổ"},"portal":{"alias":["portal"],"meaning":"cổng không gian"},"particlefx":{"alias":["particlefx","particles"],"meaning":"hạt hiệu ứng bay"},"wind":{"alias":["wind"],"meaning":"gió thổi"},"dust":{"alias":["dust"],"meaning":"bụi bay"},"clouds":{"alias":["clouds"],"meaning":"mây"},"sunrays":{"alias":["sunrays","godrays"],"meaning":"tia nắng xuyên qua"},"fallingleaves":{"alias":["fallingleaves"],"meaning":"lá rơi"},"flowerpetals":{"alias":["flowerpetals"],"meaning":"cánh hoa bay"},"watersplash":{"alias":["watersplash"],"meaning":"nước bắn"},"reflection":{"alias":["reflection"],"meaning":"phản chiếu"},"cinematic":{"alias":["cinematic"],"meaning":"chất điện ảnh, tương phản và màu như phim"},"filmic":{"alias":["filmic"],"meaning":"giống phim nhựa, hạt mịn"},"commercial":{"alias":["commercial"],"meaning":"sạch, sáng, kiểu quảng cáo"},"luxury":{"alias":["luxury"],"meaning":"cao cấp, tối, kim loại, chậm"},"documentary":{"alias":["documentary"],"meaning":"chân thực như phim tài liệu"},"vintagefilm":{"alias":["vintagefilm"],"meaning":"phim cũ, màu bạc"},"dreamy":{"alias":["dreamy"],"meaning":"mơ màng, mềm, sáng nhẹ"},"epic":{"alias":["epic"],"meaning":"hoành tráng, quy mô lớn"},"surreal":{"alias":["surreal"],"meaning":"siêu thực, phi logic"},"blockbuster":{"alias":["blockbuster"],"meaning":"kiểu phim bom tấn"},"productreveal":{"alias":["productreveal"],"meaning":"mở lộ sản phẩm"},"productspin":{"alias":["productspin"],"meaning":"sản phẩm xoay"},"unboxing":{"alias":["unboxing"],"meaning":"mở hộp"},"logoreveal":{"alias":["logoreveal"],"meaning":"lộ logo"},"fashionfilm":{"alias":["fashionfilm"],"meaning":"phim thời trang"},"techad":{"alias":["techad"],"meaning":"quảng cáo đồ công nghệ"},"foodcommercial":{"alias":["foodcommercial"],"meaning":"quảng cáo đồ ăn"},"socialad":{"alias":["socialad"],"meaning":"quảng cáo cho mạng xã hội"},"billboard":{"alias":["billboard"],"meaning":"dạng biển quảng cáo"},"beforeafter":{"alias":["beforeafter","before-and-after"],"meaning":"trước và sau"},"ugc-product-hook":{"alias":["ugc-product-hook"],"meaning":"mở đầu kiểu người dùng thật giới thiệu sản phẩm"},"ugc-testimonial":{"alias":["ugc-testimonial"],"meaning":"người dùng thật đánh giá"},"premium-unboxing":{"alias":["premium-unboxing"],"meaning":"mở hộp cao cấp"},"asmr-unboxing":{"alias":["asmr-unboxing"],"meaning":"mở hộp kèm âm thanh cận"},"product-demo-ad":{"alias":["product-demo-ad"],"meaning":"quảng cáo demo cách dùng"},"problem-solution-ad":{"alias":["problem-solution-ad"],"meaning":"nêu vấn đề rồi đưa giải pháp"},"tiktok-style-ad":{"alias":["tiktok-style-ad"],"meaning":"quảng cáo kiểu TikTok"},"3-second-hook":{"alias":["3-second-hook"],"meaning":"3 giây đầu giữ chân người xem"},"pattern-interrupt":{"alias":["pattern-interrupt"],"meaning":"phá nhịp để gây chú ý"},"luxury-product-ad":{"alias":["luxury-product-ad"],"meaning":"quảng cáo sản phẩm cao cấp"},"conversion-ad":{"alias":["conversion-ad"],"meaning":"quảng cáo hướng chuyển đổi"},"buy-now-ad":{"alias":["buy-now-ad"],"meaning":"quảng cáo thúc mua ngay"},"day-in-my-life":{"alias":["day-in-my-life"],"meaning":"một ngày của tôi"},"product-launch-ad":{"alias":["product-launch-ad"],"meaning":"quảng cáo ra mắt sản phẩm"},"360-degree-showcase":{"alias":["360-degree-showcase"],"meaning":"trưng bày 360°"}},"imageCodes":{"Chân dung / Headshot":["actorheadshot","authorphoto","bwportrait","casualheadshot","corporateheadshot","datingprofile","doctorportrait","fitnessportrait","founderportrait","goldenhourportrait","graduationportrait","headshot","outfitswap","passportphoto","podcastportrait","realtorheadshot","speakerphoto","teamphoto","vintageportrait"],"Sản phẩm":["amazonready","backgroundswap","beforeafterproduct","catalogset","colorways","flatlay","floatingproduct","ghostmannequin","glassreflection","handheld","heroimage","lifestyleshot","luxuryshot","macroshot","naturebackdrop","onmodel","podiumshot","productshot","seasonalshot","splashshot"],"Bóc tách & 3D":["assemblysteps","blueprintview","clayrender","cutaway","exploded3d","giantscale","insidethebox","isometricproduct","materialswap","miniature","partslist","turntable","wireframerender","xrayview"],"Quảng cáo":["adset","adstoryboard","appstoreshots","bannerad","billboard","busstopad","carouselad","comparisonad","emailheader","landingmock","magazinead","offerad","retargetad","staticad","storyad","subwayad","testimonialad","uglyad"],"Branding & Logo":["appicon","brandboard","brandmerch","businesscard","colorpalette","favicon","iconlogo","letterhead","logoconcepts","logomotion","mascotdesign","monogram","patterndesign","rebrand","storefront","wordmark"],"Social":["announcementpost","carouselcover","countdownpost","eventflyer","instagrid","linkedinbanner","memeformat","pinterestpin","podcastcover","profilepic","quotecard","reelcover","statgraphic","storycover","thumbnailimage","tiktokcover","twitterheader","youtubebanner"],"Mockup & Bao bì":["bagmockup","bookcover","bottlelabel","boxmockup","canmockup","giftbox","laptopmockup","menudesign","packagingdesign","phonemockup","postermockup","shelfshot","stickersheet","tshirtmockup"],"Đồ ăn / Nội thất / BĐS":["drinkshot","exteriorrender","floorplan3d","foodshot","gardenplan","kitchenreno","listingphoto","menuphoto","moodboard","nightshot","officespace","recipecard","roomredesign","virtualstaging"],"Minh họa & Art style":["3dcharacter","3drender","anime","blender","cartoonme","charcoal","childrensbook","claymation","comicbook","conceptart","crosshatching","embroidery","environmentart","ghibli","graffiti","inkdrawing","lineart","lowpoly","manga","mattepainting","octanerender","oilpainting","papercut","pencilsketch","pixar","pixelart","popart","sketchbook","stainedglass","tattoodesign","unrealengine","vectorflat","voxel","watercolor"],"Infographic / Sơ đồ":["anatomyof","checklistgraphic","comparisonchart","howtoillustration","iconset","infographic","mapgraphic","orgchart","pricingtable","processdiagram","roadmapgraphic","slidevisual","statposter","timelineposter"],"Cá nhân / Vui":["actionfigure","ageprogression","babyphoto","caricature","dreamcar","fantasyme","holidaycard","magazinecover","movieposter","petportrait","superhero","timetravel","tradingcard","weddinginvite"]},"combos":[{"funnel":"A","name":"Hero sản phẩm","codes":["/productspin","/tightorbit","/macrofocus","/rimlight","/luxury"]},{"funnel":"C","name":"Cận chất liệu","codes":["/macrofocus","/slowpush","/shallowdepth","/softlight","/filmic"]},{"funnel":"C","name":"Mở hộp","codes":["/premium-unboxing","/tablerise","/shallowfocus","/softlight","/commercial"]},{"funnel":"C","name":"Demo công dụng","codes":["/product-demo-ad","/before-and-after","/matchcut","/softlight","/commercial"]},{"funnel":"V","name":"Chốt đơn","codes":["/buy-now-ad","/3-second-hook","/fastpush","/spotlight","/commercial"]},{"funnel":"C","name":"Xoay 360°","codes":["/360-degree-showcase","/orbit360","/gimbalglide","/softlight","/minimal"]},{"funnel":"A","name":"Hook 3 giây","codes":["/3-second-hook","/pattern-interrupt","/whippan","/neonlight","/blockbuster"]},{"funnel":"C","name":"UGC người thật","codes":["/ugc-product-hook","/handheldwalk","/naturalmotion","/softlight","/documentary"]},{"funnel":"C","name":"Testimonial","codes":["/ugc-testimonial","/closeup","/slowpush","/softlight","/documentary"]},{"funnel":"C","name":"Vấn đề → giải pháp","codes":["/problem-solution-ad","/matchcut","/descendpush","/moody","/commercial"]},{"funnel":"V","name":"Thúc mua","codes":["/conversion-ad","/buy-now-ad","/speedramp","/productspin","/commercial"]},{"funnel":"A","name":"Quảng cáo cao cấp","codes":["/luxury-product-ad","/slowpush","/rimlight","/smoke","/luxury"]}]}
+{
+ "version": 1,
+ "updated": "2026-10-07",
+ "source": "ai-command-playbook.md",
+ "rulesText": "## PHẦN 4 — CƠ CHẾ PROMPT-CODE\n\n### 4.1 Nguyên tắc\n\n1. **Viết câu tự nhiên mô tả đúng cái code đó.** Code là ghi chú, câu mới là thứ model đọc.\n2. **1 chuyển động chính + 1 khung + 1 ánh sáng + 1 style.** (khuyến nghị của Google)\n3. **Đừng nhồi >3–6 code.** Model loãng trọng số, code cuối bị bỏ.\n4. **Đừng yêu cầu 2 chuyển động mâu thuẫn** (orbit + static + whip pan).\n5. Bỏ dấu `/` khi cần — nghĩa không đổi.\n\n### 4.2 Vì sao `/` vẫn hữu ích\n\n- Ngắn để nhớ và để chia sẻ (infographic lan truyền dùng dấu `/`).\n- Tạo cảm giác \"lệnh\", dễ dạy người mới.\n- Nhưng **không có giá trị cú pháp**. Đây là điểm hay bị hiểu sai nhất.\n\n---\n\n## PHẦN 7 — LUẬT PHỐI (phần agent phải thuộc)\n\n### 7.1 Thứ tự ghép — 7 tầng\n\n```\n[chủ thể] + [khung/góc] + [chuyển động] + [lens/focus] + [ánh sáng] + [style] + [tốc độ]\n```\n\n- Tầng **1–2 bắt buộc**; tầng 3–7 thêm dần.\n- Tầng sau **không đè** tầng trước — chúng cộng dồn.\n- Dồn cả 7 tầng vào prompt ngắn → model **bỏ sót tầng cuối**. Điểm ngọt: **3–5 code**.\n\n### 7.2 Quy trình 4 bước\n\n1. **Chốt shot** — một cảnh = một hành động rõ. Viết ra: chủ thể + làm gì + cảm giác muốn có.\n2. **Ghép code** — 1 khung + 1 chuyển động + 1 lens + 1 sáng + 1 style.\n3. **Generate** — chọn model + tỉ lệ khung; xuất **1 clip**, xem ngay. Đừng xuất loạt khi chưa chốt.\n4. **Tinh chỉnh ≤3 lượt** — nhắn tiếp trong cùng hội thoại:\n   *\"giữ nguyên, đổi sang /lowangle\"*. Quá 3 lượt → mất ngữ cảnh, làm lại từ bước 1.\n\n### 7.3 Lỗi làm clip/ảnh rối\n\n| Lỗi | Vì sao sai |\n|---|---|\n| `/dollyin` + `/dollyout` | hai code cùng trục, triệt tiêu nhau |\n| `/panleft` + `/panright` | cùng trục, kết quả ngẫu nhiên |\n| `/zoomin` + `/pushin` | gần trùng nghĩa (\"đến gần chủ thể\") — chọn một |\n| 8–10 code một prompt | model loãng trọng số, code cuối bị bỏ |\n| Chuyển cảnh 1 clip | match cut / whip cần **hai** clip khớp hướng + khung |\n| Tả lại nhân vật bằng lời mỗi shot | phải tham chiếu (`@character`, `@me`) |\n| Đổi sáng giữa các shot cùng cảnh | clip gãy, trông giả |\n| Không khoá \"toà nhà/chủ thể đứng yên\" | chủ thể méo, cửa sổ nhảy khi camera bay |\n\n### 7.4 Tổ hợp mẫu (dán nguyên được)\n\n```\nHero entry       /slowmo /dollyin /lowangle /heroshot /cinematic\n360 nhân vật     /orbit360 /fullbody /smoothcamera /cinematic\nDrone travel     /dronefly /aerialreveal /extremewide /goldenhour /cinematic\nPortrait cảm xúc /closeup /dollyin /rackfocus /shallowdepth /softfocus\nSản phẩm cao cấp /orbit /productreveal /macrofocus /dramaticlighting /cinematic\nPOV              /pov /firstperson /handheld /naturalmotion\n```\n\n### 7.5 Alias & biến thể chính tả\n\nCode cộng đồng tồn tại song song nhiều cách viết. Model hiểu cả hai:\n- **Tách từ / viết liền:** `/dolly in` ≡ `/dollyin` · `/pan left` ≡ `/panleft`.\n- **Rút gọn:** `/slowmo` ≡ `/slowmotion` · `/smoke` ≡ `/smoketransition` ·\n  `/productphoto` ≡ `/productshot` · `/extremewide` ≡ `/extremewideangle` ·\n  `/smoothcamera` ≡ `/smoothmotion` · `/bodycam` ≡ `/bodycamwalk` · `/helmet` ≡ `/helmetturn` ·\n  `/vehicle` ≡ `/vehicleforward` · `/wheel` ≡ `/wheeltrack` · `/tunnel` ≡ `/tunnelflight` ·\n  `/gap` ≡ `/gapflythrough` · `/snorricam` ≡ `/snorricamwalk` · `/three-quarter` ≡\n  `/three-quarterfollow`.\n- **Quy tắc thực dụng:** khi không chắc code viết thế nào, **viết nghĩa tiếng Anh của nó**\n  vào prompt. `/slowmo` không ăn → `slow motion`. Đây luôn là đường lui an toàn.\n\n### 7.6 Nối nhiều shot thành cảnh\n\nGiữ **sáng + style cố định**; chỉ đổi **khung + chuyển động**.\nNối bằng: `/matchcut` (khớp hình dạng) · `/whiptransition` (quét nhanh) ·\n`/seamlessloop` (lặp vô hạn).\n\n### 7.5 Bảng giữ nhất quán\n\n| Giữ nguyên | Được đổi |\n|---|---|\n| Style (`architectural visualization`, `octanerender`) | bán kính khung |\n| Lens (`24mm f/8`) | độ cao máy |\n| Câu khoá (\"chủ thể đứng yên\") | tốc độ |\n| Sáng: golden hour **hoặc** blue hour — không trộn trong 1 sequence | chuyển động |\n| Ảnh gốc làm first frame | thời điểm (ngày/chạng vạng/đêm) |\n\n---\n\n### 2.4 Ảnh — Nano Banana Pro (Gemini 3 Pro Image)\n\n**Công thức:** `Subject · Composition · Action · Location · Style · Editing instruction`\n(thêm editing instruction khi sửa ảnh).\n**Thêm được:** aspect ratio (`9:16`, `21:9`…); camera/ánh sáng (`low-angle, f/1.8, golden hour`);\nchữ cần render (`headline \"X\" font bold`); **vai trò từng ảnh input** (Image A = pose,\nB = style, C = background).\n**Giới hạn:** blend tới 6–14 ảnh tùy surface; resize 1K/2K/4K.\n\n**Hai template gốc (Google chính thức):**\n\n1. *Ảnh thật:*\n```\nA photorealistic [shot type] of [subject], [action], set in [environment].\nThe scene is illuminated by [lighting], creating a [mood] atmosphere.\nCaptured with [camera/lens], emphasizing [textures]. [aspect ratio] format.\n```\n2. *Sticker/illustration:*\n```\nA [style] sticker of [subject], featuring [characteristics] and a [palette].\n[line style], [shading style]. The background must be white.\n```\n\n**Quy tắc vàng:** Google nói **\"mô tả cảnh, đừng liệt kê keyword\"**.\n- Dùng thuật ngữ nhiếp ảnh: `85mm lens f/1.4` > `bokeh`.\n- Sửa dần trong hội thoại, **đừng viết lại prompt**.\n- Negative ngữ nghĩa: `empty street with no vehicles` > `no cars`.\n- Chữ phải để trong `\"ngoặc kép\"`.\n\n**Giới hạn thật:** chữ dài kém; nhất quán nhân vật trôi sau ~10 lần sinh; chi tiết nhỏ\n(tay, logo) yếu; ảnh luôn có SynthID.\n\n---\n\n### 3.5 Công thức prompt Veo (dùng cho mọi generation)\n\n```\n[Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance]\n```\n\n- **Camera:** dolly / tracking / crane / aerial / slow pan / POV.\n- **Composition:** wide / close-up / low angle / two-shot.\n- **Lens:** shallow DOF / wide-angle / macro / deep focus.\n- **Âm thanh:** thoại trong `\"ngoặc kép\"`; `SFX: …`; `Ambient noise: …`.\n- **Negative:** mô tả cái muốn loại (*\"desolate landscape with no buildings\"*),\n  **đừng** viết \"no X\".\n- **Timestamp prompting** (nhiều shot trong 1 lần sinh):\n  `[00:00-00:02] …` `[00:02-00:04] …` — mỗi mốc 1 shot + SFX/emotion.\n- **Best practice:** ingredient nền sạch/đã tách nền; prompt chữ **bổ trợ**, không mâu thuẫn\n  với ảnh input.\n\n---\n\n",
+ "videoCodes": {
+  "dollyin": {
+   "alias": [
+    "dollyin",
+    "dolly in"
+   ],
+   "meaning": "camera tiến thẳng tới chủ thể"
+  },
+  "dollyout": {
+   "alias": [
+    "dollyout",
+    "dolly out"
+   ],
+   "meaning": "camera lùi ra, lộ thêm cảnh"
+  },
+  "slowpush": {
+   "alias": [
+    "slowpush",
+    "slow push"
+   ],
+   "meaning": "tiến rất chậm, tạo căng"
+  },
+  "fastpush": {
+   "alias": [
+    "fastpush",
+    "fast push"
+   ],
+   "meaning": "tiến nhanh rồi hãm lại"
+  },
+  "micropush": {
+   "alias": [
+    "micropush",
+    "micro push"
+   ],
+   "meaning": "đẩy nhẹ, tăng chiều sâu"
+  },
+  "longapproach": {
+   "alias": [
+    "longapproach",
+    "long approach"
+   ],
+   "meaning": "từ toàn cảnh vào cận cảnh"
+  },
+  "diagonalpush": {
+   "alias": [
+    "diagonalpush",
+    "diagonal push"
+   ],
+   "meaning": "tiến chéo theo đường chéo khung"
+  },
+  "diagonalretreat": {
+   "alias": [
+    "diagonalretreat",
+    "diagonal retreat"
+   ],
+   "meaning": "lùi chéo"
+  },
+  "groundpush": {
+   "alias": [
+    "groundpush",
+    "ground push"
+   ],
+   "meaning": "trượt tới sát mặt đất"
+  },
+  "ceilingpush": {
+   "alias": [
+    "ceilingpush",
+    "ceiling push"
+   ],
+   "meaning": "tiến sát trần từ trên cao"
+  },
+  "pushthrough": {
+   "alias": [
+    "pushthrough",
+    "push through"
+   ],
+   "meaning": "tiến xuyên qua khe cửa"
+  },
+  "retreatreveal": {
+   "alias": [
+    "retreatreveal",
+    "retreat reveal"
+   ],
+   "meaning": "bắt đầu gần, lùi ra lộ toàn cảnh"
+  },
+  "dolly": {
+   "alias": [
+    "dolly"
+   ],
+   "meaning": "tiến/lùi trên ray (bản chung)"
+  },
+  "pushin": {
+   "alias": [
+    "pushin"
+   ],
+   "meaning": "đẩy vào chủ thể"
+  },
+  "pullout": {
+   "alias": [
+    "pullout"
+   ],
+   "meaning": "kéo ra khỏi chủ thể"
+  },
+  "zoom": {
+   "alias": [
+    "zoom"
+   ],
+   "meaning": "thu phóng bằng ống kính (không dịch chuyển)"
+  },
+  "zoomin": {
+   "alias": [
+    "zoomin"
+   ],
+   "meaning": "phóng to"
+  },
+  "zoomout": {
+   "alias": [
+    "zoomout"
+   ],
+   "meaning": "thu nhỏ"
+  },
+  "slowzoom": {
+   "alias": [
+    "slowzoom"
+   ],
+   "meaning": "thu phóng chậm"
+  },
+  "fastzoom": {
+   "alias": [
+    "fastzoom"
+   ],
+   "meaning": "thu phóng nhanh"
+  },
+  "truckleft": {
+   "alias": [
+    "truckleft",
+    "truck left"
+   ],
+   "meaning": "trượt ngang sang trái"
+  },
+  "truckright": {
+   "alias": [
+    "truckright",
+    "truck right"
+   ],
+   "meaning": "trượt ngang sang phải"
+  },
+  "shortslider": {
+   "alias": [
+    "shortslider",
+    "short slider"
+   ],
+   "meaning": "trượt ngang đoạn ngắn"
+  },
+  "longslider": {
+   "alias": [
+    "longslider",
+    "long slider"
+   ],
+   "meaning": "trượt ngang đoạn dài"
+  },
+  "diagonalslide": {
+   "alias": [
+    "diagonalslide",
+    "diagonal slide"
+   ],
+   "meaning": "trượt ngang kèm tiến nhẹ"
+  },
+  "countertrack": {
+   "alias": [
+    "countertrack",
+    "counter track"
+   ],
+   "meaning": "camera đi ngược hướng chủ thể"
+  },
+  "foregroundpass": {
+   "alias": [
+    "foregroundpass",
+    "foreground pass"
+   ],
+   "meaning": "lướt qua vật tiền cảnh"
+  },
+  "pillarreveal": {
+   "alias": [
+    "pillarreveal",
+    "pillar reveal"
+   ],
+   "meaning": "trượt ra từ sau cột"
+  },
+  "windowslide": {
+   "alias": [
+    "windowslide",
+    "window slide"
+   ],
+   "meaning": "trượt từ ngoài cửa sổ vào"
+  },
+  "doorwayslide": {
+   "alias": [
+    "doorwayslide",
+    "doorway slide"
+   ],
+   "meaning": "trượt qua ô cửa"
+  },
+  "parallelwall": {
+   "alias": [
+    "parallelwall",
+    "parallel wall"
+   ],
+   "meaning": "trượt song song bức tường"
+  },
+  "layeredslide": {
+   "alias": [
+    "layeredslide",
+    "layered slide"
+   ],
+   "meaning": "trượt xuyên nhiều lớp chiều sâu"
+  },
+  "panleft": {
+   "alias": [
+    "panleft",
+    "pan left"
+   ],
+   "meaning": "lia ngang sang trái"
+  },
+  "panright": {
+   "alias": [
+    "panright",
+    "pan right"
+   ],
+   "meaning": "lia ngang sang phải"
+  },
+  "tiltup": {
+   "alias": [
+    "tiltup",
+    "tilt up"
+   ],
+   "meaning": "chúc máy lên trên"
+  },
+  "tiltdown": {
+   "alias": [
+    "tiltdown",
+    "tilt down"
+   ],
+   "meaning": "chúc máy xuống dưới"
+  },
+  "whippan": {
+   "alias": [
+    "whippan",
+    "whip pan"
+   ],
+   "meaning": "quét ngang cực nhanh (nhòe)"
+  },
+  "whiptilt": {
+   "alias": [
+    "whiptilt",
+    "whip tilt"
+   ],
+   "meaning": "hất máy lên cực nhanh"
+  },
+  "followpan": {
+   "alias": [
+    "followpan",
+    "follow pan"
+   ],
+   "meaning": "lia bám theo chủ thể đang di chuyển"
+  },
+  "anticipationpan": {
+   "alias": [
+    "anticipationpan",
+    "anticipation pan"
+   ],
+   "meaning": "lia trước khi chủ thể tới"
+  },
+  "delayedpan": {
+   "alias": [
+    "delayedpan",
+    "delayed pan"
+   ],
+   "meaning": "để chủ thể đi trước rồi mới lia"
+  },
+  "diagonalpan": {
+   "alias": [
+    "diagonalpan",
+    "diagonal pan"
+   ],
+   "meaning": "lia chéo kèm chúc máy"
+  },
+  "scanreturn": {
+   "alias": [
+    "scanreturn",
+    "scan return"
+   ],
+   "meaning": "lia khám phá cảnh rồi trả về điểm đầu"
+  },
+  "pansweep": {
+   "alias": [
+    "pansweep",
+    "pan sweep"
+   ],
+   "meaning": "quét 180° để lộ toàn cảnh"
+  },
+  "pedestalup": {
+   "alias": [
+    "pedestalup",
+    "pedestal up"
+   ],
+   "meaning": "nâng máy lên thẳng đứng"
+  },
+  "pedestaldown": {
+   "alias": [
+    "pedestaldown",
+    "pedestal down"
+   ],
+   "meaning": "hạ máy xuống thẳng đứng"
+  },
+  "craneup": {
+   "alias": [
+    "craneup",
+    "crane up"
+   ],
+   "meaning": "cần cẩu nâng lên theo cung rộng"
+  },
+  "cranedown": {
+   "alias": [
+    "cranedown",
+    "crane down"
+   ],
+   "meaning": "cần cẩu hạ xuống theo cung rộng"
+  },
+  "jibreveal": {
+   "alias": [
+    "jibreveal",
+    "jib reveal"
+   ],
+   "meaning": "nâng máy vượt qua vật cản để lộ cảnh"
+  },
+  "risetilt": {
+   "alias": [
+    "risetilt",
+    "rise tilt"
+   ],
+   "meaning": "nâng lên kèm chúc xuống"
+  },
+  "descendtilt": {
+   "alias": [
+    "descendtilt",
+    "descend tilt"
+   ],
+   "meaning": "hạ xuống kèm ngẩng lên"
+  },
+  "roofreveal": {
+   "alias": [
+    "roofreveal",
+    "roof reveal"
+   ],
+   "meaning": "nâng qua mái nhà"
+  },
+  "tablerise": {
+   "alias": [
+    "tablerise",
+    "table rise"
+   ],
+   "meaning": "nâng từ dưới mặt bàn lên"
+  },
+  "floordrop": {
+   "alias": [
+    "floordrop",
+    "floor drop"
+   ],
+   "meaning": "từ đứng hạ xuống sàn"
+  },
+  "stairascent": {
+   "alias": [
+    "stairascent",
+    "stair ascent"
+   ],
+   "meaning": "theo chủ thể lên cầu thang"
+  },
+  "stairdescent": {
+   "alias": [
+    "stairdescent",
+    "stair descent"
+   ],
+   "meaning": "theo chủ thể xuống cầu thang"
+  },
+  "arcleft": {
+   "alias": [
+    "arcleft",
+    "arc left"
+   ],
+   "meaning": "đi theo cung sang trái"
+  },
+  "arcright": {
+   "alias": [
+    "arcright",
+    "arc right"
+   ],
+   "meaning": "đi theo cung sang phải"
+  },
+  "quarterorbit": {
+   "alias": [
+    "quarterorbit",
+    "quarter orbit"
+   ],
+   "meaning": "vòng 90° quanh chủ thể"
+  },
+  "halforbit": {
+   "alias": [
+    "halforbit",
+    "half orbit"
+   ],
+   "meaning": "vòng 180°"
+  },
+  "orbit360": {
+   "alias": [
+    "orbit360"
+   ],
+   "meaning": "vòng trọn 360° quanh chủ thể"
+  },
+  "tightorbit": {
+   "alias": [
+    "tightorbit",
+    "tight orbit"
+   ],
+   "meaning": "vòng sát chủ thể"
+  },
+  "wideorbit": {
+   "alias": [
+    "wideorbit",
+    "wide orbit"
+   ],
+   "meaning": "vòng bán kính rộng"
+  },
+  "loworbit": {
+   "alias": [
+    "loworbit",
+    "low orbit"
+   ],
+   "meaning": "vòng ở góc thấp"
+  },
+  "highorbit": {
+   "alias": [
+    "highorbit",
+    "high orbit"
+   ],
+   "meaning": "vòng ở góc cao"
+  },
+  "spiralrise": {
+   "alias": [
+    "spiralrise",
+    "spiral rise"
+   ],
+   "meaning": "vừa xoay vừa nâng lên"
+  },
+  "spiraldescend": {
+   "alias": [
+    "spiraldescend",
+    "spiral descend"
+   ],
+   "meaning": "vừa xoay vừa hạ xuống"
+  },
+  "orbittighten": {
+   "alias": [
+    "orbittighten",
+    "orbit tighten"
+   ],
+   "meaning": "xoay và siết bán kính dần"
+  },
+  "orbit": {
+   "alias": [
+    "orbit"
+   ],
+   "meaning": "xoay quanh chủ thể (bản chung)"
+  },
+  "rearfollow": {
+   "alias": [
+    "rearfollow",
+    "rear follow"
+   ],
+   "meaning": "theo sau lưng chủ thể"
+  },
+  "frontfollow": {
+   "alias": [
+    "frontfollow",
+    "front follow"
+   ],
+   "meaning": "lùi trước mặt chủ thể"
+  },
+  "sidefollow": {
+   "alias": [
+    "sidefollow",
+    "side follow"
+   ],
+   "meaning": "theo bên hông"
+  },
+  "shoulderfollow": {
+   "alias": [
+    "shoulderfollow",
+    "shoulder follow"
+   ],
+   "meaning": "theo qua vai"
+  },
+  "three-quarterfollow": {
+   "alias": [
+    "three-quarterfollow"
+   ],
+   "meaning": "theo ở góc 3/4 phía trước"
+  },
+  "lowfollow": {
+   "alias": [
+    "lowfollow",
+    "low follow"
+   ],
+   "meaning": "theo ở góc thấp"
+  },
+  "highfollow": {
+   "alias": [
+    "highfollow",
+    "high follow"
+   ],
+   "meaning": "theo ở góc cao"
+  },
+  "overtake": {
+   "alias": [
+    "overtake"
+   ],
+   "meaning": "vượt lên trước chủ thể"
+  },
+  "fallbehind": {
+   "alias": [
+    "fallbehind",
+    "fall behind"
+   ],
+   "meaning": "tụt lại phía sau"
+  },
+  "catchup": {
+   "alias": [
+    "catchup",
+    "catch up"
+   ],
+   "meaning": "đuổi kịp chủ thể"
+  },
+  "curvefollow": {
+   "alias": [
+    "curvefollow",
+    "curve follow"
+   ],
+   "meaning": "theo chủ thể trên đường cong"
+  },
+  "handofftrack": {
+   "alias": [
+    "handofftrack",
+    "handoff track"
+   ],
+   "meaning": "chuyển điểm bám sang chủ thể khác"
+  },
+  "tracking": {
+   "alias": [
+    "tracking"
+   ],
+   "meaning": "máy di chuyển song song chủ thể"
+  },
+  "follow": {
+   "alias": [
+    "follow",
+    "followcam"
+   ],
+   "meaning": "bám theo (bản chung)"
+  },
+  "forwardtracking": {
+   "alias": [
+    "forwardtracking"
+   ],
+   "meaning": "tiến theo chủ thể"
+  },
+  "backwardtracking": {
+   "alias": [
+    "backwardtracking"
+   ],
+   "meaning": "lùi theo chủ thể"
+  },
+  "gimbal": {
+   "alias": [
+    "gimbal",
+    "smoothfollow"
+   ],
+   "meaning": "bám mượt, không rung"
+  },
+  "dronefly": {
+   "alias": [
+    "dronefly",
+    "drone fly"
+   ],
+   "meaning": "bay tới kèm nâng lên"
+  },
+  "droneapproach": {
+   "alias": [
+    "droneapproach",
+    "drone approach"
+   ],
+   "meaning": "bay từ xa tiến tới"
+  },
+  "dronepullback": {
+   "alias": [
+    "dronepullback",
+    "drone pullback"
+   ],
+   "meaning": "bay lùi ra để lộ cảnh"
+  },
+  "droneascend": {
+   "alias": [
+    "droneascend",
+    "drone ascend"
+   ],
+   "meaning": "bay lên thẳng"
+  },
+  "dronedescend": {
+   "alias": [
+    "dronedescend",
+    "drone descend"
+   ],
+   "meaning": "bay xuống thẳng"
+  },
+  "droneorbit": {
+   "alias": [
+    "droneorbit",
+    "drone orbit"
+   ],
+   "meaning": "bay vòng quanh mục tiêu"
+  },
+  "droneflyover": {
+   "alias": [
+    "droneflyover",
+    "drone flyover"
+   ],
+   "meaning": "bay qua đỉnh mục tiêu"
+  },
+  "droneflyby": {
+   "alias": [
+    "droneflyby",
+    "drone flyby"
+   ],
+   "meaning": "bay ngang qua"
+  },
+  "topdowntravel": {
+   "alias": [
+    "topdowntravel",
+    "topdown travel"
+   ],
+   "meaning": "bay tới trong khi nhìn từ trên xuống"
+  },
+  "coastlinefollow": {
+   "alias": [
+    "coastlinefollow",
+    "coastline follow"
+   ],
+   "meaning": "men theo đường bờ biển"
+  },
+  "ridgereveal": {
+   "alias": [
+    "ridgereveal",
+    "ridge reveal"
+   ],
+   "meaning": "bay qua sống núi để lộ cảnh"
+  },
+  "aerialretreat": {
+   "alias": [
+    "aerialretreat",
+    "aerial retreat"
+   ],
+   "meaning": "vừa bay lùi vừa nâng lên"
+  },
+  "droneview": {
+   "alias": [
+    "droneview",
+    "aerial"
+   ],
+   "meaning": "góc nhìn từ trên không"
+  },
+  "aerialshot": {
+   "alias": [
+    "aerialshot",
+    "aerialreveal"
+   ],
+   "meaning": "cú máy trên không / mở cảnh từ trên cao"
+  },
+  "birdseye": {
+   "alias": [
+    "birdseye"
+   ],
+   "meaning": "nhìn thẳng từ trên xuống như mắt chim"
+  },
+  "flyover": {
+   "alias": [
+    "flyover"
+   ],
+   "meaning": "bay ngang qua khu vực"
+  },
+  "droneforward": {
+   "alias": [
+    "droneforward",
+    "dronebackward",
+    "droneup",
+    "dronedown"
+   ],
+   "meaning": "bay tới / lùi / lên / xuống"
+  },
+  "drone": {
+   "alias": [
+    "drone"
+   ],
+   "meaning": "cú máy drone (bản chung)"
+  },
+  "droneorbit360": {
+   "alias": [
+    "droneorbit360"
+   ],
+   "meaning": "bay vòng 360° quanh mục tiêu"
+  },
+  "fpvchase": {
+   "alias": [
+    "fpvchase",
+    "fpv chase"
+   ],
+   "meaning": "đuổi theo mục tiêu kiểu FPV"
+  },
+  "fpvdive": {
+   "alias": [
+    "fpvdive",
+    "fpv dive"
+   ],
+   "meaning": "bổ nhào xuống"
+  },
+  "fpvclimb": {
+   "alias": [
+    "fpvclimb",
+    "fpv climb"
+   ],
+   "meaning": "leo vọt lên"
+  },
+  "fpvbank": {
+   "alias": [
+    "fpvbank",
+    "fpv bank"
+   ],
+   "meaning": "nghiêng máy khi vào cua"
+  },
+  "fpvslalom": {
+   "alias": [
+    "fpvslalom",
+    "fpv slalom"
+   ],
+   "meaning": "luồn lách qua vật cản"
+  },
+  "gapflythrough": {
+   "alias": [
+    "gapflythrough"
+   ],
+   "meaning": "bay xuyên qua khe hở"
+  },
+  "tunnelflight": {
+   "alias": [
+    "tunnelflight"
+   ],
+   "meaning": "bay xuyên đường hầm"
+  },
+  "windowflythrough": {
+   "alias": [
+    "windowflythrough"
+   ],
+   "meaning": "bay xuyên qua cửa sổ"
+  },
+  "doorwayflight": {
+   "alias": [
+    "doorwayflight"
+   ],
+   "meaning": "bay qua ô cửa"
+  },
+  "groundskim": {
+   "alias": [
+    "groundskim",
+    "ground skim"
+   ],
+   "meaning": "bay sát mặt đất"
+  },
+  "canopyflight": {
+   "alias": [
+    "canopyflight",
+    "canopy flight"
+   ],
+   "meaning": "bay dưới tán cây"
+  },
+  "fpvcorkscrew": {
+   "alias": [
+    "fpvcorkscrew"
+   ],
+   "meaning": "vừa tiến vừa xoay 360°"
+  },
+  "fpv": {
+   "alias": [
+    "fpv",
+    "fpvdrone"
+   ],
+   "meaning": "góc nhìn camera gắn drone"
+  },
+  "fpvflythrough": {
+   "alias": [
+    "fpvflythrough",
+    "flythrough"
+   ],
+   "meaning": "bay xuyên qua không gian"
+  },
+  "handhelddrift": {
+   "alias": [
+    "handhelddrift",
+    "handheld drift"
+   ],
+   "meaning": "cầm tay trôi nhẹ, rung tự nhiên"
+  },
+  "handheldwalk": {
+   "alias": [
+    "handheldwalk",
+    "handheld walk"
+   ],
+   "meaning": "cầm tay khi đang đi bộ"
+  },
+  "handheldrun": {
+   "alias": [
+    "handheldrun",
+    "handheld run"
+   ],
+   "meaning": "cầm tay khi đang chạy"
+  },
+  "shouldersway": {
+   "alias": [
+    "shouldersway"
+   ],
+   "meaning": "rung lắc như đặt trên vai"
+  },
+  "gimbalglide": {
+   "alias": [
+    "gimbalglide",
+    "gimbal glide"
+   ],
+   "meaning": "trượt mượt nhờ gimbal"
+  },
+  "gimbalcorner": {
+   "alias": [
+    "gimbalcorner",
+    "gimbal corner"
+   ],
+   "meaning": "vào cua mượt theo chủ thể"
+  },
+  "bodycamwalk": {
+   "alias": [
+    "bodycamwalk"
+   ],
+   "meaning": "góc camera gắn ngực, đi bộ"
+  },
+  "helmetturn": {
+   "alias": [
+    "helmetturn"
+   ],
+   "meaning": "góc camera gắn mũ, quay đầu"
+  },
+  "vehicleforward": {
+   "alias": [
+    "vehicleforward"
+   ],
+   "meaning": "gắn xe, chạy tới"
+  },
+  "windowride": {
+   "alias": [
+    "windowride"
+   ],
+   "meaning": "gắn cửa sổ xe, nhìn ra ngoài"
+  },
+  "wheeltrack": {
+   "alias": [
+    "wheeltrack"
+   ],
+   "meaning": "góc thấp bám theo bánh xe"
+  },
+  "snorricamwalk": {
+   "alias": [
+    "snorricamwalk"
+   ],
+   "meaning": "gắn vào người, mặt giữ giữa khung khi đi"
+  },
+  "handheld": {
+   "alias": [
+    "handheld"
+   ],
+   "meaning": "cầm tay (bản chung)"
+  },
+  "steadicam": {
+   "alias": [
+    "steadicam"
+   ],
+   "meaning": "cầm tay đã cân bằng, mượt"
+  },
+  "dollyzoom": {
+   "alias": [
+    "dollyzoom",
+    "dolly zoom"
+   ],
+   "meaning": "lùi ra + zoom vào cùng lúc (hiệu ứng Vertigo)"
+  },
+  "reversevertigo": {
+   "alias": [
+    "reversevertigo",
+    "reverse vertigo"
+   ],
+   "meaning": "tiến vào + zoom ra"
+  },
+  "pushorbit": {
+   "alias": [
+    "pushorbit",
+    "push orbit"
+   ],
+   "meaning": "vừa tiến vừa xoay quanh chủ thể"
+  },
+  "orbitpullback": {
+   "alias": [
+    "orbitpullback",
+    "orbit pullback"
+   ],
+   "meaning": "vừa xoay vừa lùi ra"
+  },
+  "risepullback": {
+   "alias": [
+    "risepullback",
+    "rise pullback"
+   ],
+   "meaning": "vừa nâng lên vừa lùi ra"
+  },
+  "descendpush": {
+   "alias": [
+    "descendpush",
+    "descend push"
+   ],
+   "meaning": "vừa hạ xuống vừa tiến vào"
+  },
+  "trackreveal": {
+   "alias": [
+    "trackreveal",
+    "track reveal"
+   ],
+   "meaning": "trượt ngang để lộ cảnh"
+  },
+  "panpush": {
+   "alias": [
+    "panpush",
+    "pan push"
+   ],
+   "meaning": "vừa lia vừa tiến"
+  },
+  "tiltretreat": {
+   "alias": [
+    "tiltretreat",
+    "tilt retreat"
+   ],
+   "meaning": "vừa chúc máy vừa lùi"
+  },
+  "slidearc": {
+   "alias": [
+    "slidearc",
+    "slide arc"
+   ],
+   "meaning": "trượt ngang theo cung"
+  },
+  "orbitreverse": {
+   "alias": [
+    "orbitreverse",
+    "orbit reverse"
+   ],
+   "meaning": "xoay ngược chiều quanh chủ thể"
+  },
+  "looppath": {
+   "alias": [
+    "looppath",
+    "loop path"
+   ],
+   "meaning": "đường đi khép kín, nối được thành vòng"
+  },
+  "slowreveal": {
+   "alias": [
+    "slowreveal"
+   ],
+   "meaning": "để lộ chủ thể/vật từ từ"
+  },
+  "characterreveal": {
+   "alias": [
+    "characterreveal"
+   ],
+   "meaning": "để lộ nhân vật"
+  },
+  "facereveal": {
+   "alias": [
+    "facereveal"
+   ],
+   "meaning": "để lộ gương mặt"
+  },
+  "environmentreveal": {
+   "alias": [
+    "environmentreveal"
+   ],
+   "meaning": "để lộ bối cảnh"
+  },
+  "pullbackreveal": {
+   "alias": [
+    "pullbackreveal"
+   ],
+   "meaning": "lùi ra để lộ toàn cảnh"
+  },
+  "doorreveal": {
+   "alias": [
+    "doorreveal"
+   ],
+   "meaning": "để lộ qua ô cửa"
+  },
+  "curtainreveal": {
+   "alias": [
+    "curtainreveal"
+   ],
+   "meaning": "để lộ như kéo màn"
+  },
+  "closeup": {
+   "alias": [
+    "closeup"
+   ],
+   "meaning": "cận cảnh, tập trung chi tiết nhỏ"
+  },
+  "wide": {
+   "alias": [
+    "wide",
+    "wideangle"
+   ],
+   "meaning": "góc rộng, thấy toàn cảnh"
+  },
+  "tight": {
+   "alias": [
+    "tight"
+   ],
+   "meaning": "khung chặt, ít khoảng thở"
+  },
+  "establishing": {
+   "alias": [
+    "establishing"
+   ],
+   "meaning": "cú mở cảnh, giới thiệu bối cảnh"
+  },
+  "overhead": {
+   "alias": [
+    "overhead"
+   ],
+   "meaning": "nhìn từ trên xuống"
+  },
+  "lowangle": {
+   "alias": [
+    "lowangle"
+   ],
+   "meaning": "góc thấp, chủ thể trông lớn"
+  },
+  "highangle": {
+   "alias": [
+    "highangle"
+   ],
+   "meaning": "góc cao, chủ thể trông nhỏ"
+  },
+  "pov": {
+   "alias": [
+    "pov"
+   ],
+   "meaning": "góc nhìn thứ nhất của nhân vật"
+  },
+  "firstperson": {
+   "alias": [
+    "firstperson"
+   ],
+   "meaning": "như đang ở trong mắt nhân vật"
+  },
+  "overtheshoulder": {
+   "alias": [
+    "overtheshoulder"
+   ],
+   "meaning": "qua vai, thấy đối tượng phía trước"
+  },
+  "fullbody": {
+   "alias": [
+    "fullbody"
+   ],
+   "meaning": "lấy trọn người từ đầu tới chân"
+  },
+  "heroshot": {
+   "alias": [
+    "heroshot"
+   ],
+   "meaning": "cú tôn chủ thể, thường góc thấp"
+  },
+  "centered": {
+   "alias": [
+    "centered"
+   ],
+   "meaning": "chủ thể đặt chính giữa khung"
+  },
+  "rackfocus": {
+   "alias": [
+    "rackfocus"
+   ],
+   "meaning": "chuyển nét từ vật này sang vật khác"
+  },
+  "focuspull": {
+   "alias": [
+    "focuspull"
+   ],
+   "meaning": "rút nét ra/vào chủ thể"
+  },
+  "shallowfocus": {
+   "alias": [
+    "shallowfocus"
+   ],
+   "meaning": "nét mỏng, nền mờ"
+  },
+  "deepfocus": {
+   "alias": [
+    "deepfocus"
+   ],
+   "meaning": "nét sâu, cả gần lẫn xa đều rõ"
+  },
+  "foregroundblur": {
+   "alias": [
+    "foregroundblur"
+   ],
+   "meaning": "vật tiền cảnh mờ"
+  },
+  "backgroundblur": {
+   "alias": [
+    "backgroundblur"
+   ],
+   "meaning": "hậu cảnh mờ"
+  },
+  "bokeh": {
+   "alias": [
+    "bokeh"
+   ],
+   "meaning": "đốm sáng mờ ở vùng ngoài nét"
+  },
+  "shallowdepth": {
+   "alias": [
+    "shallowdepth"
+   ],
+   "meaning": "chiều sâu trường ảnh mỏng"
+  },
+  "telephoto": {
+   "alias": [
+    "telephoto"
+   ],
+   "meaning": "ống kính tele, nén không gian"
+  },
+  "macrofocus": {
+   "alias": [
+    "macrofocus"
+   ],
+   "meaning": "lấy nét cận siêu nhỏ"
+  },
+  "macro": {
+   "alias": [
+    "macro"
+   ],
+   "meaning": "cú máy cận chi tiết"
+  },
+  "lensflare": {
+   "alias": [
+    "lensflare"
+   ],
+   "meaning": "lóe sáng do ống kính"
+  },
+  "anamorphic": {
+   "alias": [
+    "anamorphic"
+   ],
+   "meaning": "ống kính anamorphic, nhòe ngang đặc trưng"
+  },
+  "softfocus": {
+   "alias": [
+    "softfocus"
+   ],
+   "meaning": "nét mềm, mờ nhẹ như mơ"
+  },
+  "goldenhour": {
+   "alias": [
+    "goldenhour"
+   ],
+   "meaning": "giờ vàng, nắng ấm lúc bình minh/hoàng hôn"
+  },
+  "bluehour": {
+   "alias": [
+    "bluehour"
+   ],
+   "meaning": "giờ xanh, chạng vạng lạnh"
+  },
+  "neonlight": {
+   "alias": [
+    "neonlight"
+   ],
+   "meaning": "đèn neon rực màu"
+  },
+  "moody": {
+   "alias": [
+    "moody"
+   ],
+   "meaning": "sáng tối tương phản, nặng tâm trạng"
+  },
+  "softlight": {
+   "alias": [
+    "softlight"
+   ],
+   "meaning": "sáng tán xạ, bóng mềm"
+  },
+  "rimlight": {
+   "alias": [
+    "rimlight"
+   ],
+   "meaning": "viền sáng quanh rìa chủ thể"
+  },
+  "silhouette": {
+   "alias": [
+    "silhouette"
+   ],
+   "meaning": "chủ thể thành bóng đen trên nền sáng"
+  },
+  "spotlight": {
+   "alias": [
+    "spotlight"
+   ],
+   "meaning": "đèn rọi một điểm"
+  },
+  "volumetric": {
+   "alias": [
+    "volumetric"
+   ],
+   "meaning": "chùm sáng thấy được trong không khí"
+  },
+  "backlight": {
+   "alias": [
+    "backlight"
+   ],
+   "meaning": "sáng từ phía sau chủ thể"
+  },
+  "nightscene": {
+   "alias": [
+    "nightscene"
+   ],
+   "meaning": "cảnh ban đêm"
+  },
+  "dramaticlighting": {
+   "alias": [
+    "dramaticlighting"
+   ],
+   "meaning": "sáng kịch tính, tương phản mạnh"
+  },
+  "minimal": {
+   "alias": [
+    "minimal"
+   ],
+   "meaning": "tối giản, ít chi tiết thừa"
+  },
+  "leadinglines": {
+   "alias": [
+    "leadinglines"
+   ],
+   "meaning": "đường dẫn mắt về chủ thể"
+  },
+  "ruleofthirds": {
+   "alias": [
+    "ruleofthirds"
+   ],
+   "meaning": "chia khung 1/3, chủ thể ở giao điểm"
+  },
+  "symmetry": {
+   "alias": [
+    "symmetry"
+   ],
+   "meaning": "đối xứng hai bên"
+  },
+  "foreground": {
+   "alias": [
+    "foreground"
+   ],
+   "meaning": "có vật tiền cảnh tạo lớp"
+  },
+  "framewithinframe": {
+   "alias": [
+    "framewithinframe"
+   ],
+   "meaning": "khung trong khung (cửa, vòm)"
+  },
+  "diagonal": {
+   "alias": [
+    "diagonal"
+   ],
+   "meaning": "bố cục chéo tạo động"
+  },
+  "negativespace": {
+   "alias": [
+    "negativespace"
+   ],
+   "meaning": "khoảng trống lớn quanh chủ thể"
+  },
+  "slowmotion": {
+   "alias": [
+    "slowmotion"
+   ],
+   "meaning": "quay chậm"
+  },
+  "timelapse": {
+   "alias": [
+    "timelapse"
+   ],
+   "meaning": "tua nhanh thời gian"
+  },
+  "hyperlapse": {
+   "alias": [
+    "hyperlapse"
+   ],
+   "meaning": "tua nhanh kèm di chuyển"
+  },
+  "speedramp": {
+   "alias": [
+    "speedramp"
+   ],
+   "meaning": "đổi tốc độ giữa clip (chậm ↔ nhanh)"
+  },
+  "speedup": {
+   "alias": [
+    "speedup"
+   ],
+   "meaning": "tăng tốc"
+  },
+  "motionblur": {
+   "alias": [
+    "motionblur"
+   ],
+   "meaning": "nhòe chuyển động"
+  },
+  "smoothmotion": {
+   "alias": [
+    "smoothmotion"
+   ],
+   "meaning": "chuyển động mượt"
+  },
+  "naturalmotion": {
+   "alias": [
+    "naturalmotion"
+   ],
+   "meaning": "chuyển động tự nhiên như thật"
+  },
+  "freeze": {
+   "alias": [
+    "freeze",
+    "freezeframe"
+   ],
+   "meaning": "đứng hình một khung"
+  },
+  "reverse": {
+   "alias": [
+    "reverse"
+   ],
+   "meaning": "chạy ngược"
+  },
+  "loop": {
+   "alias": [
+    "loop"
+   ],
+   "meaning": "lặp liền mạch"
+  },
+  "bullettime": {
+   "alias": [
+    "bullettime"
+   ],
+   "meaning": "thời gian đóng băng, camera vẫn đi"
+  },
+  "floating": {
+   "alias": [
+    "floating"
+   ],
+   "meaning": "trôi lơ lửng"
+  },
+  "falling": {
+   "alias": [
+    "falling"
+   ],
+   "meaning": "rơi xuống"
+  },
+  "running": {
+   "alias": [
+    "running"
+   ],
+   "meaning": "đang chạy"
+  },
+  "walking": {
+   "alias": [
+    "walking"
+   ],
+   "meaning": "đang đi bộ"
+  },
+  "turnaround": {
+   "alias": [
+    "turnaround"
+   ],
+   "meaning": "chủ thể xoay người"
+  },
+  "reveal": {
+   "alias": [
+    "reveal"
+   ],
+   "meaning": "để lộ chủ thể/vật"
+  },
+  "entrance": {
+   "alias": [
+    "entrance"
+   ],
+   "meaning": "chủ thể đi vào khung"
+  },
+  "exit": {
+   "alias": [
+    "exit"
+   ],
+   "meaning": "chủ thể rời khung"
+  },
+  "morph": {
+   "alias": [
+    "morph"
+   ],
+   "meaning": "biến đổi vật này thành vật khác"
+  },
+  "glitch": {
+   "alias": [
+    "glitch"
+   ],
+   "meaning": "nhiễu hình kiểu lỗi kỹ thuật"
+  },
+  "matchcut": {
+   "alias": [
+    "matchcut"
+   ],
+   "meaning": "cắt nối hai cảnh giống hình dạng/chuyển động"
+  },
+  "whiptransition": {
+   "alias": [
+    "whiptransition"
+   ],
+   "meaning": "chuyển cảnh bằng cú quét nhanh"
+  },
+  "zoomtransition": {
+   "alias": [
+    "zoomtransition"
+   ],
+   "meaning": "chuyển cảnh bằng thu phóng"
+  },
+  "smoketransition": {
+   "alias": [
+    "smoketransition"
+   ],
+   "meaning": "chuyển cảnh qua khói"
+  },
+  "flashtransition": {
+   "alias": [
+    "flashtransition"
+   ],
+   "meaning": "chuyển cảnh bằng lóe sáng"
+  },
+  "blurtransition": {
+   "alias": [
+    "blurtransition"
+   ],
+   "meaning": "chuyển cảnh qua nhòe"
+  },
+  "lightleak": {
+   "alias": [
+    "lightleak"
+   ],
+   "meaning": "vệt sáng lọt vào khung"
+  },
+  "seamlessloop": {
+   "alias": [
+    "seamlessloop"
+   ],
+   "meaning": "lặp không thấy điểm nối"
+  },
+  "infinitezoom": {
+   "alias": [
+    "infinitezoom"
+   ],
+   "meaning": "zoom sâu vô tận"
+  },
+  "worldtransition": {
+   "alias": [
+    "worldtransition"
+   ],
+   "meaning": "chuyển sang thế giới khác"
+  },
+  "objecttransition": {
+   "alias": [
+    "objecttransition"
+   ],
+   "meaning": "chuyển cảnh qua một vật thể"
+  },
+  "scifi": {
+   "alias": [
+    "scifi"
+   ],
+   "meaning": "khoa học viễn tưởng"
+  },
+  "cyberpunk": {
+   "alias": [
+    "cyberpunk"
+   ],
+   "meaning": "tương lai neon, tối, đường phố ướt"
+  },
+  "paperworld": {
+   "alias": [
+    "paperworld"
+   ],
+   "meaning": "thế giới làm bằng giấy"
+  },
+  "miniature": {
+   "alias": [
+    "miniature",
+    "toyworld"
+   ],
+   "meaning": "mô hình thu nhỏ như đồ chơi"
+  },
+  "space": {
+   "alias": [
+    "space"
+   ],
+   "meaning": "không gian vũ trụ"
+  },
+  "underwater": {
+   "alias": [
+    "underwater"
+   ],
+   "meaning": "dưới nước"
+  },
+  "fog": {
+   "alias": [
+    "fog",
+    "mist"
+   ],
+   "meaning": "sương mù"
+  },
+  "storm": {
+   "alias": [
+    "storm"
+   ],
+   "meaning": "bão"
+  },
+  "rain": {
+   "alias": [
+    "rain",
+    "heavyrain"
+   ],
+   "meaning": "mưa / mưa lớn"
+  },
+  "snow": {
+   "alias": [
+    "snow"
+   ],
+   "meaning": "tuyết"
+  },
+  "fire": {
+   "alias": [
+    "fire"
+   ],
+   "meaning": "lửa"
+  },
+  "explosion": {
+   "alias": [
+    "explosion"
+   ],
+   "meaning": "vụ nổ"
+  },
+  "portal": {
+   "alias": [
+    "portal"
+   ],
+   "meaning": "cổng không gian"
+  },
+  "particlefx": {
+   "alias": [
+    "particlefx",
+    "particles"
+   ],
+   "meaning": "hạt hiệu ứng bay"
+  },
+  "wind": {
+   "alias": [
+    "wind"
+   ],
+   "meaning": "gió thổi"
+  },
+  "dust": {
+   "alias": [
+    "dust"
+   ],
+   "meaning": "bụi bay"
+  },
+  "clouds": {
+   "alias": [
+    "clouds"
+   ],
+   "meaning": "mây"
+  },
+  "sunrays": {
+   "alias": [
+    "sunrays",
+    "godrays"
+   ],
+   "meaning": "tia nắng xuyên qua"
+  },
+  "fallingleaves": {
+   "alias": [
+    "fallingleaves"
+   ],
+   "meaning": "lá rơi"
+  },
+  "flowerpetals": {
+   "alias": [
+    "flowerpetals"
+   ],
+   "meaning": "cánh hoa bay"
+  },
+  "watersplash": {
+   "alias": [
+    "watersplash"
+   ],
+   "meaning": "nước bắn"
+  },
+  "reflection": {
+   "alias": [
+    "reflection"
+   ],
+   "meaning": "phản chiếu"
+  },
+  "cinematic": {
+   "alias": [
+    "cinematic"
+   ],
+   "meaning": "chất điện ảnh, tương phản và màu như phim"
+  },
+  "filmic": {
+   "alias": [
+    "filmic"
+   ],
+   "meaning": "giống phim nhựa, hạt mịn"
+  },
+  "commercial": {
+   "alias": [
+    "commercial"
+   ],
+   "meaning": "sạch, sáng, kiểu quảng cáo"
+  },
+  "luxury": {
+   "alias": [
+    "luxury"
+   ],
+   "meaning": "cao cấp, tối, kim loại, chậm"
+  },
+  "documentary": {
+   "alias": [
+    "documentary"
+   ],
+   "meaning": "chân thực như phim tài liệu"
+  },
+  "vintagefilm": {
+   "alias": [
+    "vintagefilm"
+   ],
+   "meaning": "phim cũ, màu bạc"
+  },
+  "dreamy": {
+   "alias": [
+    "dreamy"
+   ],
+   "meaning": "mơ màng, mềm, sáng nhẹ"
+  },
+  "epic": {
+   "alias": [
+    "epic"
+   ],
+   "meaning": "hoành tráng, quy mô lớn"
+  },
+  "surreal": {
+   "alias": [
+    "surreal"
+   ],
+   "meaning": "siêu thực, phi logic"
+  },
+  "blockbuster": {
+   "alias": [
+    "blockbuster"
+   ],
+   "meaning": "kiểu phim bom tấn"
+  },
+  "productreveal": {
+   "alias": [
+    "productreveal"
+   ],
+   "meaning": "mở lộ sản phẩm"
+  },
+  "productspin": {
+   "alias": [
+    "productspin"
+   ],
+   "meaning": "sản phẩm xoay"
+  },
+  "unboxing": {
+   "alias": [
+    "unboxing"
+   ],
+   "meaning": "mở hộp"
+  },
+  "logoreveal": {
+   "alias": [
+    "logoreveal"
+   ],
+   "meaning": "lộ logo"
+  },
+  "fashionfilm": {
+   "alias": [
+    "fashionfilm"
+   ],
+   "meaning": "phim thời trang"
+  },
+  "techad": {
+   "alias": [
+    "techad"
+   ],
+   "meaning": "quảng cáo đồ công nghệ"
+  },
+  "foodcommercial": {
+   "alias": [
+    "foodcommercial"
+   ],
+   "meaning": "quảng cáo đồ ăn"
+  },
+  "socialad": {
+   "alias": [
+    "socialad"
+   ],
+   "meaning": "quảng cáo cho mạng xã hội"
+  },
+  "billboard": {
+   "alias": [
+    "billboard"
+   ],
+   "meaning": "dạng biển quảng cáo"
+  },
+  "beforeafter": {
+   "alias": [
+    "beforeafter",
+    "before-and-after"
+   ],
+   "meaning": "trước và sau"
+  },
+  "ugc-product-hook": {
+   "alias": [
+    "ugc-product-hook"
+   ],
+   "meaning": "mở đầu kiểu người dùng thật giới thiệu sản phẩm"
+  },
+  "ugc-testimonial": {
+   "alias": [
+    "ugc-testimonial"
+   ],
+   "meaning": "người dùng thật đánh giá"
+  },
+  "premium-unboxing": {
+   "alias": [
+    "premium-unboxing"
+   ],
+   "meaning": "mở hộp cao cấp"
+  },
+  "asmr-unboxing": {
+   "alias": [
+    "asmr-unboxing"
+   ],
+   "meaning": "mở hộp kèm âm thanh cận"
+  },
+  "product-demo-ad": {
+   "alias": [
+    "product-demo-ad"
+   ],
+   "meaning": "quảng cáo demo cách dùng"
+  },
+  "problem-solution-ad": {
+   "alias": [
+    "problem-solution-ad"
+   ],
+   "meaning": "nêu vấn đề rồi đưa giải pháp"
+  },
+  "tiktok-style-ad": {
+   "alias": [
+    "tiktok-style-ad"
+   ],
+   "meaning": "quảng cáo kiểu TikTok"
+  },
+  "3-second-hook": {
+   "alias": [
+    "3-second-hook"
+   ],
+   "meaning": "3 giây đầu giữ chân người xem"
+  },
+  "pattern-interrupt": {
+   "alias": [
+    "pattern-interrupt"
+   ],
+   "meaning": "phá nhịp để gây chú ý"
+  },
+  "luxury-product-ad": {
+   "alias": [
+    "luxury-product-ad"
+   ],
+   "meaning": "quảng cáo sản phẩm cao cấp"
+  },
+  "conversion-ad": {
+   "alias": [
+    "conversion-ad"
+   ],
+   "meaning": "quảng cáo hướng chuyển đổi"
+  },
+  "buy-now-ad": {
+   "alias": [
+    "buy-now-ad"
+   ],
+   "meaning": "quảng cáo thúc mua ngay"
+  },
+  "day-in-my-life": {
+   "alias": [
+    "day-in-my-life"
+   ],
+   "meaning": "một ngày của tôi"
+  },
+  "product-launch-ad": {
+   "alias": [
+    "product-launch-ad"
+   ],
+   "meaning": "quảng cáo ra mắt sản phẩm"
+  },
+  "360-degree-showcase": {
+   "alias": [
+    "360-degree-showcase"
+   ],
+   "meaning": "trưng bày 360°"
+  }
+ },
+ "imageCodes": {
+  "Chân dung / Headshot": [
+   "actorheadshot",
+   "authorphoto",
+   "bwportrait",
+   "casualheadshot",
+   "corporateheadshot",
+   "datingprofile",
+   "doctorportrait",
+   "fitnessportrait",
+   "founderportrait",
+   "goldenhourportrait",
+   "graduationportrait",
+   "headshot",
+   "outfitswap",
+   "passportphoto",
+   "podcastportrait",
+   "realtorheadshot",
+   "speakerphoto",
+   "teamphoto",
+   "vintageportrait"
+  ],
+  "Sản phẩm": [
+   "amazonready",
+   "backgroundswap",
+   "beforeafterproduct",
+   "catalogset",
+   "colorways",
+   "flatlay",
+   "floatingproduct",
+   "ghostmannequin",
+   "glassreflection",
+   "handheld",
+   "heroimage",
+   "lifestyleshot",
+   "luxuryshot",
+   "macroshot",
+   "naturebackdrop",
+   "onmodel",
+   "podiumshot",
+   "productshot",
+   "seasonalshot",
+   "splashshot"
+  ],
+  "Bóc tách & 3D": [
+   "assemblysteps",
+   "blueprintview",
+   "clayrender",
+   "cutaway",
+   "exploded3d",
+   "giantscale",
+   "insidethebox",
+   "isometricproduct",
+   "materialswap",
+   "miniature",
+   "partslist",
+   "turntable",
+   "wireframerender",
+   "xrayview"
+  ],
+  "Quảng cáo": [
+   "adset",
+   "adstoryboard",
+   "appstoreshots",
+   "bannerad",
+   "billboard",
+   "busstopad",
+   "carouselad",
+   "comparisonad",
+   "emailheader",
+   "landingmock",
+   "magazinead",
+   "offerad",
+   "retargetad",
+   "staticad",
+   "storyad",
+   "subwayad",
+   "testimonialad",
+   "uglyad"
+  ],
+  "Branding & Logo": [
+   "appicon",
+   "brandboard",
+   "brandmerch",
+   "businesscard",
+   "colorpalette",
+   "favicon",
+   "iconlogo",
+   "letterhead",
+   "logoconcepts",
+   "logomotion",
+   "mascotdesign",
+   "monogram",
+   "patterndesign",
+   "rebrand",
+   "storefront",
+   "wordmark"
+  ],
+  "Social": [
+   "announcementpost",
+   "carouselcover",
+   "countdownpost",
+   "eventflyer",
+   "instagrid",
+   "linkedinbanner",
+   "memeformat",
+   "pinterestpin",
+   "podcastcover",
+   "profilepic",
+   "quotecard",
+   "reelcover",
+   "statgraphic",
+   "storycover",
+   "thumbnailimage",
+   "tiktokcover",
+   "twitterheader",
+   "youtubebanner"
+  ],
+  "Mockup & Bao bì": [
+   "bagmockup",
+   "bookcover",
+   "bottlelabel",
+   "boxmockup",
+   "canmockup",
+   "giftbox",
+   "laptopmockup",
+   "menudesign",
+   "packagingdesign",
+   "phonemockup",
+   "postermockup",
+   "shelfshot",
+   "stickersheet",
+   "tshirtmockup"
+  ],
+  "Đồ ăn / Nội thất / BĐS": [
+   "drinkshot",
+   "exteriorrender",
+   "floorplan3d",
+   "foodshot",
+   "gardenplan",
+   "kitchenreno",
+   "listingphoto",
+   "menuphoto",
+   "moodboard",
+   "nightshot",
+   "officespace",
+   "recipecard",
+   "roomredesign",
+   "virtualstaging"
+  ],
+  "Minh họa & Art style": [
+   "3dcharacter",
+   "3drender",
+   "anime",
+   "blender",
+   "cartoonme",
+   "charcoal",
+   "childrensbook",
+   "claymation",
+   "comicbook",
+   "conceptart",
+   "crosshatching",
+   "embroidery",
+   "environmentart",
+   "ghibli",
+   "graffiti",
+   "inkdrawing",
+   "lineart",
+   "lowpoly",
+   "manga",
+   "mattepainting",
+   "octanerender",
+   "oilpainting",
+   "papercut",
+   "pencilsketch",
+   "pixar",
+   "pixelart",
+   "popart",
+   "sketchbook",
+   "stainedglass",
+   "tattoodesign",
+   "unrealengine",
+   "vectorflat",
+   "voxel",
+   "watercolor"
+  ],
+  "Infographic / Sơ đồ": [
+   "anatomyof",
+   "checklistgraphic",
+   "comparisonchart",
+   "howtoillustration",
+   "iconset",
+   "infographic",
+   "mapgraphic",
+   "orgchart",
+   "pricingtable",
+   "processdiagram",
+   "roadmapgraphic",
+   "slidevisual",
+   "statposter",
+   "timelineposter"
+  ],
+  "Cá nhân / Vui": [
+   "actionfigure",
+   "ageprogression",
+   "babyphoto",
+   "caricature",
+   "dreamcar",
+   "fantasyme",
+   "holidaycard",
+   "magazinecover",
+   "movieposter",
+   "petportrait",
+   "superhero",
+   "timetravel",
+   "tradingcard",
+   "weddinginvite"
+  ]
+ },
+ "combos": [
+  {
+   "funnel": "A",
+   "name": "Hero sản phẩm",
+   "codes": [
+    "/productspin",
+    "/tightorbit",
+    "/macrofocus",
+    "/rimlight",
+    "/luxury"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Cận chất liệu",
+   "codes": [
+    "/macrofocus",
+    "/slowpush",
+    "/shallowdepth",
+    "/softlight",
+    "/filmic"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Mở hộp",
+   "codes": [
+    "/premium-unboxing",
+    "/tablerise",
+    "/shallowfocus",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Demo công dụng",
+   "codes": [
+    "/product-demo-ad",
+    "/before-and-after",
+    "/matchcut",
+    "/softlight",
+    "/commercial"
+   ]
+  },
+  {
+   "funnel": "V",
+   "name": "Chốt đơn",
+   "codes": [
+    "/buy-now-ad",
+    "/3-second-hook",
+    "/fastpush",
+    "/spotlight",
+    "/commercial"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Xoay 360°",
+   "codes": [
+    "/360-degree-showcase",
+    "/orbit360",
+    "/gimbalglide",
+    "/softlight",
+    "/minimal"
+   ]
+  },
+  {
+   "funnel": "A",
+   "name": "Hook 3 giây",
+   "codes": [
+    "/3-second-hook",
+    "/pattern-interrupt",
+    "/whippan",
+    "/neonlight",
+    "/blockbuster"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "UGC người thật",
+   "codes": [
+    "/ugc-product-hook",
+    "/handheldwalk",
+    "/naturalmotion",
+    "/softlight",
+    "/documentary"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Testimonial",
+   "codes": [
+    "/ugc-testimonial",
+    "/closeup",
+    "/slowpush",
+    "/softlight",
+    "/documentary"
+   ]
+  },
+  {
+   "funnel": "C",
+   "name": "Vấn đề → giải pháp",
+   "codes": [
+    "/problem-solution-ad",
+    "/matchcut",
+    "/descendpush",
+    "/moody",
+    "/commercial"
+   ]
+  },
+  {
+   "funnel": "V",
+   "name": "Thúc mua",
+   "codes": [
+    "/conversion-ad",
+    "/buy-now-ad",
+    "/speedramp",
+    "/productspin",
+    "/commercial"
+   ]
+  },
+  {
+   "funnel": "A",
+   "name": "Quảng cáo cao cấp",
+   "codes": [
+    "/luxury-product-ad",
+    "/slowpush",
+    "/rimlight",
+    "/smoke",
+    "/luxury"
+   ]
+  }
+ ],
+ "codeMeanings": {
+  "en": {
+   "video": {
+    "dollyin": "Camera pushes straight toward subject",
+    "fastpush": "Fast push in then decelerate",
+    "diagonalpush": "Diagonal push across the frame",
+    "ceilingpush": "High push in close to ceiling",
+    "dolly": "Dolly in or out on rails, generic",
+    "zoom": "Lens zoom without moving camera",
+    "slowzoom": "Slow zoom",
+    "truckright": "Truck sideways to the right",
+    "diagonalslide": "Sideways slide with slight push in",
+    "pillarreveal": "Slide out from behind a pillar",
+    "parallelwall": "Slide parallel along a wall",
+    "panright": "Pan horizontally to the right",
+    "whippan": "Very fast blurred whip pan",
+    "anticipationpan": "Pan ahead before subject arrives",
+    "scanreturn": "Scan the scene then return to start",
+    "pedestaldown": "Lower the camera straight down",
+    "jibreveal": "Jib rises over obstruction to reveal",
+    "roofreveal": "Rise up over a rooftop",
+    "stairascent": "Follow subject up the stairs",
+    "arcright": "Arc around to the right",
+    "orbit360": "Full 360 degree orbit around subject",
+    "loworbit": "Orbit from a low angle",
+    "spiraldescend": "Spiral down while rotating",
+    "rearfollow": "Follow behind the subject",
+    "shoulderfollow": "Over-the-shoulder follow",
+    "highfollow": "Follow from a high angle",
+    "catchup": "Catch up to the subject",
+    "tracking": "Camera moves alongside the subject",
+    "backwardtracking": "Track backward ahead of subject",
+    "droneapproach": "Drone flies in from a distance",
+    "dronedescend": "Drone descends straight down",
+    "droneflyby": "Drone flies past sideways",
+    "ridgereveal": "Fly over a ridge to reveal",
+    "aerialshot": "Aerial shot, high opening view",
+    "droneforward": "Drone moves forward, back, up or down",
+    "fpvchase": "FPV-style chase of a target",
+    "fpvbank": "FPV camera banks into a turn",
+    "tunnelflight": "Flight through a tunnel",
+    "groundskim": "Skim low over the ground",
+    "fpv": "First-person drone camera view",
+    "handheldwalk": "Handheld shot while walking",
+    "gimbalglide": "Smooth gimbal glide",
+    "helmetturn": "Helmet-cam view as the head turns",
+    "wheeltrack": "Low shot tracking a wheel",
+    "steadicam": "Balanced smooth Steadicam movement",
+    "pushorbit": "Push in while orbiting the subject",
+    "descendpush": "Descend while pushing in",
+    "tiltretreat": "Tilt down while retreating",
+    "looppath": "Closed path that joins into a loop",
+    "facereveal": "Reveal the face",
+    "doorreveal": "Reveal through a doorway",
+    "wide": "Wide angle showing the whole scene",
+    "overhead": "Top-down overhead view",
+    "pov": "Character's first-person point of view",
+    "fullbody": "Full body head-to-toe framing",
+    "rackfocus": "Rack focus from one subject to another",
+    "deepfocus": "Deep focus, near and far both sharp",
+    "bokeh": "Soft out-of-focus bokeh highlights",
+    "macrofocus": "Extreme close-up macro focus",
+    "anamorphic": "Anamorphic lens with horizontal flare",
+    "bluehour": "Cold blue hour twilight",
+    "softlight": "Diffused light with soft shadows",
+    "spotlight": "Single spotlight on one spot",
+    "nightscene": "Night scene",
+    "leadinglines": "Leading lines guiding the eye",
+    "foreground": "Foreground object adding depth",
+    "negativespace": "Large empty space around subject",
+    "hyperlapse": "Fast time-lapse with camera movement",
+    "motionblur": "Motion blur",
+    "freeze": "Freeze on a single frame",
+    "bullettime": "Bullet time, frozen time with moving camera",
+    "running": "Running action",
+    "reveal": "Reveal the subject or object",
+    "morph": "Morph one object into another",
+    "whiptransition": "Whip-pan scene transition",
+    "flashtransition": "Flash of light transition",
+    "seamlessloop": "Seamless loop with no visible seam",
+    "objecttransition": "Transition through an object",
+    "paperworld": "World made of paper",
+    "underwater": "Underwater scene",
+    "rain": "Rain or heavy downpour",
+    "explosion": "Explosion blast",
+    "wind": "Blowing wind",
+    "sunrays": "Sun rays breaking through",
+    "watersplash": "Water splash",
+    "filmic": "Filmic look with fine grain",
+    "documentary": "Documentary-style realism",
+    "epic": "Epic large-scale look",
+    "productreveal": "Product reveal",
+    "logoreveal": "Logo reveal",
+    "foodcommercial": "Food commercial look",
+    "beforeafter": "Before and after comparison",
+    "premium-unboxing": "Premium unboxing",
+    "problem-solution-ad": "Problem-then-solution ad",
+    "pattern-interrupt": "Pattern interrupt to grab attention",
+    "buy-now-ad": "Buy-now urgency ad",
+    "360-degree-showcase": "360 degree product showcase",
+    "dollyout": "Camera pulls back, revealing more of the scene",
+    "micropush": "Slight push in, adding depth",
+    "diagonalretreat": "Diagonal backward retreat",
+    "pushthrough": "Move forward through a doorway",
+    "pushin": "Push in toward the subject",
+    "zoomin": "Zoom in",
+    "fastzoom": "Rapid zoom",
+    "shortslider": "Short lateral slider move",
+    "countertrack": "Camera moves against the subject's direction",
+    "windowslide": "Slide in from outside a window",
+    "layeredslide": "Slide through several depth layers",
+    "tiltup": "Tilt the camera upward",
+    "whiptilt": "Very fast whip tilt upward",
+    "delayedpan": "Let the subject pass, then pan to follow",
+    "pansweep": "180° sweep revealing the full scene",
+    "craneup": "Crane rises along a wide arc",
+    "risetilt": "Rise while tilting down",
+    "tablerise": "Rise up from below a table surface",
+    "stairdescent": "Follow the subject down the stairs",
+    "quarterorbit": "90° orbit around the subject",
+    "tightorbit": "Close orbit around the subject",
+    "highorbit": "Orbit from a high angle",
+    "orbittighten": "Orbit while gradually tightening the radius",
+    "frontfollow": "Back away in front of the subject",
+    "three-quarterfollow": "Follow from a front three-quarter angle",
+    "overtake": "Overtake the subject and move ahead",
+    "curvefollow": "Follow the subject along a curve",
+    "follow": "Follow move (generic)",
+    "gimbal": "Smooth, stabilized follow with no shake",
+    "dronepullback": "Drone pulls back to reveal the scene",
+    "droneorbit": "Drone orbits around the target",
+    "topdowntravel": "Travel forward while looking straight down",
+    "aerialretreat": "Fly back and rise at the same time",
+    "birdseye": "Straight-down bird's-eye view",
+    "drone": "Drone shot (generic)",
+    "fpvdive": "FPV dive straight down",
+    "fpvslalom": "FPV weaving through obstacles",
+    "windowflythrough": "Fly through a window",
+    "canopyflight": "Fly beneath the tree canopy",
+    "fpvflythrough": "Fly through an interior space",
+    "handheldrun": "Handheld while running",
+    "gimbalcorner": "Smooth cornering follow on a gimbal",
+    "vehicleforward": "Vehicle-mounted, driving forward",
+    "snorricamwalk": "Body-mounted, face held centered while walking",
+    "dollyzoom": "Pull back while zooming in (Vertigo effect)",
+    "orbitpullback": "Orbit while pulling back",
+    "trackreveal": "Lateral track revealing the scene",
+    "slidearc": "Lateral slide along an arc",
+    "slowreveal": "Gradually reveal the subject or object",
+    "environmentreveal": "Reveal the surroundings",
+    "curtainreveal": "Reveal like a curtain being drawn",
+    "tight": "Tight framing with little breathing room",
+    "lowangle": "Low angle, making the subject look large",
+    "firstperson": "As if seen through the character's eyes",
+    "heroshot": "Hero shot that flatters the subject, often low angle",
+    "focuspull": "Rack focus onto or off the subject",
+    "foregroundblur": "Blurred foreground object",
+    "shallowdepth": "Shallow depth of field",
+    "macro": "Extreme close-up detail shot",
+    "softfocus": "Soft, dreamy slight blur",
+    "neonlight": "Vivid neon lighting",
+    "rimlight": "Bright rim of light around the subject's edge",
+    "volumetric": "Visible light beams in the air",
+    "dramaticlighting": "Dramatic lighting with strong contrast",
+    "ruleofthirds": "Rule-of-thirds framing, subject on an intersection",
+    "framewithinframe": "Frame within a frame (door, arch)",
+    "slowmotion": "Slow motion",
+    "speedramp": "Speed change within the clip (slow to fast)",
+    "smoothmotion": "Smooth motion",
+    "reverse": "Played in reverse",
+    "floating": "Floating weightlessly",
+    "walking": "Subject walking",
+    "entrance": "Subject enters the frame",
+    "glitch": "Technical-fault glitch distortion",
+    "zoomtransition": "Transition via zoom",
+    "blurtransition": "Transition through blur",
+    "infinitezoom": "Infinitely deep zoom",
+    "scifi": "Science fiction",
+    "miniature": "Miniature toy-like scale",
+    "fog": "Foggy atmosphere",
+    "snow": "Falling snow",
+    "portal": "Sci-fi portal gateway",
+    "dust": "Floating dust",
+    "fallingleaves": "Falling leaves",
+    "reflection": "Mirror reflection",
+    "commercial": "Clean, bright, commercial look",
+    "vintagefilm": "Old film with faded silver tones",
+    "surreal": "Surreal and illogical",
+    "productspin": "Product spinning",
+    "fashionfilm": "Fashion film",
+    "socialad": "Ad for social media",
+    "ugc-product-hook": "Opening like a real user introducing the product",
+    "asmr-unboxing": "Unboxing with close-up sound",
+    "tiktok-style-ad": "TikTok-style ad",
+    "luxury-product-ad": "Premium product ad",
+    "day-in-my-life": "A day in my life",
+    "slowpush": "Very slow push-in building tension",
+    "longapproach": "Wide shot pushing into a close-up",
+    "groundpush": "Slide forward skimming the ground",
+    "retreatreveal": "Start close, pull back to reveal wide",
+    "pullout": "Pull back away from the subject",
+    "zoomout": "Zoom out",
+    "truckleft": "Lateral truck to the left",
+    "longslider": "Long lateral slider move",
+    "foregroundpass": "Glide past a foreground object",
+    "doorwayslide": "Slide through a doorway",
+    "panleft": "Pan horizontally to the left",
+    "tiltdown": "Tilt the camera downward",
+    "followpan": "Pan tracking a moving subject",
+    "diagonalpan": "Diagonal pan with a tilt",
+    "pedestalup": "Raise the camera vertically",
+    "cranedown": "Crane lowering on a wide arc",
+    "descendtilt": "Descend while tilting up",
+    "floordrop": "From standing height down to floor",
+    "arcleft": "Arc around to the left",
+    "halforbit": "Half orbit, 180 degrees",
+    "wideorbit": "Wide-radius orbit",
+    "spiralrise": "Orbit while rising",
+    "orbit": "Orbit around the subject (generic)",
+    "sidefollow": "Follow from the side",
+    "lowfollow": "Follow from a low angle",
+    "fallbehind": "Drop back behind the subject",
+    "handofftrack": "Hand off tracking to another subject",
+    "forwardtracking": "Track forward with the subject",
+    "dronefly": "Fly forward while ascending",
+    "droneascend": "Fly straight up",
+    "droneflyover": "Fly over the top of the target",
+    "coastlinefollow": "Follow along a coastline",
+    "droneview": "Aerial view from above",
+    "flyover": "Fly across the area",
+    "droneorbit360": "Full 360-degree orbit around the target",
+    "fpvclimb": "Climb steeply upward",
+    "gapflythrough": "Fly through a narrow gap",
+    "doorwayflight": "Fly through a doorway",
+    "fpvcorkscrew": "Move forward while spinning 360",
+    "handhelddrift": "Handheld gentle drift with natural shake",
+    "shouldersway": "Shaky sway as if resting on a shoulder",
+    "bodycamwalk": "Chest-mounted bodycam while walking",
+    "windowride": "Window-mounted car view looking outward",
+    "handheld": "Handheld (generic)",
+    "reversevertigo": "Push in while zooming out",
+    "risepullback": "Rise while pulling back",
+    "panpush": "Pan while pushing in",
+    "orbitreverse": "Orbit in the opposite direction",
+    "characterreveal": "Reveal the character",
+    "pullbackreveal": "Pull back to reveal the wide scene",
+    "closeup": "Close-up focused on a small detail",
+    "establishing": "Opening shot introducing the setting",
+    "highangle": "High angle making the subject look small",
+    "overtheshoulder": "Over-the-shoulder, showing the subject ahead",
+    "centered": "Subject centered in the frame",
+    "shallowfocus": "Shallow focus with a blurred background",
+    "backgroundblur": "Blurred background",
+    "telephoto": "Telephoto lens compressing space",
+    "lensflare": "Light flare from the lens",
+    "goldenhour": "Golden hour, warm dawn or dusk light",
+    "moody": "Contrasty dark tones, heavy mood",
+    "silhouette": "Subject as a dark shape against a bright background",
+    "backlight": "Light coming from behind the subject",
+    "minimal": "Minimal, few extra details",
+    "symmetry": "Symmetrical on both sides",
+    "diagonal": "Dynamic diagonal composition",
+    "timelapse": "Time-lapse with sped-up time",
+    "speedup": "Sped up",
+    "naturalmotion": "Natural, lifelike motion",
+    "loop": "Seamless loop",
+    "falling": "Falling downward",
+    "turnaround": "Subject turns around",
+    "exit": "Subject leaves the frame",
+    "matchcut": "Cut matching shape or motion between scenes",
+    "smoketransition": "Transition through smoke",
+    "lightleak": "Streak of light leaking into the frame",
+    "worldtransition": "Transition into another world",
+    "cyberpunk": "Neon future, dark wet streets",
+    "space": "Outer space",
+    "storm": "Stormy weather",
+    "fire": "Open flames",
+    "particlefx": "Floating effect particles",
+    "clouds": "Cloud formations",
+    "flowerpetals": "Falling flower petals",
+    "cinematic": "Cinematic film-like contrast and color",
+    "luxury": "Premium, dark, metallic, slow",
+    "dreamy": "Dreamy, soft, gently lit",
+    "blockbuster": "Blockbuster movie style",
+    "unboxing": "Unboxing reveal",
+    "techad": "Tech gadget commercial",
+    "billboard": "Billboard ad style",
+    "ugc-testimonial": "Real user testimonial",
+    "product-demo-ad": "Demo ad showing how to use it",
+    "3-second-hook": "First 3 seconds that hook the viewer",
+    "conversion-ad": "Conversion-focused ad",
+    "product-launch-ad": "Product launch ad"
+   },
+   "image": {
+    "actorheadshot": "Professional actor headshot for casting",
+    "authorphoto": "Author portrait for book jacket",
+    "bwportrait": "Black and white portrait",
+    "casualheadshot": "Relaxed casual professional headshot",
+    "corporateheadshot": "Corporate business headshot on office backdrop",
+    "datingprofile": "Approachable dating profile photo",
+    "doctorportrait": "Medical professional portrait in clinical setting",
+    "fitnessportrait": "Athletic fitness portrait with gym setting",
+    "founderportrait": "Startup founder portrait for company page",
+    "goldenhourportrait": "Portrait in warm golden hour light",
+    "graduationportrait": "Graduation portrait in cap and gown",
+    "headshot": "Standard professional headshot",
+    "outfitswap": "Portrait with outfit changed to new clothing",
+    "passportphoto": "Official passport photo on plain background",
+    "podcastportrait": "Podcast host portrait with microphone",
+    "realtorheadshot": "Real estate agent headshot",
+    "speakerphoto": "Conference speaker portrait on stage",
+    "teamphoto": "Group team photo for company",
+    "vintageportrait": "Retro vintage-style portrait",
+    "appicon": "Mobile app icon design",
+    "brandboard": "Brand identity board with assets",
+    "brandmerch": "Branded merchandise mockup collection",
+    "businesscard": "Business card design mockup",
+    "colorpalette": "Brand color palette swatches",
+    "favicon": "Website favicon icon design",
+    "iconlogo": "Icon-based logo mark",
+    "letterhead": "Company letterhead stationery design",
+    "logoconcepts": "Multiple logo concept options",
+    "logomotion": "Animated logo motion graphic",
+    "mascotdesign": "Brand mascot character design",
+    "monogram": "Monogram initials logo",
+    "patterndesign": "Seamless repeating pattern design",
+    "rebrand": "Refreshed rebrand identity design",
+    "storefront": "Retail storefront signage design",
+    "wordmark": "Typography-based wordmark logo",
+    "3dcharacter": "Three-dimensional character model",
+    "3drender": "Photorealistic 3D render",
+    "anime": "Japanese anime illustration style",
+    "blender": "Blender 3D software render style",
+    "cartoonme": "Cartoon caricature of the subject",
+    "charcoal": "Charcoal drawing style",
+    "childrensbook": "Children's book illustration style",
+    "claymation": "Claymation stop-motion clay style",
+    "comicbook": "Comic book panel art style",
+    "conceptart": "Concept art illustration",
+    "crosshatching": "Cross-hatched pen shading style",
+    "embroidery": "Embroidered stitched fabric artwork",
+    "environmentart": "Environment and scenery concept art",
+    "ghibli": "Studio Ghibli anime film style",
+    "graffiti": "Graffiti street art spray style",
+    "inkdrawing": "Ink pen drawing style",
+    "lineart": "Clean line art outline drawing",
+    "lowpoly": "Low-polygon geometric 3D style",
+    "manga": "Japanese manga black and white style",
+    "mattepainting": "Cinematic matte painting backdrop",
+    "octanerender": "Octane 3D render with glossy lighting",
+    "oilpainting": "Classical oil painting style",
+    "papercut": "Layered paper cut-out art style",
+    "pencilsketch": "Graphite pencil sketch style",
+    "pixar": "Pixar 3D animated film style",
+    "pixelart": "Retro pixel art sprite style",
+    "popart": "Pop art bold color style",
+    "sketchbook": "Hand-drawn sketchbook page style",
+    "stainedglass": "Stained glass window panel art",
+    "tattoodesign": "Tattoo flash design artwork",
+    "unrealengine": "Unreal Engine real-time 3D render",
+    "vectorflat": "Flat vector illustration style",
+    "voxel": "Voxel blocky 3D cube style",
+    "watercolor": "Watercolor painting style",
+    "amazonready": "Clean marketplace-compliant white background product image",
+    "backgroundswap": "Product with its background replaced",
+    "beforeafterproduct": "Side-by-side before and after product comparison",
+    "catalogset": "Consistent multi-angle catalog image set",
+    "colorways": "Product shown in multiple colour variants",
+    "flatlay": "Overhead top-down product layout",
+    "floatingproduct": "Product levitating against a plain backdrop",
+    "ghostmannequin": "Invisible mannequin apparel shot",
+    "glassreflection": "Product on a glossy reflective surface",
+    "handheld": "Product held in a hand",
+    "heroimage": "Main hero product image",
+    "lifestyleshot": "Product in a real-life usage setting",
+    "luxuryshot": "Premium styled luxury product image",
+    "macroshot": "Extreme close-up detail shot",
+    "naturebackdrop": "Product against a natural outdoor backdrop",
+    "onmodel": "Product worn or held by a model",
+    "podiumshot": "Product displayed on a raised podium",
+    "productshot": "Standard studio product image",
+    "seasonalshot": "Product styled for a seasonal theme",
+    "splashshot": "Product with liquid splash around it",
+    "announcementpost": "Bold announcement social post",
+    "carouselcover": "Cover slide for a social carousel",
+    "countdownpost": "Countdown or launch-timer social post",
+    "eventflyer": "Promotional event flyer graphic",
+    "instagrid": "Coordinated Instagram grid layout",
+    "linkedinbanner": "Professional LinkedIn profile banner",
+    "memeformat": "Meme-style image with caption text",
+    "pinterestpin": "Tall vertical Pinterest pin graphic",
+    "podcastcover": "Podcast episode or show cover art",
+    "profilepic": "Round social profile avatar",
+    "quotecard": "Quote overlaid on a styled background",
+    "reelcover": "Vertical cover frame for a short video reel",
+    "statgraphic": "Single statistic highlighted graphic",
+    "storycover": "Vertical story cover graphic",
+    "thumbnailimage": "Clickable video thumbnail image",
+    "tiktokcover": "Vertical TikTok video cover",
+    "twitterheader": "Wide Twitter profile header image",
+    "youtubebanner": "Wide YouTube channel banner",
+    "anatomyof": "Labelled breakdown of a subject's parts",
+    "checklistgraphic": "Graphic checklist with tickable items",
+    "comparisonchart": "Side-by-side comparison chart",
+    "howtoillustration": "Step-by-step how-to illustration",
+    "iconset": "Matching set of simple icons",
+    "infographic": "Data-driven informational graphic",
+    "mapgraphic": "Illustrated map or location graphic",
+    "orgchart": "Organisational hierarchy chart",
+    "pricingtable": "Tiered pricing comparison table",
+    "processdiagram": "Flow diagram of a process",
+    "roadmapgraphic": "Timeline roadmap graphic",
+    "slidevisual": "Visual for a presentation slide",
+    "statposter": "Poster built around key statistics",
+    "timelineposter": "Poster showing events along a timeline",
+    "assemblysteps": "Step-by-step assembly instruction diagram",
+    "blueprintview": "Technical blueprint drawing view",
+    "clayrender": "Untextured clay material 3D render",
+    "cutaway": "Cutaway view revealing interior structure",
+    "exploded3d": "Exploded 3D view of separated parts",
+    "giantscale": "Giant scale product comparison shot",
+    "insidethebox": "What's inside the box layout",
+    "isometricproduct": "Isometric angle product view",
+    "materialswap": "Material swap variant render",
+    "miniature": "Miniature scale model look",
+    "partslist": "Numbered parts list diagram",
+    "turntable": "Rotating turntable product view",
+    "wireframerender": "Wireframe 3D render view",
+    "xrayview": "X-ray see-through view",
+    "bagmockup": "Shopping bag mockup",
+    "bookcover": "Book cover mockup",
+    "bottlelabel": "Bottle label mockup",
+    "boxmockup": "Product box mockup",
+    "canmockup": "Beverage can mockup",
+    "giftbox": "Gift box packaging shot",
+    "laptopmockup": "Laptop screen mockup",
+    "menudesign": "Restaurant menu design",
+    "packagingdesign": "Product packaging design",
+    "phonemockup": "Phone screen mockup",
+    "postermockup": "Poster mockup in scene",
+    "shelfshot": "Retail shelf product shot",
+    "stickersheet": "Die-cut sticker sheet layout",
+    "tshirtmockup": "T-shirt apparel mockup",
+    "actionfigure": "Collectible action figure toy",
+    "ageprogression": "Age progression portrait series",
+    "babyphoto": "Baby photo portrait",
+    "caricature": "Exaggerated caricature portrait",
+    "dreamcar": "Custom dream car render",
+    "fantasyme": "Fantasy character portrait",
+    "holidaycard": "Holiday greeting card design",
+    "magazinecover": "Magazine cover portrait",
+    "movieposter": "Movie poster style image",
+    "petportrait": "Pet portrait",
+    "superhero": "Superhero character portrait",
+    "timetravel": "Time travel era portrait",
+    "tradingcard": "Trading card portrait",
+    "weddinginvite": "Wedding invitation design",
+    "adset": "Multi-variant ad set pack",
+    "adstoryboard": "Storyboard sequence for an ad",
+    "appstoreshots": "App store screenshot set",
+    "bannerad": "Wide banner advertisement",
+    "billboard": "Large outdoor billboard mockup",
+    "busstopad": "Bus stop shelter ad mockup",
+    "carouselad": "Swipeable multi-panel carousel ad",
+    "comparisonad": "Before-and-after comparison ad",
+    "emailheader": "Email newsletter header banner",
+    "landingmock": "Landing page mockup shot",
+    "magazinead": "Full-page magazine advertisement",
+    "offerad": "Promotional discount offer ad",
+    "retargetad": "Retargeting reminder advertisement",
+    "staticad": "Single static social ad",
+    "storyad": "Vertical story-format ad",
+    "subwayad": "Subway station ad poster",
+    "testimonialad": "Customer testimonial quote ad",
+    "uglyad": "Deliberately ugly native-style ad",
+    "drinkshot": "Styled beverage product shot",
+    "exteriorrender": "3D exterior architectural render",
+    "floorplan3d": "3D floor plan visualization",
+    "foodshot": "Appetizing food photography",
+    "gardenplan": "Landscape garden design plan",
+    "kitchenreno": "Renovated kitchen interior",
+    "listingphoto": "Real estate listing photo",
+    "menuphoto": "Restaurant menu food photo",
+    "moodboard": "Interior design mood board",
+    "nightshot": "Evening nighttime exterior shot",
+    "officespace": "Modern office workspace interior",
+    "recipecard": "Recipe card food layout",
+    "roomredesign": "Redesigned room interior concept",
+    "virtualstaging": "Virtually staged empty room"
+   }
+  },
+  "vi": {
+   "video": {
+    "dollyin": "camera tiến thẳng tới chủ thể",
+    "dollyout": "camera lùi ra, lộ thêm cảnh",
+    "slowpush": "tiến rất chậm, tạo căng",
+    "fastpush": "tiến nhanh rồi hãm lại",
+    "micropush": "đẩy nhẹ, tăng chiều sâu",
+    "longapproach": "từ toàn cảnh vào cận cảnh",
+    "diagonalpush": "tiến chéo theo đường chéo khung",
+    "diagonalretreat": "lùi chéo",
+    "groundpush": "trượt tới sát mặt đất",
+    "ceilingpush": "tiến sát trần từ trên cao",
+    "pushthrough": "tiến xuyên qua khe cửa",
+    "retreatreveal": "bắt đầu gần, lùi ra lộ toàn cảnh",
+    "dolly": "tiến/lùi trên ray (bản chung)",
+    "pushin": "đẩy vào chủ thể",
+    "pullout": "kéo ra khỏi chủ thể",
+    "zoom": "thu phóng bằng ống kính (không dịch chuyển)",
+    "zoomin": "phóng to",
+    "zoomout": "thu nhỏ",
+    "slowzoom": "thu phóng chậm",
+    "fastzoom": "thu phóng nhanh",
+    "truckleft": "trượt ngang sang trái",
+    "truckright": "trượt ngang sang phải",
+    "shortslider": "trượt ngang đoạn ngắn",
+    "longslider": "trượt ngang đoạn dài",
+    "diagonalslide": "trượt ngang kèm tiến nhẹ",
+    "countertrack": "camera đi ngược hướng chủ thể",
+    "foregroundpass": "lướt qua vật tiền cảnh",
+    "pillarreveal": "trượt ra từ sau cột",
+    "windowslide": "trượt từ ngoài cửa sổ vào",
+    "doorwayslide": "trượt qua ô cửa",
+    "parallelwall": "trượt song song bức tường",
+    "layeredslide": "trượt xuyên nhiều lớp chiều sâu",
+    "panleft": "lia ngang sang trái",
+    "panright": "lia ngang sang phải",
+    "tiltup": "chúc máy lên trên",
+    "tiltdown": "chúc máy xuống dưới",
+    "whippan": "quét ngang cực nhanh (nhòe)",
+    "whiptilt": "hất máy lên cực nhanh",
+    "followpan": "lia bám theo chủ thể đang di chuyển",
+    "anticipationpan": "lia trước khi chủ thể tới",
+    "delayedpan": "để chủ thể đi trước rồi mới lia",
+    "diagonalpan": "lia chéo kèm chúc máy",
+    "scanreturn": "lia khám phá cảnh rồi trả về điểm đầu",
+    "pansweep": "quét 180° để lộ toàn cảnh",
+    "pedestalup": "nâng máy lên thẳng đứng",
+    "pedestaldown": "hạ máy xuống thẳng đứng",
+    "craneup": "cần cẩu nâng lên theo cung rộng",
+    "cranedown": "cần cẩu hạ xuống theo cung rộng",
+    "jibreveal": "nâng máy vượt qua vật cản để lộ cảnh",
+    "risetilt": "nâng lên kèm chúc xuống",
+    "descendtilt": "hạ xuống kèm ngẩng lên",
+    "roofreveal": "nâng qua mái nhà",
+    "tablerise": "nâng từ dưới mặt bàn lên",
+    "floordrop": "từ đứng hạ xuống sàn",
+    "stairascent": "theo chủ thể lên cầu thang",
+    "stairdescent": "theo chủ thể xuống cầu thang",
+    "arcleft": "đi theo cung sang trái",
+    "arcright": "đi theo cung sang phải",
+    "quarterorbit": "vòng 90° quanh chủ thể",
+    "halforbit": "vòng 180°",
+    "orbit360": "vòng trọn 360° quanh chủ thể",
+    "tightorbit": "vòng sát chủ thể",
+    "wideorbit": "vòng bán kính rộng",
+    "loworbit": "vòng ở góc thấp",
+    "highorbit": "vòng ở góc cao",
+    "spiralrise": "vừa xoay vừa nâng lên",
+    "spiraldescend": "vừa xoay vừa hạ xuống",
+    "orbittighten": "xoay và siết bán kính dần",
+    "orbit": "xoay quanh chủ thể (bản chung)",
+    "rearfollow": "theo sau lưng chủ thể",
+    "frontfollow": "lùi trước mặt chủ thể",
+    "sidefollow": "theo bên hông",
+    "shoulderfollow": "theo qua vai",
+    "three-quarterfollow": "theo ở góc 3/4 phía trước",
+    "lowfollow": "theo ở góc thấp",
+    "highfollow": "theo ở góc cao",
+    "overtake": "vượt lên trước chủ thể",
+    "fallbehind": "tụt lại phía sau",
+    "catchup": "đuổi kịp chủ thể",
+    "curvefollow": "theo chủ thể trên đường cong",
+    "handofftrack": "chuyển điểm bám sang chủ thể khác",
+    "tracking": "máy di chuyển song song chủ thể",
+    "follow": "bám theo (bản chung)",
+    "forwardtracking": "tiến theo chủ thể",
+    "backwardtracking": "lùi theo chủ thể",
+    "gimbal": "bám mượt, không rung",
+    "dronefly": "bay tới kèm nâng lên",
+    "droneapproach": "bay từ xa tiến tới",
+    "dronepullback": "bay lùi ra để lộ cảnh",
+    "droneascend": "bay lên thẳng",
+    "dronedescend": "bay xuống thẳng",
+    "droneorbit": "bay vòng quanh mục tiêu",
+    "droneflyover": "bay qua đỉnh mục tiêu",
+    "droneflyby": "bay ngang qua",
+    "topdowntravel": "bay tới trong khi nhìn từ trên xuống",
+    "coastlinefollow": "men theo đường bờ biển",
+    "ridgereveal": "bay qua sống núi để lộ cảnh",
+    "aerialretreat": "vừa bay lùi vừa nâng lên",
+    "droneview": "góc nhìn từ trên không",
+    "aerialshot": "cú máy trên không / mở cảnh từ trên cao",
+    "birdseye": "nhìn thẳng từ trên xuống như mắt chim",
+    "flyover": "bay ngang qua khu vực",
+    "droneforward": "bay tới / lùi / lên / xuống",
+    "drone": "cú máy drone (bản chung)",
+    "droneorbit360": "bay vòng 360° quanh mục tiêu",
+    "fpvchase": "đuổi theo mục tiêu kiểu FPV",
+    "fpvdive": "bổ nhào xuống",
+    "fpvclimb": "leo vọt lên",
+    "fpvbank": "nghiêng máy khi vào cua",
+    "fpvslalom": "luồn lách qua vật cản",
+    "gapflythrough": "bay xuyên qua khe hở",
+    "tunnelflight": "bay xuyên đường hầm",
+    "windowflythrough": "bay xuyên qua cửa sổ",
+    "doorwayflight": "bay qua ô cửa",
+    "groundskim": "bay sát mặt đất",
+    "canopyflight": "bay dưới tán cây",
+    "fpvcorkscrew": "vừa tiến vừa xoay 360°",
+    "fpv": "góc nhìn camera gắn drone",
+    "fpvflythrough": "bay xuyên qua không gian",
+    "handhelddrift": "cầm tay trôi nhẹ, rung tự nhiên",
+    "handheldwalk": "cầm tay khi đang đi bộ",
+    "handheldrun": "cầm tay khi đang chạy",
+    "shouldersway": "rung lắc như đặt trên vai",
+    "gimbalglide": "trượt mượt nhờ gimbal",
+    "gimbalcorner": "vào cua mượt theo chủ thể",
+    "bodycamwalk": "góc camera gắn ngực, đi bộ",
+    "helmetturn": "góc camera gắn mũ, quay đầu",
+    "vehicleforward": "gắn xe, chạy tới",
+    "windowride": "gắn cửa sổ xe, nhìn ra ngoài",
+    "wheeltrack": "góc thấp bám theo bánh xe",
+    "snorricamwalk": "gắn vào người, mặt giữ giữa khung khi đi",
+    "handheld": "cầm tay (bản chung)",
+    "steadicam": "cầm tay đã cân bằng, mượt",
+    "dollyzoom": "lùi ra + zoom vào cùng lúc (hiệu ứng Vertigo)",
+    "reversevertigo": "tiến vào + zoom ra",
+    "pushorbit": "vừa tiến vừa xoay quanh chủ thể",
+    "orbitpullback": "vừa xoay vừa lùi ra",
+    "risepullback": "vừa nâng lên vừa lùi ra",
+    "descendpush": "vừa hạ xuống vừa tiến vào",
+    "trackreveal": "trượt ngang để lộ cảnh",
+    "panpush": "vừa lia vừa tiến",
+    "tiltretreat": "vừa chúc máy vừa lùi",
+    "slidearc": "trượt ngang theo cung",
+    "orbitreverse": "xoay ngược chiều quanh chủ thể",
+    "looppath": "đường đi khép kín, nối được thành vòng",
+    "slowreveal": "để lộ chủ thể/vật từ từ",
+    "characterreveal": "để lộ nhân vật",
+    "facereveal": "để lộ gương mặt",
+    "environmentreveal": "để lộ bối cảnh",
+    "pullbackreveal": "lùi ra để lộ toàn cảnh",
+    "doorreveal": "để lộ qua ô cửa",
+    "curtainreveal": "để lộ như kéo màn",
+    "closeup": "cận cảnh, tập trung chi tiết nhỏ",
+    "wide": "góc rộng, thấy toàn cảnh",
+    "tight": "khung chặt, ít khoảng thở",
+    "establishing": "cú mở cảnh, giới thiệu bối cảnh",
+    "overhead": "nhìn từ trên xuống",
+    "lowangle": "góc thấp, chủ thể trông lớn",
+    "highangle": "góc cao, chủ thể trông nhỏ",
+    "pov": "góc nhìn thứ nhất của nhân vật",
+    "firstperson": "như đang ở trong mắt nhân vật",
+    "overtheshoulder": "qua vai, thấy đối tượng phía trước",
+    "fullbody": "lấy trọn người từ đầu tới chân",
+    "heroshot": "cú tôn chủ thể, thường góc thấp",
+    "centered": "chủ thể đặt chính giữa khung",
+    "rackfocus": "chuyển nét từ vật này sang vật khác",
+    "focuspull": "rút nét ra/vào chủ thể",
+    "shallowfocus": "nét mỏng, nền mờ",
+    "deepfocus": "nét sâu, cả gần lẫn xa đều rõ",
+    "foregroundblur": "vật tiền cảnh mờ",
+    "backgroundblur": "hậu cảnh mờ",
+    "bokeh": "đốm sáng mờ ở vùng ngoài nét",
+    "shallowdepth": "chiều sâu trường ảnh mỏng",
+    "telephoto": "ống kính tele, nén không gian",
+    "macrofocus": "lấy nét cận siêu nhỏ",
+    "macro": "cú máy cận chi tiết",
+    "lensflare": "lóe sáng do ống kính",
+    "anamorphic": "ống kính anamorphic, nhòe ngang đặc trưng",
+    "softfocus": "nét mềm, mờ nhẹ như mơ",
+    "goldenhour": "giờ vàng, nắng ấm lúc bình minh/hoàng hôn",
+    "bluehour": "giờ xanh, chạng vạng lạnh",
+    "neonlight": "đèn neon rực màu",
+    "moody": "sáng tối tương phản, nặng tâm trạng",
+    "softlight": "sáng tán xạ, bóng mềm",
+    "rimlight": "viền sáng quanh rìa chủ thể",
+    "silhouette": "chủ thể thành bóng đen trên nền sáng",
+    "spotlight": "đèn rọi một điểm",
+    "volumetric": "chùm sáng thấy được trong không khí",
+    "backlight": "sáng từ phía sau chủ thể",
+    "nightscene": "cảnh ban đêm",
+    "dramaticlighting": "sáng kịch tính, tương phản mạnh",
+    "minimal": "tối giản, ít chi tiết thừa",
+    "leadinglines": "đường dẫn mắt về chủ thể",
+    "ruleofthirds": "chia khung 1/3, chủ thể ở giao điểm",
+    "symmetry": "đối xứng hai bên",
+    "foreground": "có vật tiền cảnh tạo lớp",
+    "framewithinframe": "khung trong khung (cửa, vòm)",
+    "diagonal": "bố cục chéo tạo động",
+    "negativespace": "khoảng trống lớn quanh chủ thể",
+    "slowmotion": "quay chậm",
+    "timelapse": "tua nhanh thời gian",
+    "hyperlapse": "tua nhanh kèm di chuyển",
+    "speedramp": "đổi tốc độ giữa clip (chậm ↔ nhanh)",
+    "speedup": "tăng tốc",
+    "motionblur": "nhòe chuyển động",
+    "smoothmotion": "chuyển động mượt",
+    "naturalmotion": "chuyển động tự nhiên như thật",
+    "freeze": "đứng hình một khung",
+    "reverse": "chạy ngược",
+    "loop": "lặp liền mạch",
+    "bullettime": "thời gian đóng băng, camera vẫn đi",
+    "floating": "trôi lơ lửng",
+    "falling": "rơi xuống",
+    "running": "đang chạy",
+    "walking": "đang đi bộ",
+    "turnaround": "chủ thể xoay người",
+    "reveal": "để lộ chủ thể/vật",
+    "entrance": "chủ thể đi vào khung",
+    "exit": "chủ thể rời khung",
+    "morph": "biến đổi vật này thành vật khác",
+    "glitch": "nhiễu hình kiểu lỗi kỹ thuật",
+    "matchcut": "cắt nối hai cảnh giống hình dạng/chuyển động",
+    "whiptransition": "chuyển cảnh bằng cú quét nhanh",
+    "zoomtransition": "chuyển cảnh bằng thu phóng",
+    "smoketransition": "chuyển cảnh qua khói",
+    "flashtransition": "chuyển cảnh bằng lóe sáng",
+    "blurtransition": "chuyển cảnh qua nhòe",
+    "lightleak": "vệt sáng lọt vào khung",
+    "seamlessloop": "lặp không thấy điểm nối",
+    "infinitezoom": "zoom sâu vô tận",
+    "worldtransition": "chuyển sang thế giới khác",
+    "objecttransition": "chuyển cảnh qua một vật thể",
+    "scifi": "khoa học viễn tưởng",
+    "cyberpunk": "tương lai neon, tối, đường phố ướt",
+    "paperworld": "thế giới làm bằng giấy",
+    "miniature": "mô hình thu nhỏ như đồ chơi",
+    "space": "không gian vũ trụ",
+    "underwater": "dưới nước",
+    "fog": "sương mù",
+    "storm": "bão",
+    "rain": "mưa / mưa lớn",
+    "snow": "tuyết",
+    "fire": "lửa",
+    "explosion": "vụ nổ",
+    "portal": "cổng không gian",
+    "particlefx": "hạt hiệu ứng bay",
+    "wind": "gió thổi",
+    "dust": "bụi bay",
+    "clouds": "mây",
+    "sunrays": "tia nắng xuyên qua",
+    "fallingleaves": "lá rơi",
+    "flowerpetals": "cánh hoa bay",
+    "watersplash": "nước bắn",
+    "reflection": "phản chiếu",
+    "cinematic": "chất điện ảnh, tương phản và màu như phim",
+    "filmic": "giống phim nhựa, hạt mịn",
+    "commercial": "sạch, sáng, kiểu quảng cáo",
+    "luxury": "cao cấp, tối, kim loại, chậm",
+    "documentary": "chân thực như phim tài liệu",
+    "vintagefilm": "phim cũ, màu bạc",
+    "dreamy": "mơ màng, mềm, sáng nhẹ",
+    "epic": "hoành tráng, quy mô lớn",
+    "surreal": "siêu thực, phi logic",
+    "blockbuster": "kiểu phim bom tấn",
+    "productreveal": "mở lộ sản phẩm",
+    "productspin": "sản phẩm xoay",
+    "unboxing": "mở hộp",
+    "logoreveal": "lộ logo",
+    "fashionfilm": "phim thời trang",
+    "techad": "quảng cáo đồ công nghệ",
+    "foodcommercial": "quảng cáo đồ ăn",
+    "socialad": "quảng cáo cho mạng xã hội",
+    "billboard": "dạng biển quảng cáo",
+    "beforeafter": "trước và sau",
+    "ugc-product-hook": "mở đầu kiểu người dùng thật giới thiệu sản phẩm",
+    "ugc-testimonial": "người dùng thật đánh giá",
+    "premium-unboxing": "mở hộp cao cấp",
+    "asmr-unboxing": "mở hộp kèm âm thanh cận",
+    "product-demo-ad": "quảng cáo demo cách dùng",
+    "problem-solution-ad": "nêu vấn đề rồi đưa giải pháp",
+    "tiktok-style-ad": "quảng cáo kiểu TikTok",
+    "3-second-hook": "3 giây đầu giữ chân người xem",
+    "pattern-interrupt": "phá nhịp để gây chú ý",
+    "luxury-product-ad": "quảng cáo sản phẩm cao cấp",
+    "conversion-ad": "quảng cáo hướng chuyển đổi",
+    "buy-now-ad": "quảng cáo thúc mua ngay",
+    "day-in-my-life": "một ngày của tôi",
+    "product-launch-ad": "quảng cáo ra mắt sản phẩm",
+    "360-degree-showcase": "trưng bày 360°"
+   },
+   "image": {
+    "actorheadshot": "ảnh chân dung diễn viên để casting",
+    "authorphoto": "ảnh chân dung tác giả in bìa sách",
+    "bwportrait": "chân dung đen trắng",
+    "casualheadshot": "ảnh chân dung chuyên nghiệp phong cách thoải mái",
+    "corporateheadshot": "ảnh chân dung doanh nghiệp nền văn phòng",
+    "datingprofile": "ảnh hồ sơ hẹn hò thân thiện, dễ gần",
+    "doctorportrait": "chân dung bác sĩ trong bối cảnh y tế",
+    "fitnessportrait": "chân dung thể hình trong phòng gym",
+    "founderportrait": "chân dung nhà sáng lập cho trang công ty",
+    "goldenhourportrait": "chân dung dưới nắng vàng giờ hoàng hôn",
+    "graduationportrait": "ảnh tốt nghiệp đội mũ áo cử nhân",
+    "headshot": "ảnh chân dung chuyên nghiệp tiêu chuẩn",
+    "outfitswap": "đổi trang phục trong ảnh chân dung",
+    "passportphoto": "ảnh thẻ hộ chiếu nền trơn",
+    "podcastportrait": "chân dung người dẫn podcast cùng micro",
+    "realtorheadshot": "ảnh chân dung môi giới bất động sản",
+    "speakerphoto": "ảnh diễn giả trên sân khấu hội thảo",
+    "teamphoto": "ảnh tập thể nhóm công ty",
+    "vintageportrait": "chân dung phong cách cổ điển retro",
+    "appicon": "thiết kế icon ứng dụng di động",
+    "brandboard": "bảng nhận diện thương hiệu đầy đủ",
+    "brandmerch": "bộ mockup sản phẩm in thương hiệu",
+    "businesscard": "thiết kế mockup danh thiếp",
+    "colorpalette": "bảng phối màu thương hiệu",
+    "favicon": "thiết kế favicon cho website",
+    "iconlogo": "logo dạng icon biểu tượng",
+    "letterhead": "thiết kế giấy tiêu đề văn phòng",
+    "logoconcepts": "nhiều phương án ý tưởng logo",
+    "logomotion": "logo chuyển động dạng motion graphic",
+    "mascotdesign": "thiết kế linh vật thương hiệu",
+    "monogram": "logo chữ lồng từ tên viết tắt",
+    "patterndesign": "thiết kế họa tiết lặp liền mạch",
+    "rebrand": "thiết kế nhận diện thương hiệu làm mới",
+    "storefront": "thiết kế biển hiệu mặt tiền cửa hàng",
+    "wordmark": "logo dạng chữ viết cách điệu",
+    "3dcharacter": "mô hình nhân vật ba chiều",
+    "3drender": "ảnh dựng 3D chân thực",
+    "anime": "phong cách minh họa anime Nhật Bản",
+    "blender": "phong cách dựng 3D bằng Blender",
+    "cartoonme": "ảnh biếm họa hoạt hình của nhân vật",
+    "charcoal": "phong cách vẽ than chì",
+    "childrensbook": "phong cách minh họa truyện thiếu nhi",
+    "claymation": "phong cách đất sét tạo hình stop-motion",
+    "comicbook": "phong cách tranh truyện comic",
+    "conceptart": "tranh ý tưởng concept art",
+    "crosshatching": "phong cách đánh bóng bằng gạch chéo",
+    "embroidery": "hình thêu chỉ trên vải",
+    "environmentart": "tranh concept bối cảnh phong cảnh",
+    "ghibli": "phong cách phim hoạt hình Ghibli",
+    "graffiti": "phong cách graffiti xịt sơn đường phố",
+    "inkdrawing": "phong cách vẽ bằng mực bút",
+    "lineart": "tranh nét vẽ viền sạch sẽ",
+    "lowpoly": "phong cách 3D đa giác thấp",
+    "manga": "phong cách manga trắng đen Nhật Bản",
+    "mattepainting": "tranh nền phông điện ảnh matte painting",
+    "octanerender": "ảnh dựng 3D Octane ánh bóng loáng",
+    "oilpainting": "phong cách tranh sơn dầu cổ điển",
+    "papercut": "phong cách tranh cắt giấy nhiều lớp",
+    "pencilsketch": "phong cách ký họa bút chì",
+    "pixar": "phong cách phim hoạt hình 3D Pixar",
+    "pixelart": "phong cách pixel art cổ điển",
+    "popart": "phong cách pop art màu sắc mạnh",
+    "sketchbook": "phong cách trang sổ ký họa tay",
+    "stainedglass": "tranh kính màu ghép ô",
+    "tattoodesign": "thiết kế hình xăm",
+    "unrealengine": "ảnh dựng 3D thời gian thực Unreal Engine",
+    "vectorflat": "phong cách minh họa vector phẳng",
+    "voxel": "phong cách 3D khối vuông voxel",
+    "watercolor": "phong cách tranh màu nước",
+    "amazonready": "ảnh sản phẩm nền trắng chuẩn sàn thương mại điện tử",
+    "backgroundswap": "ảnh sản phẩm đã thay nền mới",
+    "beforeafterproduct": "ảnh so sánh sản phẩm trước và sau",
+    "catalogset": "bộ ảnh catalog nhiều góc nhất quán",
+    "colorways": "ảnh sản phẩm với nhiều phối màu khác nhau",
+    "flatlay": "chụp từ trên xuống, xếp phẳng",
+    "floatingproduct": "sản phẩm lơ lửng trên nền trơn",
+    "ghostmannequin": "ảnh quần áo kiểu ma-nơ-canh vô hình",
+    "glassreflection": "sản phẩm đặt trên mặt bóng phản chiếu",
+    "handheld": "sản phẩm cầm trên tay",
+    "heroimage": "ảnh sản phẩm chính",
+    "lifestyleshot": "ảnh sản phẩm trong bối cảnh đời thường",
+    "luxuryshot": "ảnh sản phẩm cao cấp sang trọng",
+    "macroshot": "ảnh cận cảnh chi tiết cực gần",
+    "naturebackdrop": "sản phẩm trên nền thiên nhiên ngoài trời",
+    "onmodel": "sản phẩm được người mẫu mặc hoặc cầm",
+    "podiumshot": "sản phẩm trưng bày trên bục nổi",
+    "productshot": "ảnh sản phẩm studio tiêu chuẩn",
+    "seasonalshot": "ảnh sản phẩm theo chủ đề mùa",
+    "splashshot": "sản phẩm có nước bắn tung quanh",
+    "announcementpost": "bài đăng thông báo nổi bật",
+    "carouselcover": "ảnh bìa cho bộ ảnh carousel",
+    "countdownpost": "bài đăng đếm ngược khai trương",
+    "eventflyer": "poster quảng bá sự kiện",
+    "instagrid": "bố cục lưới ảnh Instagram đồng bộ",
+    "linkedinbanner": "ảnh bìa hồ sơ LinkedIn chuyên nghiệp",
+    "memeformat": "ảnh kiểu meme có chữ chú thích",
+    "pinterestpin": "ảnh ghim Pinterest dọc khổ lớn",
+    "podcastcover": "ảnh bìa podcast",
+    "profilepic": "ảnh đại diện tròn cho hồ sơ",
+    "quotecard": "ảnh chèn câu trích dẫn lên nền trang trí",
+    "reelcover": "ảnh bìa dọc cho video ngắn reel",
+    "statgraphic": "đồ họa làm nổi bật một số liệu",
+    "storycover": "ảnh bìa dọc cho story",
+    "thumbnailimage": "ảnh thumbnail cho video",
+    "tiktokcover": "ảnh bìa video TikTok dạng dọc",
+    "twitterheader": "ảnh bìa ngang hồ sơ Twitter",
+    "youtubebanner": "ảnh bìa ngang kênh YouTube",
+    "anatomyof": "hình mổ xẻ chú thích từng bộ phận",
+    "checklistgraphic": "đồ họa danh sách cần làm có ô tick",
+    "comparisonchart": "bảng biểu đồ so sánh song song",
+    "howtoillustration": "hình minh họa hướng dẫn từng bước",
+    "iconset": "bộ icon đồng nhất cùng phong cách",
+    "infographic": "đồ họa thông tin dựa trên dữ liệu",
+    "mapgraphic": "đồ họa bản đồ hoặc vị trí",
+    "orgchart": "sơ đồ tổ chức phân cấp",
+    "pricingtable": "bảng so sánh các gói giá",
+    "processdiagram": "sơ đồ luồng các bước quy trình",
+    "roadmapgraphic": "đồ họa lộ trình theo thời gian",
+    "slidevisual": "hình ảnh cho slide thuyết trình",
+    "statposter": "poster xoay quanh các số liệu chính",
+    "timelineposter": "poster thể hiện sự kiện theo dòng thời gian",
+    "assemblysteps": "sơ đồ các bước lắp ráp",
+    "blueprintview": "bản vẽ kỹ thuật kiểu blueprint",
+    "clayrender": "render 3D chất liệu đất sét chưa tô màu",
+    "cutaway": "mặt cắt lộ cấu trúc bên trong",
+    "exploded3d": "tách rời các bộ phận dạng 3D",
+    "giantscale": "ảnh so sánh sản phẩm phóng to khổng lồ",
+    "insidethebox": "bố cục ảnh toàn bộ phụ kiện trong hộp",
+    "isometricproduct": "góc nhìn sản phẩm kiểu isometric",
+    "materialswap": "biến thể đổi chất liệu bề mặt",
+    "miniature": "hiệu ứng mô hình thu nhỏ",
+    "partslist": "sơ đồ danh sách phụ kiện đánh số",
+    "turntable": "ảnh sản phẩm xoay vòng nhiều góc",
+    "wireframerender": "render 3D dạng khung dây",
+    "xrayview": "góc nhìn xuyên thấu kiểu X-quang",
+    "bagmockup": "mockup túi giấy mua hàng",
+    "bookcover": "mockup bìa sách",
+    "bottlelabel": "mockup nhãn chai",
+    "boxmockup": "mockup hộp sản phẩm",
+    "canmockup": "mockup lon nước giải khát",
+    "giftbox": "ảnh hộp quà bao bì",
+    "laptopmockup": "mockup màn hình laptop",
+    "menudesign": "thiết kế menu nhà hàng",
+    "packagingdesign": "thiết kế bao bì sản phẩm",
+    "phonemockup": "mockup màn hình điện thoại",
+    "postermockup": "mockup poster trong bối cảnh",
+    "shelfshot": "ảnh sản phẩm trên kệ bán lẻ",
+    "stickersheet": "bố cục sheet sticker cắt hình",
+    "tshirtmockup": "mockup áo thun",
+    "actionfigure": "mô hình đồ chơi nhân vật sưu tầm",
+    "ageprogression": "chuỗi chân dung theo tuổi tác",
+    "babyphoto": "ảnh chân dung em bé",
+    "caricature": "chân dung biếm họa phóng đại",
+    "dreamcar": "render xe mơ ước tùy chỉnh",
+    "fantasyme": "chân dung nhân vật giả tưởng",
+    "holidaycard": "thiết kế thiệp chúc mừng lễ",
+    "magazinecover": "chân dung bìa tạp chí",
+    "movieposter": "ảnh kiểu poster phim",
+    "petportrait": "chân dung thú cưng",
+    "superhero": "chân dung nhân vật siêu anh hùng",
+    "timetravel": "chân dung theo bối cảnh thời đại",
+    "tradingcard": "chân dung thẻ bài sưu tầm",
+    "weddinginvite": "thiết kế thiệp cưới",
+    "adset": "bộ nhiều biến thể quảng cáo",
+    "adstoryboard": "storyboard diễn tiến cho quảng cáo",
+    "appstoreshots": "bộ ảnh chụp màn hình app store",
+    "bannerad": "banner quảng cáo khổ ngang",
+    "billboard": "mockup biển quảng cáo ngoài trời lớn",
+    "busstopad": "mockup quảng cáo nhà chờ xe buýt",
+    "carouselad": "quảng cáo carousel nhiều khung vuốt",
+    "comparisonad": "quảng cáo so sánh trước và sau",
+    "emailheader": "banner đầu email newsletter",
+    "landingmock": "ảnh mockup trang landing page",
+    "magazinead": "quảng cáo full trang tạp chí",
+    "offerad": "quảng cáo khuyến mãi ưu đãi",
+    "retargetad": "quảng cáo nhắc lại retargeting",
+    "staticad": "quảng cáo tĩnh một ảnh mạng xã hội",
+    "storyad": "quảng cáo dạng story khổ dọc",
+    "subwayad": "poster quảng cáo trong ga tàu điện",
+    "testimonialad": "quảng cáo kèm lời chứng thực khách hàng",
+    "uglyad": "quảng cáo cố tình xấu kiểu native",
+    "drinkshot": "ảnh sản phẩm đồ uống được dàn dựng",
+    "exteriorrender": "render 3D ngoại thất kiến trúc",
+    "floorplan3d": "sơ đồ mặt bằng 3D",
+    "foodshot": "ảnh chụp món ăn bắt mắt",
+    "gardenplan": "bản vẽ thiết kế sân vườn cảnh quan",
+    "kitchenreno": "nội thất bếp sau cải tạo",
+    "listingphoto": "ảnh đăng tin bất động sản",
+    "menuphoto": "ảnh món ăn cho thực đơn nhà hàng",
+    "moodboard": "bảng mood board thiết kế nội thất",
+    "nightshot": "ảnh ngoại cảnh ban đêm",
+    "officespace": "nội thất văn phòng làm việc hiện đại",
+    "recipecard": "bố cục thẻ công thức nấu ăn",
+    "roomredesign": "phương án thiết kế lại phòng",
+    "virtualstaging": "dàn dựng nội thất ảo cho phòng trống"
+   }
+  }
+ }
+}
