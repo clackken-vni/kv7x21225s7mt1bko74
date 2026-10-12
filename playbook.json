@@ -2084,7 +2084,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "A",
    "name": "Hero sản phẩm",
    "codes": [
     "/productspin",
@@ -2097,7 +2096,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "C",
    "name": "Cận chất liệu",
    "codes": [
     "/macrofocus",
@@ -2110,7 +2108,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "C",
    "name": "Mở hộp",
    "codes": [
     "/premium-unboxing",
@@ -2123,7 +2120,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "C",
    "name": "Demo công dụng",
    "codes": [
     "/product-demo-ad",
@@ -2136,7 +2132,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "V",
    "name": "Chốt đơn",
    "codes": [
     "/buy-now-ad",
@@ -2149,7 +2144,6 @@
   {
    "domain": "video",
    "category": "Bán hàng online (E-commerce)",
-   "funnel": "C",
    "name": "Xoay 360°",
    "codes": [
     "/360-degree-showcase",
@@ -2162,7 +2156,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "A",
    "name": "Hook 3 giây",
    "codes": [
     "/3-second-hook",
@@ -2175,7 +2168,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "C",
    "name": "UGC người thật",
    "codes": [
     "/ugc-product-hook",
@@ -2188,7 +2180,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "C",
    "name": "Testimonial",
    "codes": [
     "/ugc-testimonial",
@@ -2201,7 +2192,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "C",
    "name": "Vấn đề → giải pháp",
    "codes": [
     "/problem-solution-ad",
@@ -2214,7 +2204,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "V",
    "name": "Thúc mua",
    "codes": [
     "/conversion-ad",
@@ -2227,7 +2216,6 @@
   {
    "domain": "video",
    "category": "Quảng cáo trả phí",
-   "funnel": "A",
    "name": "Quảng cáo cao cấp",
    "codes": [
     "/luxury-product-ad",
@@ -2240,7 +2228,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "hook lướt",
    "codes": [
     "/3-second-hook",
@@ -2253,7 +2240,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "một ngày của tôi",
    "codes": [
     "/day-in-my-life",
@@ -2266,7 +2252,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "chuyển cảnh mượt",
    "codes": [
     "/seamlessloop",
@@ -2279,7 +2264,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "vòng lặp vô hạn",
    "codes": [
     "/seamlessloop",
@@ -2292,7 +2276,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "biến hình",
    "codes": [
     "/morph",
@@ -2305,7 +2288,6 @@
   {
    "domain": "video",
    "category": "Social organic",
-   "funnel": null,
    "name": "nhảy theo nhạc",
    "codes": [
     "/turnaround",
@@ -2318,7 +2300,6 @@
   {
    "domain": "video",
    "category": "Thương hiệu",
-   "funnel": null,
    "name": "phim thương hiệu",
    "codes": [
     "/establishing",
@@ -2331,7 +2312,6 @@
   {
    "domain": "video",
    "category": "Thương hiệu",
-   "funnel": null,
    "name": "ra mắt logo",
    "codes": [
     "/logoreveal",
@@ -2344,7 +2324,6 @@
   {
    "domain": "video",
    "category": "Thương hiệu",
-   "funnel": null,
    "name": "tuyên ngôn",
    "codes": [
     "/silhouette",
@@ -2357,7 +2336,6 @@
   {
    "domain": "video",
    "category": "Thương hiệu",
-   "funnel": null,
    "name": "chân dung founder",
    "codes": [
     "/closeup",
@@ -2370,7 +2348,6 @@
   {
    "domain": "video",
    "category": "Thương hiệu",
-   "funnel": null,
    "name": "quy trình làm sản phẩm",
    "codes": [
     "/macro",
@@ -2383,7 +2360,6 @@
   {
    "domain": "video",
    "category": "B2B · SaaS · App",
-   "funnel": null,
    "name": "màn hình sản phẩm",
    "codes": [
     "/techad",
@@ -2396,7 +2372,6 @@
   {
    "domain": "video",
    "category": "B2B · SaaS · App",
-   "funnel": null,
    "name": "nỗi đau vận hành",
    "codes": [
     "/problem-solution-ad",
@@ -2409,7 +2384,6 @@
   {
    "domain": "video",
    "category": "B2B · SaaS · App",
-   "funnel": null,
    "name": "luồng sử dụng",
    "codes": [
     "/techad",
@@ -2422,7 +2396,6 @@
   {
    "domain": "video",
    "category": "B2B · SaaS · App",
-   "funnel": null,
    "name": "demo tính năng",
    "codes": [
     "/product-demo-ad",
@@ -2435,7 +2408,6 @@
   {
    "domain": "video",
    "category": "B2B · SaaS · App",
-   "funnel": null,
    "name": "khách hàng nói",
    "codes": [
     "/ugc-testimonial",
@@ -2448,7 +2420,6 @@
   {
    "domain": "video",
    "category": "Bất động sản",
-   "funnel": null,
    "name": "mở cảnh khu",
    "codes": [
     "/droneapproach",
@@ -2461,7 +2432,6 @@
   {
    "domain": "video",
    "category": "Bất động sản",
-   "funnel": null,
    "name": "tour trong nhà",
    "codes": [
     "/gimbalglide",
@@ -2474,7 +2444,6 @@
   {
    "domain": "video",
    "category": "Bất động sản",
-   "funnel": null,
    "name": "chi tiết nội thất",
    "codes": [
     "/macrofocus",
@@ -2487,7 +2456,6 @@
   {
    "domain": "video",
    "category": "Bất động sản",
-   "funnel": null,
    "name": "ban công view",
    "codes": [
     "/pedestalup",
@@ -2500,7 +2468,6 @@
   {
    "domain": "video",
    "category": "Bất động sản",
-   "funnel": null,
    "name": "chốt liên hệ",
    "codes": [
     "/buy-now-ad",
@@ -2513,7 +2480,6 @@
   {
    "domain": "video",
    "category": "F&B",
-   "funnel": null,
    "name": "món ăn hero",
    "codes": [
     "/foodcommercial",
@@ -2526,7 +2492,6 @@
   {
    "domain": "video",
    "category": "F&B",
-   "funnel": null,
    "name": "rót/đổ",
    "codes": [
     "/watersplash",
@@ -2539,7 +2504,6 @@
   {
    "domain": "video",
    "category": "F&B",
-   "funnel": null,
    "name": "không gian quán",
    "codes": [
     "/gimbalglide",
@@ -2552,7 +2516,6 @@
   {
    "domain": "video",
    "category": "F&B",
-   "funnel": null,
    "name": "quy trình bếp",
    "codes": [
     "/handheldwalk",
@@ -2565,7 +2528,6 @@
   {
    "domain": "video",
    "category": "F&B",
-   "funnel": null,
    "name": "combo khuyến mãi",
    "codes": [
     "/conversion-ad",
@@ -2578,7 +2540,6 @@
   {
    "domain": "video",
    "category": "Beauty · Skincare · Spa",
-   "funnel": null,
    "name": "texture kem",
    "codes": [
     "/macrofocus",
@@ -2591,7 +2552,6 @@
   {
    "domain": "video",
    "category": "Beauty · Skincare · Spa",
-   "funnel": null,
    "name": "da trước/sau",
    "codes": [
     "/beforeafter",
@@ -2604,7 +2564,6 @@
   {
    "domain": "video",
    "category": "Beauty · Skincare · Spa",
-   "funnel": null,
    "name": "routine 3 bước",
    "codes": [
     "/product-demo-ad",
@@ -2617,7 +2576,6 @@
   {
    "domain": "video",
    "category": "Beauty · Skincare · Spa",
-   "funnel": null,
    "name": "thư giãn spa",
    "codes": [
     "/slowpush",
@@ -2630,7 +2588,6 @@
   {
    "domain": "video",
    "category": "Beauty · Skincare · Spa",
-   "funnel": null,
    "name": "serum nhỏ giọt",
    "codes": [
     "/macrofocus",
@@ -2643,7 +2600,6 @@
   {
    "domain": "video",
    "category": "Thời trang · POD",
-   "funnel": null,
    "name": "lookbook",
    "codes": [
     "/fashionfilm",
@@ -2656,7 +2612,6 @@
   {
    "domain": "video",
    "category": "Thời trang · POD",
-   "funnel": null,
    "name": "sàn diễn",
    "codes": [
     "/frontfollow",
@@ -2669,7 +2624,6 @@
   {
    "domain": "video",
    "category": "Thời trang · POD",
-   "funnel": null,
    "name": "chi tiết vải/hình in",
    "codes": [
     "/macrofocus",
@@ -2682,7 +2636,6 @@
   {
    "domain": "video",
    "category": "Thời trang · POD",
-   "funnel": null,
    "name": "người mẫu ngoài phố",
    "codes": [
     "/handheldwalk",
@@ -2695,7 +2648,6 @@
   {
    "domain": "video",
    "category": "Thời trang · POD",
-   "funnel": null,
    "name": "mockup áo",
    "codes": [
     "/productspin",
@@ -2708,7 +2660,6 @@
   {
    "domain": "video",
    "category": "Fitness · Gym · Wellness",
-   "funnel": null,
    "name": "năng lượng tập",
    "codes": [
     "/handheldrun",
@@ -2721,7 +2672,6 @@
   {
    "domain": "video",
    "category": "Fitness · Gym · Wellness",
-   "funnel": null,
    "name": "kỹ thuật động tác",
    "codes": [
     "/slowmotion",
@@ -2734,7 +2684,6 @@
   {
    "domain": "video",
    "category": "Fitness · Gym · Wellness",
-   "funnel": null,
    "name": "trước/sau 30 ngày",
    "codes": [
     "/beforeafter",
@@ -2747,7 +2696,6 @@
   {
    "domain": "video",
    "category": "Fitness · Gym · Wellness",
-   "funnel": null,
    "name": "tinh thần",
    "codes": [
     "/silhouette",
@@ -2760,7 +2708,6 @@
   {
    "domain": "video",
    "category": "Giáo dục · Khóa học",
-   "funnel": null,
    "name": "giới thiệu giảng viên",
    "codes": [
     "/closeup",
@@ -2773,7 +2720,6 @@
   {
    "domain": "video",
    "category": "Giáo dục · Khóa học",
-   "funnel": null,
    "name": "lớp học thật",
    "codes": [
     "/gimbalglide",
@@ -2786,7 +2732,6 @@
   {
    "domain": "video",
    "category": "Giáo dục · Khóa học",
-   "funnel": null,
    "name": "nội dung khóa",
    "codes": [
     "/techad",
@@ -2799,7 +2744,6 @@
   {
    "domain": "video",
    "category": "Giáo dục · Khóa học",
-   "funnel": null,
    "name": "kết quả học viên",
    "codes": [
     "/ugc-testimonial",
@@ -2812,7 +2756,6 @@
   {
    "domain": "video",
    "category": "Sự kiện · Wedding",
-   "funnel": null,
    "name": "mở cảnh tiệc",
    "codes": [
     "/establishing",
@@ -2825,7 +2768,6 @@
   {
    "domain": "video",
    "category": "Sự kiện · Wedding",
-   "funnel": null,
    "name": "khoảnh khắc",
    "codes": [
     "/closeup",
@@ -2838,7 +2780,6 @@
   {
    "domain": "video",
    "category": "Sự kiện · Wedding",
-   "funnel": null,
    "name": "phần nhảy/đông người",
    "codes": [
     "/handhelddrift",
@@ -2851,7 +2792,6 @@
   {
    "domain": "video",
    "category": "Sự kiện · Wedding",
-   "funnel": null,
    "name": "chi tiết trang trí",
    "codes": [
     "/macrofocus",
@@ -2864,7 +2804,6 @@
   {
    "domain": "video",
    "category": "Du lịch · Khách sạn",
-   "funnel": null,
    "name": "mở cảnh resort",
    "codes": [
     "/droneflyover",
@@ -2877,7 +2816,6 @@
   {
    "domain": "video",
    "category": "Du lịch · Khách sạn",
-   "funnel": null,
    "name": "phòng nghỉ",
    "codes": [
     "/gimbalglide",
@@ -2890,7 +2828,6 @@
   {
    "domain": "video",
    "category": "Du lịch · Khách sạn",
-   "funnel": null,
    "name": "bãi biển/hồ bơi",
    "codes": [
     "/groundskim",
@@ -2903,7 +2840,6 @@
   {
    "domain": "video",
    "category": "Du lịch · Khách sạn",
-   "funnel": null,
    "name": "trải nghiệm",
    "codes": [
     "/fpvchase",
@@ -2916,7 +2852,6 @@
   {
    "domain": "video",
    "category": "Du lịch · Khách sạn",
-   "funnel": null,
    "name": "ẩm thực tại chỗ",
    "codes": [
     "/foodcommercial",
@@ -2929,7 +2864,6 @@
   {
    "domain": "video",
    "category": "Y tế · Nha khoa · Phòng khám",
-   "funnel": null,
    "name": "cơ sở vật chất",
    "codes": [
     "/gimbalglide",
@@ -2942,7 +2876,6 @@
   {
    "domain": "video",
    "category": "Y tế · Nha khoa · Phòng khám",
-   "funnel": null,
    "name": "bác sĩ",
    "codes": [
     "/closeup",
@@ -2955,7 +2888,6 @@
   {
    "domain": "video",
    "category": "Y tế · Nha khoa · Phòng khám",
-   "funnel": null,
    "name": "trước/sau điều trị",
    "codes": [
     "/beforeafter",
@@ -2968,7 +2900,6 @@
   {
    "domain": "video",
    "category": "Y tế · Nha khoa · Phòng khám",
-   "funnel": null,
    "name": "quy trình vô trùng",
    "codes": [
     "/macro",
@@ -2981,7 +2912,6 @@
   {
    "domain": "video",
    "category": "Ô tô · Xe máy",
-   "funnel": null,
    "name": "xe hero",
    "codes": [
     "/productspin",
@@ -2994,7 +2924,6 @@
   {
    "domain": "video",
    "category": "Ô tô · Xe máy",
-   "funnel": null,
    "name": "chạy đường",
    "codes": [
     "/vehicleforward",
@@ -3007,7 +2936,6 @@
   {
    "domain": "video",
    "category": "Ô tô · Xe máy",
-   "funnel": null,
    "name": "nội thất xe",
    "codes": [
     "/macrofocus",
@@ -3020,7 +2948,6 @@
   {
    "domain": "video",
    "category": "Ô tô · Xe máy",
-   "funnel": null,
    "name": "drift/tốc độ",
    "codes": [
     "/fpvchase",
@@ -3033,7 +2960,6 @@
   {
    "domain": "video",
    "category": "Công nghệ · Gadget",
-   "funnel": null,
    "name": "hero thiết bị",
    "codes": [
     "/techad",
@@ -3046,7 +2972,6 @@
   {
    "domain": "video",
    "category": "Công nghệ · Gadget",
-   "funnel": null,
    "name": "cận chi tiết",
    "codes": [
     "/macrofocus",
@@ -3059,7 +2984,6 @@
   {
    "domain": "video",
    "category": "Công nghệ · Gadget",
-   "funnel": null,
    "name": "mở hộp",
    "codes": [
     "/premium-unboxing",
@@ -3072,7 +2996,6 @@
   {
    "domain": "video",
    "category": "Công nghệ · Gadget",
-   "funnel": null,
    "name": "tính năng",
    "codes": [
     "/product-demo-ad",
@@ -3085,7 +3008,6 @@
   {
    "domain": "video",
    "category": "Công nghệ · Gadget",
-   "funnel": null,
    "name": "mở bán",
    "codes": [
     "/product-launch-ad",
@@ -3098,7 +3020,6 @@
   {
    "domain": "video",
    "category": "Tài chính · Bảo hiểm",
-   "funnel": null,
    "name": "niềm tin",
    "codes": [
     "/establishing",
@@ -3111,7 +3032,6 @@
   {
    "domain": "video",
    "category": "Tài chính · Bảo hiểm",
-   "funnel": null,
    "name": "con người",
    "codes": [
     "/closeup",
@@ -3124,7 +3044,6 @@
   {
    "domain": "video",
    "category": "Tài chính · Bảo hiểm",
-   "funnel": null,
    "name": "quy trình số",
    "codes": [
     "/techad",
@@ -3137,7 +3056,6 @@
   {
    "domain": "video",
    "category": "Tài chính · Bảo hiểm",
-   "funnel": null,
    "name": "an tâm",
    "codes": [
     "/silhouette",
@@ -3150,7 +3068,6 @@
   {
    "domain": "video",
    "category": "Nội thất · Xây dựng",
-   "funnel": null,
    "name": "tổng thể công trình",
    "codes": [
     "/droneapproach",
@@ -3163,7 +3080,6 @@
   {
    "domain": "video",
    "category": "Nội thất · Xây dựng",
-   "funnel": null,
    "name": "dạo phòng",
    "codes": [
     "/gimbalglide",
@@ -3176,7 +3092,6 @@
   {
    "domain": "video",
    "category": "Nội thất · Xây dựng",
-   "funnel": null,
    "name": "chi tiết vật liệu",
    "codes": [
     "/macrofocus",
@@ -3189,7 +3104,6 @@
   {
    "domain": "video",
    "category": "Nội thất · Xây dựng",
-   "funnel": null,
    "name": "trước/sau cải tạo",
    "codes": [
     "/beforeafter",
@@ -3202,7 +3116,6 @@
   {
    "domain": "video",
    "category": "Nông sản · Đặc sản",
-   "funnel": null,
    "name": "cánh đồng/vùng trồng",
    "codes": [
     "/droneflyover",
@@ -3215,7 +3128,6 @@
   {
    "domain": "video",
    "category": "Nông sản · Đặc sản",
-   "funnel": null,
    "name": "thu hoạch",
    "codes": [
     "/handheldwalk",
@@ -3228,7 +3140,6 @@
   {
    "domain": "video",
    "category": "Nông sản · Đặc sản",
-   "funnel": null,
    "name": "đóng gói",
    "codes": [
     "/productspin",
@@ -3241,7 +3152,6 @@
   {
    "domain": "video",
    "category": "Nông sản · Đặc sản",
-   "funnel": null,
    "name": "thưởng thức",
    "codes": [
     "/foodcommercial",
@@ -3254,7 +3164,6 @@
   {
    "domain": "video",
    "category": "Thú cưng",
-   "funnel": null,
    "name": "chân dung pet",
    "codes": [
     "/closeup",
@@ -3267,7 +3176,6 @@
   {
    "domain": "video",
    "category": "Thú cưng",
-   "funnel": null,
    "name": "pet chạy",
    "codes": [
     "/follow",
@@ -3280,7 +3188,6 @@
   {
    "domain": "video",
    "category": "Thú cưng",
-   "funnel": null,
    "name": "sản phẩm cho pet",
    "codes": [
     "/productspin",
@@ -3293,7 +3200,6 @@
   {
    "domain": "video",
    "category": "Thú cưng",
-   "funnel": null,
    "name": "vui nhộn",
    "codes": [
     "/handhelddrift",
@@ -3306,7 +3212,6 @@
   {
    "domain": "video",
    "category": "Personal brand · KOL",
-   "funnel": null,
    "name": "intro kênh",
    "codes": [
     "/facereveal",
@@ -3319,7 +3224,6 @@
   {
    "domain": "video",
    "category": "Personal brand · KOL",
-   "funnel": null,
    "name": "ngày làm việc",
    "codes": [
     "/day-in-my-life",
@@ -3332,7 +3236,6 @@
   {
    "domain": "video",
    "category": "Personal brand · KOL",
-   "funnel": null,
    "name": "thể hiện chuyên môn",
    "codes": [
     "/closeup",
@@ -3345,7 +3248,6 @@
   {
    "domain": "video",
    "category": "Personal brand · KOL",
-   "funnel": null,
    "name": "nhận diện thương hiệu",
    "codes": [
     "/logoreveal",
@@ -3358,7 +3260,6 @@
   {
    "domain": "video",
    "category": "Personal brand · KOL",
-   "funnel": null,
    "name": "kêu gọi theo dõi",
    "codes": [
     "/conversion-ad",
@@ -3371,7 +3272,6 @@
   {
    "domain": "video",
    "category": "Tuyển dụng",
-   "funnel": null,
    "name": "văn hoá công ty",
    "codes": [
     "/day-in-my-life",
@@ -3384,7 +3284,6 @@
   {
    "domain": "video",
    "category": "Tuyển dụng",
-   "funnel": null,
    "name": "đồng nghiệp nói",
    "codes": [
     "/ugc-testimonial",
@@ -3397,7 +3296,6 @@
   {
    "domain": "video",
    "category": "Tuyển dụng",
-   "funnel": null,
    "name": "vị trí đang tuyển",
    "codes": [
     "/conversion-ad",
@@ -3410,7 +3308,6 @@
   {
    "domain": "video",
    "category": "Game · App mobile",
-   "funnel": null,
    "name": "trailer game",
    "codes": [
     "/worldtransition",
@@ -3423,7 +3320,6 @@
   {
    "domain": "video",
    "category": "Game · App mobile",
-   "funnel": null,
    "name": "gameplay",
    "codes": [
     "/fpvchase",
@@ -3436,7 +3332,6 @@
   {
    "domain": "video",
    "category": "Game · App mobile",
-   "funnel": null,
    "name": "nhân vật game",
    "codes": [
     "/characterreveal",
@@ -3449,7 +3344,6 @@
   {
    "domain": "video",
    "category": "Game · App mobile",
-   "funnel": null,
    "name": "cài đặt ngay",
    "codes": [
     "/conversion-ad",
@@ -3462,7 +3356,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "V",
    "name": "Hero sản phẩm nền trắng chuẩn sàn",
    "codes": [
     "/heroimage",
@@ -3474,7 +3367,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "C",
    "name": "Bộ catalog đa góc nhất quán",
    "codes": [
     "/catalogset",
@@ -3486,7 +3378,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "A",
    "name": "Ảnh sản phẩm lơ lửng sang trọng",
    "codes": [
     "/floatingproduct",
@@ -3498,7 +3389,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "C",
    "name": "Flat lay sản phẩm kèm phụ kiện",
    "codes": [
     "/flatlay",
@@ -3510,7 +3400,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "C",
    "name": "Bóc tách cấu tạo sản phẩm 3D",
    "codes": [
     "/exploded3d",
@@ -3522,7 +3411,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "A",
    "name": "Ảnh lifestyle sản phẩm ngoài trời",
    "codes": [
     "/lifestyleshot",
@@ -3534,7 +3422,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "C",
    "name": "So sánh trước sau cho quảng cáo",
    "codes": [
     "/beforeafterproduct",
@@ -3546,7 +3433,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "V",
    "name": "Bộ biến thể quảng cáo đa kênh",
    "codes": [
     "/adset",
@@ -3559,7 +3445,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "C",
    "name": "Mockup bao bì hộp quà thương hiệu",
    "codes": [
     "/boxmockup",
@@ -3571,7 +3456,6 @@
   {
    "domain": "image",
    "category": "Sản phẩm thương mại",
-   "funnel": "A",
    "name": "Splash nước bắt mắt cho sản phẩm",
    "codes": [
     "/splashshot",
@@ -3583,7 +3467,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "C",
    "name": "Ma-nơ-canh vô hình cho thời trang",
    "codes": [
     "/ghostmannequin",
@@ -3595,7 +3478,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "A",
    "name": "Trang sức cận cảnh trên mặt bóng",
    "codes": [
     "/macroshot",
@@ -3607,7 +3489,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "V",
    "name": "Trang sức đeo trên người mẫu",
    "codes": [
     "/onmodel",
@@ -3619,7 +3500,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "C",
    "name": "Bộ phối màu cho bộ sưu tập",
    "codes": [
     "/colorways",
@@ -3631,7 +3511,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "A",
    "name": "Ảnh thời trang ngoài trời giờ vàng",
    "codes": [
     "/onmodel",
@@ -3643,7 +3522,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "V",
    "name": "Mockup áo thun in thương hiệu",
    "codes": [
     "/tshirtmockup",
@@ -3655,7 +3533,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "C",
    "name": "Lookbook đổi trang phục theo phong cách",
    "codes": [
     "/outfitswap",
@@ -3667,7 +3544,6 @@
   {
    "domain": "image",
    "category": "Thời trang & Trang sức",
-   "funnel": "R",
    "name": "Trang sức theo mùa lễ hội",
    "codes": [
     "/seasonalshot",
@@ -3679,7 +3555,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "C",
    "name": "Ảnh món ăn cho thực đơn",
    "codes": [
     "/menuphoto",
@@ -3691,7 +3566,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "A",
    "name": "Đồ uống dàn dựng có nước bắn",
    "codes": [
     "/drinkshot",
@@ -3703,7 +3577,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "C",
    "name": "Mockup lon và nhãn chai giải khát",
    "codes": [
     "/canmockup",
@@ -3715,7 +3588,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "A",
    "name": "Thẻ công thức nấu ăn chia sẻ",
    "codes": [
     "/recipecard",
@@ -3727,7 +3599,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "V",
    "name": "Ảnh quảng cáo ưu đãi nhà hàng",
    "codes": [
     "/offerad",
@@ -3740,7 +3611,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "A",
    "name": "Món ăn flat lay cho mạng xã hội",
    "codes": [
     "/flatlay",
@@ -3752,7 +3622,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "A",
    "name": "Poster sự kiện ẩm thực",
    "codes": [
     "/eventflyer",
@@ -3764,7 +3633,6 @@
   {
    "domain": "image",
    "category": "Ẩm thực & Đồ uống",
-   "funnel": "R",
    "name": "Email nhắc lại món khách đã thích",
    "codes": [
     "/emailheader",
@@ -3776,7 +3644,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "C",
    "name": "Hồ sơ LinkedIn chuyên nghiệp",
    "codes": [
     "/corporateheadshot",
@@ -3788,7 +3655,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "C",
    "name": "Chân dung nhà sáng lập cho trang công ty",
    "codes": [
     "/founderportrait",
@@ -3800,7 +3666,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Bộ ảnh casting diễn viên",
    "codes": [
     "/actorheadshot",
@@ -3812,7 +3677,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Chân dung bìa sách tác giả",
    "codes": [
     "/authorphoto",
@@ -3824,7 +3688,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Ảnh hồ sơ hẹn hò tự nhiên",
    "codes": [
     "/datingprofile",
@@ -3836,7 +3699,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Chân dung thú cưng làm thiệp lễ",
    "codes": [
     "/petportrait",
@@ -3848,7 +3710,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Poster phim biếm họa gia đình",
    "codes": [
     "/caricature",
@@ -3860,7 +3721,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "A",
    "name": "Thiệp cưới minh họa giờ hoàng hôn",
    "codes": [
     "/weddinginvite",
@@ -3872,7 +3732,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "C",
    "name": "Bộ nhận diện podcast cá nhân",
    "codes": [
     "/podcastportrait",
@@ -3884,7 +3743,6 @@
   {
    "domain": "image",
    "category": "Chân dung & Cá nhân",
-   "funnel": "R",
    "name": "Thông báo tốt nghiệp kèm thẻ kỷ niệm",
    "codes": [
     "/graduationportrait",
@@ -3896,7 +3754,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "C",
    "name": "Bộ nhận diện thương hiệu khởi nghiệp",
    "codes": [
     "/brandboard",
@@ -3908,7 +3765,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "C",
    "name": "Logo chữ và ấn phẩm văn phòng",
    "codes": [
     "/wordmark",
@@ -3920,7 +3776,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "V",
    "name": "Chiến dịch ra mắt sản phẩm mới",
    "codes": [
     "/announcementpost",
@@ -3932,7 +3787,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "A",
    "name": "Chiến dịch quảng cáo ngoài trời",
    "codes": [
     "/billboard",
@@ -3944,7 +3798,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "C",
    "name": "Trang giới thiệu dịch vụ doanh nghiệp",
    "codes": [
     "/landingmock",
@@ -3956,7 +3809,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "C",
    "name": "Hồ sơ năng lực gửi khách hàng",
    "codes": [
     "/orgchart",
@@ -3968,7 +3820,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "C",
    "name": "Bộ ấn phẩm chứng thực khách hàng",
    "codes": [
     "/testimonialad",
@@ -3980,7 +3831,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "A",
    "name": "Diễn giả và sự kiện hội thảo",
    "codes": [
     "/speakerphoto",
@@ -3992,7 +3842,6 @@
   {
    "domain": "image",
    "category": "Doanh nghiệp & Thương hiệu",
-   "funnel": "V",
    "name": "Bao bì thương hiệu đồ uống",
    "codes": [
     "/bottlelabel",
@@ -4004,7 +3853,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "V",
    "name": "Tin đăng bán nhà trọn gói",
    "codes": [
     "/listingphoto",
@@ -4016,7 +3864,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "A",
    "name": "Nhà phố lên đèn ban đêm",
    "codes": [
     "/nightshot",
@@ -4028,7 +3875,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "C",
    "name": "Cải tạo bếp trước và sau",
    "codes": [
     "/kitchenreno",
@@ -4040,7 +3886,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "C",
    "name": "Mood board thiết kế nội thất",
    "codes": [
     "/moodboard",
@@ -4052,7 +3897,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "C",
    "name": "Hướng dẫn mặt bằng căn hộ",
    "codes": [
     "/floorplan3d",
@@ -4064,7 +3908,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "A",
    "name": "Sân vườn cảnh quan nhiệt đới",
    "codes": [
     "/gardenplan",
@@ -4076,7 +3919,6 @@
   {
    "domain": "image",
    "category": "Bất động sản & Nội thất",
-   "funnel": "C",
    "name": "Thương hiệu cá nhân môi giới bất động sản",
    "codes": [
     "/realtorheadshot",
@@ -4088,7 +3930,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "A",
    "name": "Bộ nhận diện kênh YouTube đồng bộ",
    "codes": [
     "/youtubebanner",
@@ -4101,7 +3942,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "A",
    "name": "Bìa video ngắn cho TikTok và Reels",
    "codes": [
     "/tiktokcover",
@@ -4114,7 +3954,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "A",
    "name": "Lưới Instagram đồng bộ thương hiệu",
    "codes": [
     "/instagrid",
@@ -4126,7 +3965,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "C",
    "name": "Carousel hướng dẫn từng bước",
    "codes": [
     "/carouselcover",
@@ -4139,7 +3977,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "V",
    "name": "Đếm ngược ngày ra mắt",
    "codes": [
     "/countdownpost",
@@ -4151,7 +3988,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "C",
    "name": "Bộ ảnh bìa podcast chuyên nghiệp",
    "codes": [
     "/podcastcover",
@@ -4163,7 +3999,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "A",
    "name": "Banner hồ sơ LinkedIn chuyên nghiệp",
    "codes": [
     "/linkedinbanner",
@@ -4175,7 +4010,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "C",
    "name": "Ghim Pinterest dọc thu hút click",
    "codes": [
     "/pinterestpin",
@@ -4187,7 +4021,6 @@
   {
    "domain": "image",
    "category": "Mạng xã hội & Nội dung số",
-   "funnel": "A",
    "name": "Meme thương hiệu dễ lan truyền",
    "codes": [
     "/memeformat",
@@ -4199,7 +4032,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "V",
    "name": "Quảng cáo khuyến mãi giảm giá",
    "codes": [
     "/offerad",
@@ -4212,7 +4044,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "C",
    "name": "Bộ biến thể quảng cáo để test A/B",
    "codes": [
     "/adset",
@@ -4224,7 +4055,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "C",
    "name": "Quảng cáo so sánh trước và sau",
    "codes": [
     "/comparisonad",
@@ -4236,7 +4066,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "C",
    "name": "Storyboard quảng cáo video",
    "codes": [
     "/adstoryboard",
@@ -4249,7 +4078,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "A",
    "name": "Banner ngang cho email và landing",
    "codes": [
     "/bannerad",
@@ -4261,7 +4089,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "A",
    "name": "Billboard và quảng cáo ngoài trời",
    "codes": [
     "/billboard",
@@ -4274,7 +4101,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "A",
    "name": "Quảng cáo tạp chí full trang",
    "codes": [
     "/magazinead",
@@ -4286,7 +4112,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "V",
    "name": "Quảng cáo retargeting nhắc lại",
    "codes": [
     "/retargetad",
@@ -4298,7 +4123,6 @@
   {
    "domain": "image",
    "category": "Quảng cáo & Khuyến mãi",
-   "funnel": "C",
    "name": "Quảng cáo native kiểu bài viết",
    "codes": [
     "/uglyad",
@@ -4310,7 +4134,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "V",
    "name": "Bộ bao bì sản phẩm hoàn chỉnh",
    "codes": [
     "/packagingdesign",
@@ -4323,7 +4146,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "A",
    "name": "Mockup túi giấy thương hiệu",
    "codes": [
     "/bagmockup",
@@ -4335,7 +4157,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "V",
    "name": "Hộp quà cao cấp theo mùa",
    "codes": [
     "/giftbox",
@@ -4347,7 +4168,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "C",
    "name": "Nhãn chai đồ uống nổi bật",
    "codes": [
     "/bottlelabel",
@@ -4359,7 +4179,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "C",
    "name": "Mockup lon nước giải khát",
    "codes": [
     "/canmockup",
@@ -4372,7 +4191,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "A",
    "name": "Bìa sách và ấn phẩm tác giả",
    "codes": [
     "/bookcover",
@@ -4384,7 +4202,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "A",
    "name": "Mockup áo thun và merch",
    "codes": [
     "/tshirtmockup",
@@ -4396,7 +4213,6 @@
   {
    "domain": "image",
    "category": "Bao bì & Mockup",
-   "funnel": "A",
    "name": "Sticker sheet linh vật thương hiệu",
    "codes": [
     "/stickersheet",
@@ -4408,7 +4224,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Nhân vật giả tưởng anime",
    "codes": [
     "/anime",
@@ -4420,7 +4235,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Siêu anh hùng comic",
    "codes": [
     "/comicbook",
@@ -4432,7 +4246,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "C",
    "name": "Minh họa truyện thiếu nhi",
    "codes": [
     "/childrensbook",
@@ -4444,7 +4257,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": null,
    "name": "Ký họa chì chân dung",
    "codes": [
     "/pencilsketch",
@@ -4456,7 +4268,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Bối cảnh phong cách Ghibli",
    "codes": [
     "/ghibli",
@@ -4468,7 +4279,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": null,
    "name": "Manga trắng đen",
    "codes": [
     "/manga",
@@ -4480,7 +4290,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Đất sét stop-motion",
    "codes": [
     "/claymation",
@@ -4492,7 +4301,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Hoạt hình 3D kiểu Pixar",
    "codes": [
     "/pixar",
@@ -4504,7 +4312,6 @@
   {
    "domain": "image",
    "category": "Nghệ thuật & Minh hoạ",
-   "funnel": "A",
    "name": "Poster phim điện ảnh",
    "codes": [
     "/movieposter",
@@ -4516,7 +4323,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Sơ đồ quy trình dịch vụ",
    "codes": [
     "/processdiagram",
@@ -4528,7 +4334,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Hướng dẫn từng bước",
    "codes": [
     "/howtoillustration",
@@ -4540,7 +4345,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "V",
    "name": "Bảng so sánh gói giá",
    "codes": [
     "/pricingtable",
@@ -4552,7 +4356,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Lộ trình học tập",
    "codes": [
     "/roadmapgraphic",
@@ -4564,7 +4367,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Poster số liệu ngành",
    "codes": [
     "/statposter",
@@ -4576,7 +4378,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Giải phẫu chú thích bộ phận",
    "codes": [
     "/anatomyof",
@@ -4588,7 +4389,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Sơ đồ lắp ráp sản phẩm",
    "codes": [
     "/assemblysteps",
@@ -4600,7 +4400,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Thẻ công thức nấu ăn",
    "codes": [
     "/recipecard",
@@ -4612,7 +4411,6 @@
   {
    "domain": "image",
    "category": "Infographic & Giáo dục",
-   "funnel": "C",
    "name": "Slide thuyết trình khóa học",
    "codes": [
     "/slidevisual",
@@ -4624,7 +4422,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "C",
    "name": "Thiệp cưới màu nước",
    "codes": [
     "/weddinginvite",
@@ -4636,7 +4433,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "R",
    "name": "Thiệp mừng lễ cuối năm",
    "codes": [
     "/holidaycard",
@@ -4648,7 +4444,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "A",
    "name": "Poster sự kiện hội thảo",
    "codes": [
     "/eventflyer",
@@ -4660,7 +4455,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "V",
    "name": "Đếm ngược khai trương",
    "codes": [
     "/countdownpost",
@@ -4672,7 +4466,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "A",
    "name": "Story mời tham dự",
    "codes": [
     "/storycover",
@@ -4684,7 +4477,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "C",
    "name": "Ảnh tốt nghiệp chia sẻ",
    "codes": [
     "/graduationportrait",
@@ -4696,7 +4488,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "V",
    "name": "Merch kỷ niệm sự kiện",
    "codes": [
     "/brandmerch",
@@ -4708,7 +4499,6 @@
   {
    "domain": "image",
    "category": "Sự kiện & Thiệp",
-   "funnel": "A",
    "name": "Ảnh tập thể sự kiện công ty",
    "codes": [
     "/teamphoto",
