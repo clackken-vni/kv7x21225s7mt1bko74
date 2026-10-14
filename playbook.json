@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-10-13",
+ "updated": "2026-10-14",
  "source": "ai-command-playbook.md",
  "rulesText": "## PHẦN 4 — CƠ CHẾ PROMPT-CODE\n\n### 4.1 Nguyên tắc\n\n1. **Viết câu tự nhiên mô tả đúng cái code đó.** Code là ghi chú, câu mới là thứ model đọc.\n2. **1 chuyển động chính + 1 khung + 1 ánh sáng + 1 style.** (khuyến nghị của Google)\n3. **Đừng nhồi >3–6 code.** Model loãng trọng số, code cuối bị bỏ.\n4. **Đừng yêu cầu 2 chuyển động mâu thuẫn** (orbit + static + whip pan).\n5. Bỏ dấu `/` khi cần — nghĩa không đổi.\n\n### 4.2 Vì sao `/` vẫn hữu ích\n\n- Ngắn để nhớ và để chia sẻ (infographic lan truyền dùng dấu `/`).\n- Tạo cảm giác \"lệnh\", dễ dạy người mới.\n- Nhưng **không có giá trị cú pháp**. Đây là điểm hay bị hiểu sai nhất.\n\n---\n\n## PHẦN 7 — LUẬT PHỐI (phần agent phải thuộc)\n\n### 7.1 Thứ tự ghép — 7 tầng\n\n```\n[chủ thể] + [khung/góc] + [chuyển động] + [lens/focus] + [ánh sáng] + [style] + [tốc độ]\n```\n\n- Tầng **1–2 bắt buộc**; tầng 3–7 thêm dần.\n- Tầng sau **không đè** tầng trước — chúng cộng dồn.\n- Dồn cả 7 tầng vào prompt ngắn → model **bỏ sót tầng cuối**. Điểm ngọt: **3–5 code**.\n\n### 7.2 Quy trình 4 bước\n\n1. **Chốt shot** — một cảnh = một hành động rõ. Viết ra: chủ thể + làm gì + cảm giác muốn có.\n2. **Ghép code** — 1 khung + 1 chuyển động + 1 lens + 1 sáng + 1 style.\n3. **Generate** — chọn model + tỉ lệ khung; xuất **1 clip**, xem ngay. Đừng xuất loạt khi chưa chốt.\n4. **Tinh chỉnh ≤3 lượt** — nhắn tiếp trong cùng hội thoại:\n   *\"giữ nguyên, đổi sang /lowangle\"*. Quá 3 lượt → mất ngữ cảnh, làm lại từ bước 1.\n\n### 7.3 Lỗi làm clip/ảnh rối\n\n| Lỗi | Vì sao sai |\n|---|---|\n| `/dollyin` + `/dollyout` | hai code cùng trục, triệt tiêu nhau |\n| `/panleft` + `/panright` | cùng trục, kết quả ngẫu nhiên |\n| `/zoomin` + `/pushin` | gần trùng nghĩa (\"đến gần chủ thể\") — chọn một |\n| 8–10 code một prompt | model loãng trọng số, code cuối bị bỏ |\n| Chuyển cảnh 1 clip | match cut / whip cần **hai** clip khớp hướng + khung |\n| Tả lại nhân vật bằng lời mỗi shot | phải tham chiếu (`@character`, `@me`) |\n| Đổi sáng giữa các shot cùng cảnh | clip gãy, trông giả |\n| Không khoá \"toà nhà/chủ thể đứng yên\" | chủ thể méo, cửa sổ nhảy khi camera bay |\n\n### 7.4 Tổ hợp mẫu (dán nguyên được)\n\n```\nHero entry       /slowmo /dollyin /lowangle /heroshot /cinematic\n360 nhân vật     /orbit360 /fullbody /smoothcamera /cinematic\nDrone travel     /dronefly /aerialreveal /extremewide /goldenhour /cinematic\nPortrait cảm xúc /closeup /dollyin /rackfocus /shallowdepth /softfocus\nSản phẩm cao cấp /orbit /productreveal /macrofocus /dramaticlighting /cinematic\nPOV              /pov /firstperson /handheld /naturalmotion\n```\n\n### 7.5 Alias & biến thể chính tả\n\nCode cộng đồng tồn tại song song nhiều cách viết. Model hiểu cả hai:\n- **Tách từ / viết liền:** `/dolly in` ≡ `/dollyin` · `/pan left` ≡ `/panleft`.\n- **Rút gọn:** `/slowmo` ≡ `/slowmotion` · `/smoke` ≡ `/smoketransition` ·\n  `/productphoto` ≡ `/productshot` · `/extremewide` ≡ `/extremewideangle` ·\n  `/smoothcamera` ≡ `/smoothmotion` · `/bodycam` ≡ `/bodycamwalk` · `/helmet` ≡ `/helmetturn` ·\n  `/vehicle` ≡ `/vehicleforward` · `/wheel` ≡ `/wheeltrack` · `/tunnel` ≡ `/tunnelflight` ·\n  `/gap` ≡ `/gapflythrough` · `/snorricam` ≡ `/snorricamwalk` · `/three-quarter` ≡\n  `/three-quarterfollow`.\n- **Quy tắc thực dụng:** khi không chắc code viết thế nào, **viết nghĩa tiếng Anh của nó**\n  vào prompt. `/slowmo` không ăn → `slow motion`. Đây luôn là đường lui an toàn.\n\n### 7.6 Nối nhiều shot thành cảnh\n\nGiữ **sáng + style cố định**; chỉ đổi **khung + chuyển động**.\nNối bằng: `/matchcut` (khớp hình dạng) · `/whiptransition` (quét nhanh) ·\n`/seamlessloop` (lặp vô hạn).\n\n### 7.5 Bảng giữ nhất quán\n\n| Giữ nguyên | Được đổi |\n|---|---|\n| Style (`architectural visualization`, `octanerender`) | bán kính khung |\n| Lens (`24mm f/8`) | độ cao máy |\n| Câu khoá (\"chủ thể đứng yên\") | tốc độ |\n| Sáng: golden hour **hoặc** blue hour — không trộn trong 1 sequence | chuyển động |\n| Ảnh gốc làm first frame | thời điểm (ngày/chạng vạng/đêm) |\n\n---\n\n### 2.4 Ảnh — Nano Banana Pro (Gemini 3 Pro Image)\n\n**Công thức:** `Subject · Composition · Action · Location · Style · Editing instruction`\n(thêm editing instruction khi sửa ảnh).\n**Thêm được:** aspect ratio (`9:16`, `21:9`…); camera/ánh sáng (`low-angle, f/1.8, golden hour`);\nchữ cần render (`headline \"X\" font bold`); **vai trò từng ảnh input** (Image A = pose,\nB = style, C = background).\n**Giới hạn:** blend tới 6–14 ảnh tùy surface; resize 1K/2K/4K.\n\n**Hai template gốc (Google chính thức):**\n\n1. *Ảnh thật:*\n```\nA photorealistic [shot type] of [subject], [action], set in [environment].\nThe scene is illuminated by [lighting], creating a [mood] atmosphere.\nCaptured with [camera/lens], emphasizing [textures]. [aspect ratio] format.\n```\n2. *Sticker/illustration:*\n```\nA [style] sticker of [subject], featuring [characteristics] and a [palette].\n[line style], [shading style]. The background must be white.\n```\n\n**Quy tắc vàng:** Google nói **\"mô tả cảnh, đừng liệt kê keyword\"**.\n- Dùng thuật ngữ nhiếp ảnh: `85mm lens f/1.4` > `bokeh`.\n- Sửa dần trong hội thoại, **đừng viết lại prompt**.\n- Negative ngữ nghĩa: `empty street with no vehicles` > `no cars`.\n- Chữ phải để trong `\"ngoặc kép\"`.\n\n**Giới hạn thật:** chữ dài kém; nhất quán nhân vật trôi sau ~10 lần sinh; chi tiết nhỏ\n(tay, logo) yếu; ảnh luôn có SynthID.\n\n---\n\n### 3.5 Công thức prompt Veo (dùng cho mọi generation)\n\n```\n[Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance]\n```\n\n- **Camera:** dolly / tracking / crane / aerial / slow pan / POV.\n- **Composition:** wide / close-up / low angle / two-shot.\n- **Lens:** shallow DOF / wide-angle / macro / deep focus.\n- **Âm thanh:** thoại trong `\"ngoặc kép\"`; `SFX: …`; `Ambient noise: …`.\n- **Negative:** mô tả cái muốn loại (*\"desolate landscape with no buildings\"*),\n  **đừng** viết \"no X\".\n- **Timestamp prompting** (nhiều shot trong 1 lần sinh):\n  `[00:00-00:02] …` `[00:02-00:04] …` — mỗi mốc 1 shot + SFX/emotion.\n- **Best practice:** ingredient nền sạch/đã tách nền; prompt chữ **bổ trợ**, không mâu thuẫn\n  với ảnh input.\n\n---\n\n",
  "videoCodes": {
@@ -2091,7 +2091,8 @@
     "/macrofocus",
     "/rimlight",
     "/luxury"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2103,7 +2104,8 @@
     "/shallowdepth",
     "/softlight",
     "/filmic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2115,7 +2117,8 @@
     "/shallowfocus",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2127,7 +2130,8 @@
     "/matchcut",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2139,7 +2143,8 @@
     "/fastpush",
     "/spotlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2151,7 +2156,8 @@
     "/gimbalglide",
     "/softlight",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2163,7 +2169,8 @@
     "/whippan",
     "/neonlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2175,7 +2182,8 @@
     "/naturalmotion",
     "/softlight",
     "/documentary"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2187,7 +2195,8 @@
     "/slowpush",
     "/softlight",
     "/documentary"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2199,7 +2208,8 @@
     "/descendpush",
     "/moody",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2211,7 +2221,8 @@
     "/speedramp",
     "/productspin",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2223,7 +2234,8 @@
     "/rimlight",
     "/smoketransition",
     "/luxury"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2235,7 +2247,8 @@
     "/neonlight",
     "/tiktok-style-ad",
     "/blockbuster"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2247,7 +2260,8 @@
     "/naturalmotion",
     "/goldenhour",
     "/documentary"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2259,7 +2273,8 @@
     "/whiptransition",
     "/cinematic",
     "/smoothmotion"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2271,7 +2286,8 @@
     "/orbit360",
     "/neonlight",
     "/cinematic"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2283,7 +2299,8 @@
     "/objecttransition",
     "/glitch",
     "/surreal"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2295,7 +2312,8 @@
     "/speedramp",
     "/neonlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -2307,7 +2325,8 @@
     "/goldenhour",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2319,7 +2338,8 @@
     "/slowpush",
     "/rimlight",
     "/luxury"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2331,7 +2351,8 @@
     "/backlight",
     "/volumetric",
     "/epic"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2343,7 +2364,8 @@
     "/softlight",
     "/shallowdepth",
     "/documentary"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2355,7 +2377,8 @@
     "/softlight",
     "/naturalmotion",
     "/documentary"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2367,7 +2390,8 @@
     "/macrofocus",
     "/neonlight",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2379,7 +2403,8 @@
     "/descendpush",
     "/moody",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2391,7 +2416,8 @@
     "/shallowfocus",
     "/smoothmotion",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2403,7 +2429,8 @@
     "/neonlight",
     "/smoothmotion",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2415,7 +2442,8 @@
     "/softlight",
     "/documentary",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2427,7 +2455,8 @@
     "/goldenhour",
     "/wide",
     "/epic"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2439,7 +2468,8 @@
     "/wide",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2451,7 +2481,8 @@
     "/softlight",
     "/shallowdepth",
     "/luxury"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2463,7 +2494,8 @@
     "/sunrays",
     "/goldenhour",
     "/cinematic"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2475,7 +2507,8 @@
     "/spotlight",
     "/commercial",
     "/minimal"
-   ]
+   ],
+   "clips": 6
   },
   {
    "domain": "video",
@@ -2487,7 +2520,8 @@
     "/tablerise",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2499,7 +2533,8 @@
     "/macrofocus",
     "/backlight",
     "/filmic"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2511,7 +2546,8 @@
     "/goldenhour",
     "/softlight",
     "/cinematic"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2523,7 +2559,8 @@
     "/naturalmotion",
     "/softlight",
     "/documentary"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2535,7 +2572,8 @@
     "/spotlight",
     "/speedramp",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2547,7 +2585,8 @@
     "/softlight",
     "/shallowdepth",
     "/luxury"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2559,7 +2598,8 @@
     "/closeup",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2571,7 +2611,8 @@
     "/softlight",
     "/smoothmotion",
     "/dreamy"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2583,7 +2624,8 @@
     "/volumetric",
     "/flowerpetals",
     "/dreamy"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2595,7 +2637,8 @@
     "/backlight",
     "/watersplash",
     "/luxury"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2607,7 +2650,8 @@
     "/sidefollow",
     "/neonlight",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2619,7 +2663,8 @@
     "/flashtransition",
     "/blockbuster",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2631,7 +2676,8 @@
     "/softlight",
     "/shallowdepth",
     "/filmic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2643,7 +2689,8 @@
     "/goldenhour",
     "/naturalmotion",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2655,7 +2702,8 @@
     "/softlight",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2667,7 +2715,8 @@
     "/lowangle",
     "/neonlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2679,7 +2728,8 @@
     "/lowangle",
     "/softlight",
     "/documentary"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2691,7 +2741,8 @@
     "/turnaround",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2703,7 +2754,8 @@
     "/backlight",
     "/volumetric",
     "/epic"
-   ]
+   ],
+   "clips": 3
   },
   {
    "domain": "video",
@@ -2715,7 +2767,8 @@
     "/softlight",
     "/shallowdepth",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2727,7 +2780,8 @@
     "/goldenhour",
     "/naturalmotion",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2739,7 +2793,8 @@
     "/smoothmotion",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2751,7 +2806,8 @@
     "/softlight",
     "/documentary",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2763,7 +2819,8 @@
     "/goldenhour",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 7
   },
   {
    "domain": "video",
@@ -2775,7 +2832,8 @@
     "/backlight",
     "/softlight",
     "/dreamy"
-   ]
+   ],
+   "clips": 7
   },
   {
    "domain": "video",
@@ -2787,7 +2845,8 @@
     "/speedramp",
     "/blockbuster",
     "/cinematic"
-   ]
+   ],
+   "clips": 7
   },
   {
    "domain": "video",
@@ -2799,7 +2858,8 @@
     "/softlight",
     "/flowerpetals",
     "/dreamy"
-   ]
+   ],
+   "clips": 7
   },
   {
    "domain": "video",
@@ -2811,7 +2871,8 @@
     "/goldenhour",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 5
   },
   {
    "domain": "video",
@@ -2823,7 +2884,8 @@
     "/softlight",
     "/wide",
     "/luxury"
-   ]
+   ],
+   "clips": 5
   },
   {
    "domain": "video",
@@ -2835,7 +2897,8 @@
     "/sunrays",
     "/goldenhour",
     "/cinematic"
-   ]
+   ],
+   "clips": 5
   },
   {
    "domain": "video",
@@ -2847,7 +2910,8 @@
     "/naturalmotion",
     "/goldenhour",
     "/blockbuster"
-   ]
+   ],
+   "clips": 5
   },
   {
    "domain": "video",
@@ -2859,7 +2923,8 @@
     "/slowmotion",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 5
   },
   {
    "domain": "video",
@@ -2871,7 +2936,8 @@
     "/softlight",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2883,7 +2949,8 @@
     "/softlight",
     "/shallowdepth",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2895,7 +2962,8 @@
     "/closeup",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2907,7 +2975,8 @@
     "/softlight",
     "/naturalmotion",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2919,7 +2988,8 @@
     "/rimlight",
     "/smoketransition",
     "/luxury"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2931,7 +3001,8 @@
     "/motionblur",
     "/goldenhour",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2943,7 +3014,8 @@
     "/softlight",
     "/shallowdepth",
     "/luxury"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2955,7 +3027,8 @@
     "/speedramp",
     "/dust",
     "/blockbuster"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2967,7 +3040,8 @@
     "/neonlight",
     "/rimlight",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2979,7 +3053,8 @@
     "/shallowdepth",
     "/softlight",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -2991,7 +3066,8 @@
     "/softlight",
     "/smoothmotion",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3003,7 +3079,8 @@
     "/neonlight",
     "/smoothmotion",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3015,7 +3092,8 @@
     "/flashtransition",
     "/spotlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3027,7 +3105,8 @@
     "/goldenhour",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3039,7 +3118,8 @@
     "/softlight",
     "/documentary",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3051,7 +3131,8 @@
     "/neonlight",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3063,7 +3144,8 @@
     "/backlight",
     "/softlight",
     "/dreamy"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3075,7 +3157,8 @@
     "/goldenhour",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3087,7 +3170,8 @@
     "/wide",
     "/softlight",
     "/luxury"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3099,7 +3183,8 @@
     "/shallowdepth",
     "/softlight",
     "/filmic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3111,7 +3196,8 @@
     "/panpush",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3123,7 +3209,8 @@
     "/wide",
     "/epic",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3135,7 +3222,8 @@
     "/naturalmotion",
     "/goldenhour",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3147,7 +3235,8 @@
     "/softlight",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3159,7 +3248,8 @@
     "/slowmotion",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3171,7 +3261,8 @@
     "/softlight",
     "/shallowdepth",
     "/dreamy"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -3183,7 +3274,8 @@
     "/slowmotion",
     "/goldenhour",
     "/cinematic"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -3195,7 +3287,8 @@
     "/softlight",
     "/minimal",
     "/commercial"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -3207,7 +3300,8 @@
     "/neonlight",
     "/blockbuster",
     "/surreal"
-   ]
+   ],
+   "clips": 2
   },
   {
    "domain": "video",
@@ -3219,7 +3313,8 @@
     "/rimlight",
     "/neonlight",
     "/cinematic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3231,7 +3326,8 @@
     "/naturalmotion",
     "/goldenhour",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3243,7 +3339,8 @@
     "/softlight",
     "/documentary",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3255,7 +3352,8 @@
     "/neonlight",
     "/cinematic",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3267,7 +3365,8 @@
     "/spotlight",
     "/commercial",
     "/minimal"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3279,7 +3378,8 @@
     "/naturalmotion",
     "/softlight",
     "/documentary"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3291,7 +3391,8 @@
     "/softlight",
     "/documentary",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3303,7 +3404,8 @@
     "/minimal",
     "/softlight",
     "/commercial"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3315,7 +3417,8 @@
     "/explosion",
     "/blockbuster",
     "/epic"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3327,7 +3430,8 @@
     "/neonlight",
     "/smoothmotion",
     "/cyberpunk"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3339,7 +3443,8 @@
     "/particlefx",
     "/rimlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "video",
@@ -3351,7 +3456,8 @@
     "/flashtransition",
     "/neonlight",
     "/blockbuster"
-   ]
+   ],
+   "clips": 4
   },
   {
    "domain": "image",
@@ -3362,7 +3468,8 @@
     "/amazonready",
     "/productshot",
     "/backgroundswap"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3373,7 +3480,8 @@
     "/turntable",
     "/productshot",
     "/colorways"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3384,7 +3492,8 @@
     "/luxuryshot",
     "/podiumshot",
     "/glassreflection"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3395,7 +3504,8 @@
     "/insidethebox",
     "/productshot",
     "/partslist"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3406,7 +3516,8 @@
     "/partslist",
     "/blueprintview",
     "/isometricproduct"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3417,7 +3528,8 @@
     "/naturebackdrop",
     "/handheld",
     "/onmodel"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3428,7 +3540,8 @@
     "/comparisonad",
     "/staticad",
     "/comparisonchart"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3440,7 +3553,8 @@
     "/storyad",
     "/carouselad",
     "/bannerad"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3451,7 +3565,8 @@
     "/giftbox",
     "/packagingdesign",
     "/bagmockup"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3462,7 +3577,8 @@
     "/productshot",
     "/macroshot",
     "/podiumshot"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3473,7 +3589,8 @@
     "/catalogset",
     "/productshot",
     "/colorways"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3484,7 +3601,8 @@
     "/glassreflection",
     "/luxuryshot",
     "/podiumshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3495,7 +3613,8 @@
     "/luxuryshot",
     "/macroshot",
     "/heroimage"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3506,7 +3625,8 @@
     "/catalogset",
     "/ghostmannequin",
     "/flatlay"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3517,7 +3637,8 @@
     "/naturebackdrop",
     "/lifestyleshot",
     "/goldenhourportrait"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3528,7 +3649,8 @@
     "/brandmerch",
     "/flatlay",
     "/onmodel"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3539,7 +3661,8 @@
     "/onmodel",
     "/catalogset",
     "/instagrid"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3550,7 +3673,8 @@
     "/macroshot",
     "/giftbox",
     "/luxuryshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3561,7 +3685,8 @@
     "/foodshot",
     "/menudesign",
     "/recipecard"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3572,7 +3697,8 @@
     "/splashshot",
     "/macroshot",
     "/podiumshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3583,7 +3709,8 @@
     "/bottlelabel",
     "/packagingdesign",
     "/productshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3594,7 +3721,8 @@
     "/foodshot",
     "/flatlay",
     "/howtoillustration"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3606,7 +3734,8 @@
     "/menuphoto",
     "/staticad",
     "/storyad"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3617,7 +3746,8 @@
     "/foodshot",
     "/instagrid",
     "/storycover"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3628,7 +3758,8 @@
     "/foodshot",
     "/drinkshot",
     "/countdownpost"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3639,7 +3770,8 @@
     "/retargetad",
     "/menuphoto",
     "/foodshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3650,7 +3782,8 @@
     "/linkedinbanner",
     "/profilepic",
     "/casualheadshot"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3661,7 +3794,8 @@
     "/teamphoto",
     "/officespace",
     "/bwportrait"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3672,7 +3806,8 @@
     "/bwportrait",
     "/outfitswap",
     "/vintageportrait"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3683,7 +3818,8 @@
     "/bookcover",
     "/goldenhourportrait",
     "/magazinecover"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3694,7 +3830,8 @@
     "/goldenhourportrait",
     "/casualheadshot",
     "/lifestyleshot"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3705,7 +3842,8 @@
     "/holidaycard",
     "/watercolor",
     "/postermockup"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3716,7 +3854,8 @@
     "/cartoonme",
     "/popart",
     "/movieposter"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3727,7 +3866,8 @@
     "/goldenhourportrait",
     "/watercolor",
     "/patterndesign"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3738,7 +3878,8 @@
     "/podcastcover",
     "/quotecard",
     "/bwportrait"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3749,7 +3890,8 @@
     "/teamphoto",
     "/tradingcard",
     "/announcementpost"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -3760,7 +3902,8 @@
     "/logoconcepts",
     "/colorpalette",
     "/businesscard"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3771,7 +3914,8 @@
     "/monogram",
     "/letterhead",
     "/iconlogo"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3782,7 +3926,8 @@
     "/countdownpost",
     "/adset",
     "/offerad"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3793,7 +3938,8 @@
     "/busstopad",
     "/subwayad",
     "/bannerad"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3804,7 +3950,8 @@
     "/emailheader",
     "/staticad",
     "/processdiagram"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3815,7 +3962,8 @@
     "/slidevisual",
     "/pricingtable",
     "/iconset"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3826,7 +3974,8 @@
     "/quotecard",
     "/statgraphic",
     "/comparisonchart"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3837,7 +3986,8 @@
     "/eventflyer",
     "/slidevisual",
     "/linkedinbanner"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3848,7 +3998,8 @@
     "/canmockup",
     "/packagingdesign",
     "/shelfshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3859,7 +4010,8 @@
     "/virtualstaging",
     "/floorplan3d",
     "/realtorheadshot"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3870,7 +4022,8 @@
     "/exteriorrender",
     "/listingphoto",
     "/mapgraphic"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3881,7 +4034,8 @@
     "/roomredesign",
     "/comparisonad",
     "/virtualstaging"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3892,7 +4046,8 @@
     "/roomredesign",
     "/colorpalette",
     "/floorplan3d"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3903,7 +4058,8 @@
     "/blueprintview",
     "/howtoillustration",
     "/mapgraphic"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3914,7 +4070,8 @@
     "/exteriorrender",
     "/moodboard",
     "/nightshot"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3925,7 +4082,8 @@
     "/businesscard",
     "/linkedinbanner",
     "/listingphoto"
-   ]
+   ],
+   "stills": 6
   },
   {
    "domain": "image",
@@ -3937,7 +4095,8 @@
     "/thumbnailimage",
     "/instagrid",
     "/reelcover"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3949,7 +4108,8 @@
     "/storycover",
     "/thumbnailimage",
     "/statgraphic"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3960,7 +4120,8 @@
     "/carouselcover",
     "/quotecard",
     "/statgraphic"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3972,7 +4133,8 @@
     "/processdiagram",
     "/statgraphic",
     "/iconset"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3983,7 +4145,8 @@
     "/announcementpost",
     "/storycover",
     "/eventflyer"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -3994,7 +4157,8 @@
     "/podcastportrait",
     "/quotecard",
     "/bwportrait"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4005,7 +4169,8 @@
     "/corporateheadshot",
     "/headshot",
     "/quotecard"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4016,7 +4181,8 @@
     "/flatlay",
     "/howtoillustration",
     "/quotecard"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4027,7 +4193,8 @@
     "/cartoonme",
     "/statgraphic",
     "/announcementpost"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4039,7 +4206,8 @@
     "/bannerad",
     "/storyad",
     "/countdownpost"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4050,7 +4218,8 @@
     "/staticad",
     "/carouselad",
     "/comparisonad"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4061,7 +4230,8 @@
     "/beforeafterproduct",
     "/testimonialad",
     "/offerad"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4073,7 +4243,8 @@
     "/staticad",
     "/carouselad",
     "/thumbnailimage"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4084,7 +4255,8 @@
     "/emailheader",
     "/landingmock",
     "/statgraphic"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4096,7 +4268,8 @@
     "/subwayad",
     "/postermockup",
     "/storefront"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4107,7 +4280,8 @@
     "/postermockup",
     "/luxuryshot",
     "/testimonialad"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4118,7 +4292,8 @@
     "/offerad",
     "/testimonialad",
     "/staticad"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4129,7 +4304,8 @@
     "/staticad",
     "/memeformat",
     "/testimonialad"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4141,7 +4317,8 @@
     "/bottlelabel",
     "/canmockup",
     "/shelfshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4152,7 +4329,8 @@
     "/packagingdesign",
     "/brandmerch",
     "/storefront"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4163,7 +4341,8 @@
     "/boxmockup",
     "/seasonalshot",
     "/luxuryshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4174,7 +4353,8 @@
     "/drinkshot",
     "/glassreflection",
     "/productshot"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4186,7 +4366,8 @@
     "/drinkshot",
     "/productshot",
     "/colorways"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4197,7 +4378,8 @@
     "/authorphoto",
     "/patterndesign",
     "/magazinecover"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4208,7 +4390,8 @@
     "/brandmerch",
     "/ghostmannequin",
     "/patterndesign"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4219,7 +4402,8 @@
     "/mascotdesign",
     "/patterndesign",
     "/iconset"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4230,7 +4414,8 @@
     "/fantasyme",
     "/lineart",
     "/conceptart"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4241,7 +4426,8 @@
     "/superhero",
     "/popart",
     "/lineart"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4252,7 +4438,8 @@
     "/watercolor",
     "/pencilsketch",
     "/sketchbook"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4263,7 +4450,8 @@
     "/charcoal",
     "/bwportrait",
     "/sketchbook"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4274,7 +4462,8 @@
     "/environmentart",
     "/anime",
     "/watercolor"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4285,7 +4474,8 @@
     "/crosshatching",
     "/inkdrawing",
     "/bwportrait"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4296,7 +4486,8 @@
     "/clayrender",
     "/3dcharacter",
     "/miniature"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4307,7 +4498,8 @@
     "/3dcharacter",
     "/3drender",
     "/childrensbook"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4318,7 +4510,8 @@
     "/mattepainting",
     "/environmentart",
     "/postermockup"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4329,7 +4522,8 @@
     "/infographic",
     "/iconset",
     "/slidevisual"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4340,7 +4534,8 @@
     "/checklistgraphic",
     "/processdiagram",
     "/iconset"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4351,7 +4546,8 @@
     "/comparisonchart",
     "/infographic",
     "/iconset"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4362,7 +4558,8 @@
     "/timelineposter",
     "/infographic",
     "/slidevisual"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4373,7 +4570,8 @@
     "/infographic",
     "/comparisonchart",
     "/slidevisual"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4384,7 +4582,8 @@
     "/xrayview",
     "/cutaway",
     "/exploded3d"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4395,7 +4594,8 @@
     "/partslist",
     "/insidethebox",
     "/exploded3d"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4406,7 +4606,8 @@
     "/howtoillustration",
     "/foodshot",
     "/menuphoto"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4417,7 +4618,8 @@
     "/infographic",
     "/statgraphic",
     "/laptopmockup"
-   ]
+   ],
+   "stills": 5
   },
   {
    "domain": "image",
@@ -4428,7 +4630,8 @@
     "/watercolor",
     "/patterndesign",
     "/papercut"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4439,7 +4642,8 @@
     "/papercut",
     "/patterndesign",
     "/giftbox"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4450,7 +4654,8 @@
     "/speakerphoto",
     "/postermockup",
     "/announcementpost"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4461,7 +4666,8 @@
     "/storycover",
     "/staticad",
     "/announcementpost"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4472,7 +4678,8 @@
     "/reelcover",
     "/eventflyer",
     "/quotecard"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4483,7 +4690,8 @@
     "/announcementpost",
     "/quotecard",
     "/instagrid"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4494,7 +4702,8 @@
     "/tshirtmockup",
     "/stickersheet",
     "/bagmockup"
-   ]
+   ],
+   "stills": 4
   },
   {
    "domain": "image",
@@ -4505,7 +4714,8 @@
     "/eventflyer",
     "/linkedinbanner",
     "/instagrid"
-   ]
+   ],
+   "stills": 4
   }
  ],
  "imageMeanings": {
